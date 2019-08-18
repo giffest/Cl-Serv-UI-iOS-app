@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5014F2E734E75C1A177916C0 /* Pods_GBVKontakteApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A742D71F8E6ABB84329A6B /* Pods_GBVKontakteApp.framework */; };
 		5405975F228EED1E002A892A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5405975E228EED1E002A892A /* AppDelegate.swift */; };
 		54059761228EED1E002A892A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54059760228EED1E002A892A /* ViewController.swift */; };
 		54059764228EED1E002A892A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54059762228EED1E002A892A /* Main.storyboard */; };
@@ -84,6 +85,9 @@
 		54F92A052296AD9F005FCCFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54F92A072296BA39005FCCFA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		54F92A092296BA46005FCCFA /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		5D90D9FC0A1D2DB4FC63E4CA /* Pods-GBVKontakteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBVKontakteApp.debug.xcconfig"; path = "Target Support Files/Pods-GBVKontakteApp/Pods-GBVKontakteApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D5A742D71F8E6ABB84329A6B /* Pods_GBVKontakteApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBVKontakteApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0DAA633564B58FA3952138E /* Pods-GBVKontakteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBVKontakteApp.release.xcconfig"; path = "Target Support Files/Pods-GBVKontakteApp/Pods-GBVKontakteApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,17 +95,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5014F2E734E75C1A177916C0 /* Pods_GBVKontakteApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26B2DB22254FA40ED3AE6040 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5A742D71F8E6ABB84329A6B /* Pods_GBVKontakteApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		54059752228EED1E002A892A = {
 			isa = PBXGroup;
 			children = (
 				5405975D228EED1E002A892A /* GBVKontakteApp */,
 				5405975C228EED1E002A892A /* Products */,
+				AB959CD37880119B507D7A29 /* Pods */,
+				26B2DB22254FA40ED3AE6040 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -221,6 +236,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		AB959CD37880119B507D7A29 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D90D9FC0A1D2DB4FC63E4CA /* Pods-GBVKontakteApp.debug.xcconfig */,
+				F0DAA633564B58FA3952138E /* Pods-GBVKontakteApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -228,9 +253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5405976D228EED1F002A892A /* Build configuration list for PBXNativeTarget "GBVKontakteApp" */;
 			buildPhases = (
+				8BE5D2CC49D7BE13A5C8A4F1 /* [CP] Check Pods Manifest.lock */,
 				54059757228EED1E002A892A /* Sources */,
 				54059758228EED1E002A892A /* Frameworks */,
 				54059759228EED1E002A892A /* Resources */,
+				2915FBA73B5C2A751DF5EC43 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -288,6 +315,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2915FBA73B5C2A751DF5EC43 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBVKontakteApp/Pods-GBVKontakteApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBVKontakteApp/Pods-GBVKontakteApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GBVKontakteApp/Pods-GBVKontakteApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BE5D2CC49D7BE13A5C8A4F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GBVKontakteApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54059757228EED1E002A892A /* Sources */ = {
@@ -468,6 +537,7 @@
 		};
 		5405976E228EED1F002A892A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D90D9FC0A1D2DB4FC63E4CA /* Pods-GBVKontakteApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +556,7 @@
 		};
 		5405976F228EED1F002A892A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0DAA633564B58FA3952138E /* Pods-GBVKontakteApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
