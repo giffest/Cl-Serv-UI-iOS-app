@@ -1,5 +1,5 @@
 //
-//  SingletonVK.swift
+//  Session.swift
 //  GBVKontakteApp
 //
 //  Created by Dmitry on 18/08/2019.
@@ -13,6 +13,6 @@ class Session {
     
     public static let shared = Session()
     
-    var tokken: String = "abcd"
+    var token: String = "abcd"
     var userid: Int = 1234
 }
