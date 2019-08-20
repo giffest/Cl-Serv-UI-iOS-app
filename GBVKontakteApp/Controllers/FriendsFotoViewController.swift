@@ -12,12 +12,16 @@ private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
+    let vklogincontroller = VKLoginController()
+    
     var friendNameForTitle: String = ""
     var friendFotoForImage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        vklogincontroller.getPhotoUser()
+        
         title = friendNameForTitle
 
     }

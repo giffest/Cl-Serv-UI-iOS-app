@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,13 +156,13 @@
         <!--Friends-->
         <scene sceneID="oNI-BJ-z5L">
             <objects>
-                <tableViewController id="Py2-pt-FMo" customClass="FriendsViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Py2-pt-FMo" customClass="FriendsViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bvh-5f-xlt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="75" id="FZp-m8-AxC" customClass="FriendCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="75" id="FZp-m8-AxC" customClass="FriendCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FZp-m8-AxC" id="wBH-Xd-ZPW">
@@ -257,7 +257,7 @@
         <!--Friends-->
         <scene sceneID="Q6I-eV-7Wh">
             <objects>
-                <tableViewController id="ktn-5F-jYa" customClass="FriendsViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ktn-5F-jYa" customClass="FriendsViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZXn-5d-oIl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,7 +272,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="75" id="ffc-PA-1D4" customClass="FriendCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="75" id="ffc-PA-1D4" customClass="FriendCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffc-PA-1D4" id="WMA-dB-4iu">
@@ -285,7 +285,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpN-m8-IxT" customClass="ImageShadowView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpN-m8-IxT" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="290" y="2" width="70" height="70"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ГубкаБоб" translatesAutoresizingMaskIntoConstraints="NO" id="SQ1-g9-7TF">
@@ -351,7 +351,7 @@
         <!--Friends Foto View Controller-->
         <scene sceneID="NoI-av-Fzp">
             <objects>
-                <collectionViewController id="Fxw-gR-cWT" customClass="FriendsFotoViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="Fxw-gR-cWT" customClass="FriendsFotoViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jUd-a2-uEH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +363,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="ImageCell" id="0D1-gf-CPL" customClass="ImageCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="ImageCell" id="0D1-gf-CPL" customClass="ImageCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="8" y="184.5" width="413" height="356"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -374,7 +374,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="413" height="356"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButton" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButton" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="10" y="332" width="63" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
@@ -435,7 +435,7 @@
         <!--Amimate View Controller-->
         <scene sceneID="ohX-Ks-MtT">
             <objects>
-                <viewController id="foY-ag-NMQ" customClass="AmimateViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="foY-ag-NMQ" customClass="AmimateViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lb7-jF-29W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -472,13 +472,13 @@
         <!--Available Groups-->
         <scene sceneID="Sjt-y9-w7i">
             <objects>
-                <tableViewController id="xmT-Ek-KUv" customClass="FindGroupViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xmT-Ek-KUv" customClass="FindGroupViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VAV-Rr-pNL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="75" id="qXu-W8-hus" customClass="GroupCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="75" id="qXu-W8-hus" customClass="GroupCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qXu-W8-hus" id="8ze-cS-4I0">
@@ -491,7 +491,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-kU-zKW" customClass="ShadowView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-kU-zKW" customClass="ShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -510,7 +510,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upd-fs-oc4" customClass="ImageView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upd-fs-oc4" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="sj4-rr-Gfl"/>
@@ -605,7 +605,7 @@
         <!--My Groups-->
         <scene sceneID="EP1-6z-LDF">
             <objects>
-                <tableViewController id="3x7-GU-fpu" customClass="UserGroupViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3x7-GU-fpu" customClass="UserGroupViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hRZ-Co-qmv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -617,7 +617,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="75" id="qFn-dj-DAZ" customClass="GroupCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="75" id="qFn-dj-DAZ" customClass="GroupCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qFn-dj-DAZ" id="4qy-KP-7rf">
@@ -630,7 +630,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-3p-T8c" customClass="ShadowView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-3p-T8c" customClass="ShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -649,7 +649,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-MS-qND" customClass="ImageView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-MS-qND" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="T8M-Y2-xNd"/>
@@ -735,7 +735,7 @@
         <!--Corner Navogation Controller-->
         <scene sceneID="IQe-ut-l31">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Z4-HU-xnW" customClass="CornerNavogationController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Z4-HU-xnW" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="8TU-ue-08f"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QhU-3V-EtE">
@@ -754,7 +754,7 @@
         <!--Corner Navogation Controller-->
         <scene sceneID="hfB-Pg-DKr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8pj-Zr-MI1" customClass="CornerNavogationController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8pj-Zr-MI1" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="je9-8z-aAO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lHM-Mw-Jdy">
@@ -773,7 +773,7 @@
         <!--News-->
         <scene sceneID="gRS-bi-33B">
             <objects>
-                <collectionViewController id="JYa-wC-NS1" customClass="NewsViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="JYa-wC-NS1" customClass="NewsViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ruX-1k-1KJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -785,14 +785,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCell" id="Xjr-l5-mDX" customClass="NewsCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCell" id="Xjr-l5-mDX" customClass="NewsCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="530"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="530"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQT-aF-DLh" customClass="ImageView" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQT-aF-DLh" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="18" y="57" width="70" height="70"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -863,7 +863,7 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="d8Y-Wb-Bft"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-72-e0N" customClass="LikeButton" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-72-e0N" customClass="LikeButton" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="13" y="501" width="60" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paK-H5-QoQ">
@@ -933,14 +933,14 @@
         <!--News View Controller-->
         <scene sceneID="OFI-Sc-bfa">
             <objects>
-                <collectionViewController id="cFV-hr-BAU" customClass="NewsViewController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="cFV-hr-BAU" customClass="NewsViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="apc-c3-4rK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="VPX-Y5-FLX" customClass="NewsCollectionViewLayout" customModule="GBVKontakteApp2" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="VPX-Y5-FLX" customClass="NewsCollectionViewLayout" customModule="GBVKontakteApp" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCell" id="D0s-t8-JyG" customClass="NewsCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCell" id="D0s-t8-JyG" customClass="NewsCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="70" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -960,7 +960,7 @@
                                 </constraints>
                                 <size key="customSize" width="70" height="84"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="kJs-Fk-QGp" customClass="NewsCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="kJs-Fk-QGp" customClass="NewsCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="86" y="0.0" width="70" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -997,7 +997,7 @@
                                 </constraints>
                                 <size key="customSize" width="70" height="84"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gMK-Db-BGX" customClass="NewsCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gMK-Db-BGX" customClass="NewsCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="172" y="0.0" width="70" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1023,7 +1023,7 @@
                                     <outlet property="textNews" destination="bJJ-Yc-YYQ" id="fse-7w-pJh"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="8q4-0E-KHW" customClass="NewsCell" customModule="GBVKontakteApp2" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="8q4-0E-KHW" customClass="NewsCell" customModule="GBVKontakteApp" customModuleProvider="target">
                                 <rect key="frame" x="258" y="0.0" width="70" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1050,7 +1050,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6A-BU-4ML" customClass="LikeButton" customModule="GBVKontakteApp2" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6A-BU-4ML" customClass="LikeButton" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="70" height="84"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmi-fN-wZw">
@@ -1095,7 +1095,7 @@
         <!--Corner Navogation Controller-->
         <scene sceneID="RP5-ry-LF9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fP-MB-NYu" customClass="CornerNavogationController" customModule="GBVKontakteApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fP-MB-NYu" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="zug-0e-KuY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rh9-Y9-KoZ">

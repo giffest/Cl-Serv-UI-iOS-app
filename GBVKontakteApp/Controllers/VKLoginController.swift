@@ -8,8 +8,13 @@
 
 import UIKit
 import WebKit
+import Alamofire
 
-class VKLoginController: UIViewController {
+class VKLoginController: UIViewController/*, WKNavigationDelegate*/ {
+    
+    private let host = "https://api.vk.com"
+    private let path = "/method/"
+    private let urlApi = "https://api.vk.com/method/"
     
     @IBOutlet weak var webView: WKWebView! {
         didSet{
@@ -36,11 +41,11 @@ class VKLoginController: UIViewController {
         let request = URLRequest(url: urlComponents.url!)
         webView.load(request)
     }
-
 }
 
 extension VKLoginController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        
         guard let url = navigationResponse.response.url,
             url.path == "/blank.html",
             let fragment = url.fragment  else { decisionHandler(.allow); return}
@@ -55,20 +60,175 @@ extension VKLoginController: WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
+        print("Параметры авторизации:\n\(params)")
         
 //        let token = params["access_token"]
-        
-        print(params)
-        
         guard let token = params["access_token"],
             let userIdString = params["user_id"],
             let _ = Int(userIdString) else {
                 decisionHandler(.allow)
                 return
         }
+        print("Токен: \(token)")
+        print("Id пользователя: \(userIdString)")
+        
+        Session.shared.token = token
+        Session.shared.userid = Int(userIdString)!
 
-        print(token)
+        getFriends()
+        getPhotoUser()
+        getGroupsUser()
+        getSearchGroup(for: "xcode")
+
+//        performSegue(withIdentifier:"")
+//        NetworkService.loadGroups(token: token)
         
         decisionHandler(.cancel)
     }
+    
+//    func getFriends0() {
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "api.vk.com"
+//        urlComponents.path = "/method/friends.get"
+//        urlComponents.queryItems = [
+//            URLQueryItem(name: "user_id", value: String(Session.shared.userid)),
+//            URLQueryItem(name: "order", value: "name"),
+//            URLQueryItem(name: "fields", value: "domain"),
+//            URLQueryItem(name: "access_token", value: Session.shared.token),
+//            URLQueryItem(name: "v", value: "5.8")
+//        ]
+//
+//        AF.request(urlComponents).responseJSON { response in
+//            print("=== Friends List ===")
+//            print(response.value)
+//        }
+//    }
+//
+//    func getPhotoUser0() {
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "api.vk.com"
+//        urlComponents.path = "/method/photos.get"
+////        urlComponents.path = "/method/photos.getAll"
+//        urlComponents.queryItems = [
+//            URLQueryItem(name: "owner_id", value: String(Session.shared.userid)),
+////            URLQueryItem(name: "owner_id", value: "2677052"), // for test
+//            URLQueryItem(name: "album_id", value: "profile"), // only for photos.get
+//            URLQueryItem(name: "extended", value: "1"),
+//            URLQueryItem(name: "access_token", value: Session.shared.token),
+//            URLQueryItem(name: "v", value: "5.77")
+//        ]
+//
+//        AF.request(urlComponents).responseJSON { response in
+//            print("=== Photo User ===")
+//            print(response.value)
+//        }
+//    }
+//
+//    func getGroupsUser0() {
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "api.vk.com"
+//        urlComponents.path = "/method/groups.get"
+//        urlComponents.queryItems = [
+//            URLQueryItem(name: "user_id", value: String(Session.shared.userid)), // for test
+//            URLQueryItem(name: "extended", value: "1"),
+//            URLQueryItem(name: "access_token", value: Session.shared.token),
+//            URLQueryItem(name: "v", value: "5.61")
+//        ]
+//
+//        AF.request(urlComponents).responseJSON { response in
+//            print("=== Groups User ===")
+//            print(response.value)
+//        }
+//    }
+//
+//    func getSearchGroup0(for keyword: String) {
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "api.vk.com"
+//        urlComponents.path = "/method/groups.search"
+//        urlComponents.queryItems = [
+//            URLQueryItem(name: "q", value: keyword),
+//            URLQueryItem(name: "type", value: "group"),
+//            URLQueryItem(name: "sort", value: "0"),
+//            URLQueryItem(name: "access_token", value: Session.shared.token),
+//            URLQueryItem(name: "v", value: "5.58")
+//        ]
+//
+//        AF.request(urlComponents).responseJSON { response in
+//            print("=== Search Groups ===")
+//            print(response.value)
+//        }
+//    }
+    
+    func getFriends() {
+        let method = "friends.get"
+        let parameters: Parameters = [
+            "user_id": String(Session.shared.userid),
+            "order": "name",
+            "fields": "domain",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Friends List ===")
+                print(response.value)
+        }
+    }
+    
+    func getPhotoUser() {
+        let method = "photos.get"
+        let parameters: Parameters = [
+            "owner_id": String(Session.shared.userid),
+//            "owner_id": "2677052", // for test
+            "album_id": "profile",
+            "extended": "1",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Photo User ===")
+                print(response.value)
+        }
+    }
+    
+    func getGroupsUser() {
+        let method = "groups.get"
+        let parameters: Parameters = [
+            "user_id": String(Session.shared.userid), // for test
+            "extended": "1",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Groups User ===")
+                print(response.value)
+        }
+    }
+    
+    func getSearchGroup(for keyword: String) {
+        let method = "groups.search"
+        let parameters: Parameters = [
+            "q": keyword,
+            "type": "group",
+            "sort": "0",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Search Groups ===")
+                print(response.value)
+        }
+    }
 }
+

@@ -44,6 +44,7 @@
 		54A3BF002296847100B49849 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BEFF2296847100B49849 /* FriendCell.swift */; };
 		54A3BF052296896600B49849 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BF042296896600B49849 /* ImageCell.swift */; };
 		54A3BF072296919B00B49849 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BF062296919B00B49849 /* GroupCell.swift */; };
+		54C59D44230AA5C000AC612A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C59D43230AA5C000AC612A /* NetworkService.swift */; };
 		54F92A062296AD9F005FCCFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54F92A052296AD9F005FCCFA /* Assets.xcassets */; };
 		54F92A082296BA39005FCCFA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F92A072296BA39005FCCFA /* User.swift */; };
 		54F92A0A2296BA46005FCCFA /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F92A092296BA46005FCCFA /* Group.swift */; };
@@ -88,6 +89,7 @@
 		54A3BEFF2296847100B49849 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		54A3BF042296896600B49849 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		54A3BF062296919B00B49849 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		54C59D43230AA5C000AC612A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		54F92A052296AD9F005FCCFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54F92A072296BA39005FCCFA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		54F92A092296BA46005FCCFA /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		54094F8922A115C6001FD4D6 /* Archiv */ = {
 			isa = PBXGroup;
 			children = (
+				54C59D43230AA5C000AC612A /* NetworkService.swift */,
 				547B6C6A229C07460092EBEA /* CustomViewController.swift */,
 				547B6C6C229C08190092EBEA /* CoreGraphics.storyboard */,
 				546DC1DB22BE3ED4001C7673 /* AvatarView.swift */,
@@ -395,6 +398,7 @@
 				54059761228EED1E002A892A /* ViewController.swift in Sources */,
 				5483886D22942B4C00E76666 /* FriendsViewController.swift in Sources */,
 				5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */,
+				54C59D44230AA5C000AC612A /* NetworkService.swift in Sources */,
 				546DC1D422BCF58A001C7673 /* AnimateImageController.swift in Sources */,
 				5405975F228EED1E002A892A /* AppDelegate.swift in Sources */,
 				544C5F6222AE4A7700D345DA /* SkrollControl.swift in Sources */,

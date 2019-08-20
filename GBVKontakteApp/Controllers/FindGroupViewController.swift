@@ -9,6 +9,10 @@
 import UIKit
 
 class FindGroupViewController: UITableViewController {
+    
+    let vklogincontroller = VKLoginController()
+    public var groupsVK = "xcode"
+//    public var gpoupsVK = "MacOS"
 
     var groups: [GroupModel] = [
         GroupModel(idGroup: 5, nameGroup: "Зоопарк", imageGroup: "Зоопарк2"),
@@ -20,7 +24,9 @@ class FindGroupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        vklogincontroller.getSearchGroup(for: groupsVK)
+        
     //    tableView.dataSource = self
     }
 

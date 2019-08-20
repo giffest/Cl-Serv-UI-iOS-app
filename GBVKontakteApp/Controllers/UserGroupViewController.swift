@@ -10,6 +10,8 @@ import UIKit
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
+    let vklogincontroller = VKLoginController()
+    
     var groups: [GroupModel] = [
         GroupModel(idGroup: 1, nameGroup: "Пингвины Мадагаскара", imageGroup: "madagascar_penguins"),
         GroupModel(idGroup: 2, nameGroup: "Собор", imageGroup: "Собор"),
@@ -28,6 +30,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        vklogincontroller.getGroupsUser()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 //        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }

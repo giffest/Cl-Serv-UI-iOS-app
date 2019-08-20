@@ -10,6 +10,8 @@ import UIKit
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
+    let vklogincontroller = VKLoginController()
+    
     var users: [UserModel] = [
         UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
         UserModel(idUser: 2, nameUser: "Мамонтенок", imageUser: "Мамонтенок"),
@@ -35,7 +37,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     func toPhotoBoard() {
 //        let selectIndexPath = IndexPath(item: someIndex, section: 0)
 //        collectionView.selectItem(at: selectIndexPath, animated: false, scrollPosition: [])
-        print("Успешный нажата иконка.")
+        print("Нажата иконка.")
 //        let selectIndexPath = IndexPath(index: someIndex)
 //        tableView.deselectRow(at: selectIndexPath, animated: false)
 //        self.performSegue(withIdentifier: "FriendFotoSegue", sender: self)
@@ -44,10 +46,13 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        vklogincontroller.getFriends()
+        
         friendSectionData()
         refreshControl()
 //        _ = users.sort {$0.nameUser < $1.nameUser}
+        
     }
 
     // MARK: - Table view data source
@@ -222,7 +227,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let nameUser = items[indexPath.section][indexPath.row]
             friendFotoController.friendNameForTitle = nameUser.nameUser
             friendFotoController.friendFotoForImage = nameUser.imageUser
-        }
+            }
      }
     
     // MARK: SeachBar navigation

@@ -13,6 +13,6 @@ class Session {
     
     public static let shared = Session()
     
-    var token: String = "abcd"
-    var userid: Int = 1234
+    var token: String = ""
+    var userid: Int = 2059120
 }
