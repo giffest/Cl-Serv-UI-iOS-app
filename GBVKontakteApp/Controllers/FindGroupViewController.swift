@@ -8,9 +8,9 @@
 
 import UIKit
 
-class FindGroupViewController: UITableViewController {
+class FindGroupViewController: UITableViewController, UISearchBarDelegate {
     
-    let vklogincontroller = VKLoginController()
+    let vkLoginController = VKLoginController()
     public var groupsVK = "xcode"
 //    public var gpoupsVK = "MacOS"
 
@@ -22,10 +22,13 @@ class FindGroupViewController: UITableViewController {
         GroupModel(idGroup: 9, nameGroup: "Союзмультфильм", imageGroup: "Союзмульфильм2")
     ]
     
+    var itemsFiltered = [GroupModel]()
+    var searchAction = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vklogincontroller.getSearchGroup(for: groupsVK)
+        vkLoginController.getSearchGroup(for: groupsVK)
         
     //    tableView.dataSource = self
     }
@@ -41,14 +44,16 @@ class FindGroupViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
     //    return 10  // для проверки и настройки
-        return groups.count
+//        return groups.count
+        return searchAction ? itemsFiltered.count : groups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
         
         //cell.groupNameLabel.text = "Мадагаскар"
-        let group = groups[indexPath.row]
+        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+//        let group = groups[indexPath.row]
         cell.groupNameLabel.text = group.nameGroup
         cell.groupImageView.image = UIImage(named: group.imageGroup)
 
@@ -99,4 +104,32 @@ class FindGroupViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: SeachBar navigation
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchAction = searchText.count == 0 ? false : true
+        itemsFiltered = groups.filter { $0.nameGroup.lowercased().contains(searchText.lowercased())}
+        
+        self.tableView.reloadData()
+    }
+    
+// функция приводит к ошибке при наличии секции
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        searchAction = true
+//    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchAction = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchAction = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchAction = false
+    }
+
 }

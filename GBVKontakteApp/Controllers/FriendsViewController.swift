@@ -10,7 +10,7 @@ import UIKit
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
-    let vklogincontroller = VKLoginController()
+    let vkLoginController = VKLoginController()
     
     var users: [UserModel] = [
         UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
@@ -47,7 +47,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vklogincontroller.getFriends()
+        vkLoginController.getFriends()
         
         friendSectionData()
         refreshControl()
@@ -118,7 +118,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        refreshControl?.layer.addSublayer(replicatorLayer)
         
 //        replicatorLayer.animation(forKey: <#T##String#>)
-        
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {

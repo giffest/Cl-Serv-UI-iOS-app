@@ -10,7 +10,7 @@ import UIKit
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
-    let vklogincontroller = VKLoginController()
+    let vkLoginController = VKLoginController()
     
     var groups: [GroupModel] = [
         GroupModel(idGroup: 1, nameGroup: "Пингвины Мадагаскара", imageGroup: "madagascar_penguins"),
@@ -24,19 +24,21 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     ]
      .sorted(by: {$0.nameGroup < $1.nameGroup} )
     
+//    var titleForSection = [String]()
+//    var items = [[GroupModel]]()
     var itemsFiltered = [GroupModel]()
     var searchAction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vklogincontroller.getGroupsUser()
+        vkLoginController.getGroupsUser()
+        
+//        groupsSectionData()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 //        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
     
-    
-
     // MARK: - Table view data source
 
 /*    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,10 +46,32 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         return 0
     }
 */
+//    func groupsSectionData() {
+//        var section = 0
+//
+//        _ = groups.sort {$0.nameGroup < $1.nameGroup}
+//
+//        titleForSection.append(String(groups[0].nameGroup.first!))
+//        items.append([GroupModel]())
+//        items[section].append(groups[0])
+//
+//        for row in 1..<groups.count {
+//            let leftValue = groups[row - 1].nameGroup.first
+//            let rightValue = groups[row].nameGroup.first
+//            if leftValue == rightValue {
+//                items[section].append(groups[row])
+//            } else {
+//                titleForSection.append(String(rightValue!))
+//                section += 1
+//                items.append([GroupModel]())
+//                items[section].append(groups[row])
+//            }
+//        }
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-    //    return 10  // для проверки и настройки
+//        return 1  // для проверки и настройки
         return searchAction ? itemsFiltered.count : groups.count
     }
 
@@ -94,12 +118,12 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 
-    /*
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
+ 
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -116,13 +140,14 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             let indexPath = controller.tableView.indexPathForSelectedRow {
             let group = controller.groups[indexPath.row]
             
-            guard !groups.contains(where: { $0.nameGroup == group.nameGroup } ) else {return}
+            guard !groups.contains(where: { $0.nameGroup == group.nameGroup } ) else { return }
             
             groups.append(group)
+//            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
             
-            //tableView.reloadData()
             let newIndexPath = IndexPath(item: groups.count - 1, section: 0)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
+//            tableView.reloadData()
         }
     }
     
@@ -144,7 +169,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    // функция приводит к ошибке при наличии секции
+//     функция приводит к ошибке при наличии секции
 //    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 //        searchAction = true
 //    }

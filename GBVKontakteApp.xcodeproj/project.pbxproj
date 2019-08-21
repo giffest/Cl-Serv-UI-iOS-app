@@ -29,7 +29,6 @@
 		546DC1D422BCF58A001C7673 /* AnimateImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1D322BCF58A001C7673 /* AnimateImageController.swift */; };
 		546DC1DA22BE2557001C7673 /* LaunchScreen2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546DC1D922BE2557001C7673 /* LaunchScreen2.xib */; };
 		546DC1DC22BE3ED4001C7673 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1DB22BE3ED4001C7673 /* AvatarView.swift */; };
-		5477BCA023097A99001DD927 /* VKLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5477BC9F23097A99001DD927 /* VKLogin.storyboard */; };
 		5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5477BCA123097B35001DD927 /* VKLoginController.swift */; };
 		5477BCA423097E7E001DD927 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5477BCA323097E7E001DD927 /* WebKit.framework */; };
 		547B6C6B229C07460092EBEA /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B6C6A229C07460092EBEA /* CustomViewController.swift */; };
@@ -74,7 +73,6 @@
 		546DC1D322BCF58A001C7673 /* AnimateImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateImageController.swift; sourceTree = "<group>"; };
 		546DC1D922BE2557001C7673 /* LaunchScreen2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen2.xib; sourceTree = "<group>"; };
 		546DC1DB22BE3ED4001C7673 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
-		5477BC9F23097A99001DD927 /* VKLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VKLogin.storyboard; sourceTree = "<group>"; };
 		5477BCA123097B35001DD927 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
 		5477BCA323097E7E001DD927 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		547B6C6A229C07460092EBEA /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				54059762228EED1E002A892A /* Main.storyboard */,
 				54059767228EED1F002A892A /* LaunchScreen.storyboard */,
 				546DC1D922BE2557001C7673 /* LaunchScreen2.xib */,
-				5477BC9F23097A99001DD927 /* VKLogin.storyboard */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -321,7 +318,6 @@
 				546DC1DA22BE2557001C7673 /* LaunchScreen2.xib in Resources */,
 				547B6C6D229C08190092EBEA /* CoreGraphics.storyboard in Resources */,
 				54059769228EED1F002A892A /* LaunchScreen.storyboard in Resources */,
-				5477BCA023097A99001DD927 /* VKLogin.storyboard in Resources */,
 				54F92A062296AD9F005FCCFA /* Assets.xcassets in Resources */,
 				54059764228EED1E002A892A /* Main.storyboard in Resources */,
 			);

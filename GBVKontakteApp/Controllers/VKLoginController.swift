@@ -22,6 +22,11 @@ class VKLoginController: UIViewController/*, WKNavigationDelegate*/ {
         }
     }
     
+    //MARK: - Actions
+    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
+            print("I logoff")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +40,7 @@ class VKLoginController: UIViewController/*, WKNavigationDelegate*/ {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.101")
+            URLQueryItem(name: "v", value: "5.98")
         ]
         
         let request = URLRequest(url: urlComponents.url!)
@@ -75,12 +80,12 @@ extension VKLoginController: WKNavigationDelegate {
         Session.shared.token = token
         Session.shared.userid = Int(userIdString)!
 
-        getFriends()
-        getPhotoUser()
-        getGroupsUser()
-        getSearchGroup(for: "xcode")
+//        getFriends()
+//        getPhotoUser()
+//        getGroupsUser()
+//        getSearchGroup(for: "xcode")
 
-//        performSegue(withIdentifier:"")
+        performSegue(withIdentifier: "showMyTabController", sender: token)
 //        NetworkService.loadGroups(token: token)
         
         decisionHandler(.cancel)
@@ -170,7 +175,7 @@ extension VKLoginController: WKNavigationDelegate {
             "order": "name",
             "fields": "domain",
             "access_token": Session.shared.token,
-            "v": "5.101"
+            "v": "5.98"
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
@@ -183,8 +188,9 @@ extension VKLoginController: WKNavigationDelegate {
     func getPhotoUser() {
         let method = "photos.get"
         let parameters: Parameters = [
-            "owner_id": String(Session.shared.userid),
+//            "owner_id": String(Session.shared.userid),
 //            "owner_id": "2677052", // for test
+            "owner_id": "3939590", // for test
             "album_id": "profile",
             "extended": "1",
             "access_token": Session.shared.token,
@@ -227,6 +233,50 @@ extension VKLoginController: WKNavigationDelegate {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Search Groups ===")
+                print(response.value)
+        }
+    }
+    
+    func likeAdd() {
+//    func likeAdd(for user: Int, for item_id: Int) {
+        let method = "likes.add"
+        let parameters: Parameters = [
+            "type": "photo",
+//            "owner_id": user, // if not default user
+            "owner_id": 3939590, // if not default user
+//            "item_id": item_id,
+            "item_id": 456239081,
+//            "access_key": "",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Дабавили ЛАЙК ===")
+                print(response.value)
+        }
+    }
+    
+    func likeDelete() {
+//    func likeDelete(for user: Int, for item_id: Int) {
+        let method = "likes.delete"
+        let parameters: Parameters = [
+            "type": "photo",
+//            "owner_id": user, // if not default user
+            "owner_id": 3939590, // if not default user
+//            "owner_id": 2059120, // if not default user
+//            "item_id": item_id,
+            "item_id": 456239081,
+//            "item_id": 456239081,
+//            "access_key": "",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print("=== Убрали ЛАЙК ===")
                 print(response.value)
         }
     }

@@ -11,6 +11,10 @@ import UIKit
 //@IBDesignable
 class LikeButton: UIControl {
     
+    let vkLoginController = VKLoginController()
+    public var user = 3939590
+    public var item_id = 436765487
+    
     @IBOutlet weak var likeLebel: UILabel!
     
     @IBInspectable var fillColor: UIColor = .red
@@ -80,9 +84,13 @@ class LikeButton: UIControl {
         if likedState {
             likedCount -= 1
             scaleChange = 0.9
+//            vkLoginController.likeDelete(for: user, for: item_id)
+            vkLoginController.likeDelete()
         } else {
             likedCount += 1
             scaleChange = 1.1
+//            vkLoginController.likeAdd(for: user, for: item_id)
+            vkLoginController.likeAdd()
         }
         
         likedState.toggle()
