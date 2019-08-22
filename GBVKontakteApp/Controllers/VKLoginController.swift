@@ -24,7 +24,8 @@ class VKLoginController: UIViewController/*, WKNavigationDelegate*/ {
     
     //MARK: - Actions
     @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
-            print("I logoff")
+        print("I logoff")
+        logoffVK()
     }
     
     override func viewDidLoad() {
@@ -248,7 +249,7 @@ extension VKLoginController: WKNavigationDelegate {
             "item_id": 456239081,
 //            "access_key": "",
             "access_token": Session.shared.token,
-            "v": "5.101"
+            "v": "5.68"
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
@@ -271,13 +272,22 @@ extension VKLoginController: WKNavigationDelegate {
 //            "item_id": 456239081,
 //            "access_key": "",
             "access_token": Session.shared.token,
-            "v": "5.101"
+            "v": "5.68"
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Убрали ЛАЙК ===")
                 print(response.value)
+        }
+    }
+    
+    func logoffVK() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                                 for: records.filter { $0.displayName.contains("vk") },
+                                 completionHandler: {} )
         }
     }
 }
