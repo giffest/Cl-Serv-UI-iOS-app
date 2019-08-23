@@ -238,7 +238,28 @@ extension VKLoginController: WKNavigationDelegate {
         }
     }
     
-    func likeAdd() {
+    func likesCount() {
+//    func likeAdd(for user: Int, for item_id: Int) {
+        let method = "likes.isLiked"
+        let parameters: Parameters = [
+            "type": "photo",
+//            "owner_id": user, // if not default user
+            "owner_id": 3939590, // if not default user
+//            "item_id": item_id,
+            "item_id": 337508508,
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+        
+//        AF.request("https://api.vk.com/method/likes.isLiked", method: .get, parameters: parameters)
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+                print(response.value)
+        }
+    }
+    
+    // ВЫЗЫВЫАЕТ ОШИБКУ 15
+    func likesAdd() {
 //    func likeAdd(for user: Int, for item_id: Int) {
         let method = "likes.add"
         let parameters: Parameters = [
@@ -246,12 +267,13 @@ extension VKLoginController: WKNavigationDelegate {
 //            "owner_id": user, // if not default user
             "owner_id": 3939590, // if not default user
 //            "item_id": item_id,
-            "item_id": 456239081,
-//            "access_key": "",
+            "item_id": 337508508,
+            "access_key": "a1dbbf9ed0c6f175b3",
             "access_token": Session.shared.token,
             "v": "5.68"
         ]
         
+//        AF.request("https://api.vk.com/method/likes.add", method: .get, parameters: parameters)
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Дабавили ЛАЙК ===")
@@ -259,20 +281,17 @@ extension VKLoginController: WKNavigationDelegate {
         }
     }
     
-    func likeDelete() {
+    func likesDelete() {
 //    func likeDelete(for user: Int, for item_id: Int) {
         let method = "likes.delete"
         let parameters: Parameters = [
             "type": "photo",
 //            "owner_id": user, // if not default user
             "owner_id": 3939590, // if not default user
-//            "owner_id": 2059120, // if not default user
 //            "item_id": item_id,
-            "item_id": 456239081,
-//            "item_id": 456239081,
-//            "access_key": "",
+            "item_id": 337508508,
             "access_token": Session.shared.token,
-            "v": "5.68"
+            "v": "5.101"
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)

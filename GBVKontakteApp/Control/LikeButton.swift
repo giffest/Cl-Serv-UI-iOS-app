@@ -12,8 +12,8 @@ import UIKit
 class LikeButton: UIControl {
     
     let vkLoginController = VKLoginController()
-    public var user = 3939590
-    public var item_id = 436765487
+//    public var user = 3939590
+//    public var item_id = 436765487
     
     @IBOutlet weak var likeLebel: UILabel!
     
@@ -73,6 +73,8 @@ class LikeButton: UIControl {
     
     func setupView() {
         
+        vkLoginController.likesCount()
+        
         self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
         
         super.backgroundColor = backColor
@@ -85,12 +87,12 @@ class LikeButton: UIControl {
             likedCount -= 1
             scaleChange = 0.9
 //            vkLoginController.likeDelete(for: user, for: item_id)
-            vkLoginController.likeDelete()
+            vkLoginController.likesDelete()
         } else {
             likedCount += 1
             scaleChange = 1.1
 //            vkLoginController.likeAdd(for: user, for: item_id)
-            vkLoginController.likeAdd()
+            vkLoginController.likesAdd()
         }
         
         likedState.toggle()
