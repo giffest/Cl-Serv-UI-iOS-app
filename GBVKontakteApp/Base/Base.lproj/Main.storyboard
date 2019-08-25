@@ -631,11 +631,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="530"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQT-aF-DLh" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQT-aF-DLh" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="18" y="57" width="70" height="70"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ГубкаБоб" translatesAutoresizingMaskIntoConstraints="NO" id="2ss-oj-sSR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="2ss-oj-sSR" secondAttribute="height" multiplier="1:1" id="Cpx-z1-15M"/>
+                                                        <constraint firstAttribute="width" constant="70" id="cup-Li-kaj"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="2ss-oj-sSR" secondAttribute="trailing" id="7fs-Do-541"/>
                                                 <constraint firstAttribute="width" constant="70" id="GFy-AS-Dld"/>
+                                                <constraint firstItem="2ss-oj-sSR" firstAttribute="leading" secondItem="sQT-aF-DLh" secondAttribute="leading" id="I0H-AC-Lr4"/>
+                                                <constraint firstAttribute="bottom" secondItem="2ss-oj-sSR" secondAttribute="bottom" id="lfU-gd-ryq"/>
+                                                <constraint firstItem="2ss-oj-sSR" firstAttribute="top" secondItem="sQT-aF-DLh" secondAttribute="top" id="wIQ-UA-ja2"/>
                                                 <constraint firstAttribute="width" secondItem="sQT-aF-DLh" secondAttribute="height" multiplier="1:1" id="z2y-Ll-85R"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -650,6 +663,9 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="image" value="ГубкаБоб"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="customImageView" destination="2ss-oj-sSR" id="SbD-VF-Pce"/>
+                                            </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cak-ff-YL8">
                                             <rect key="frame" x="93" y="57" width="303" height="70"/>
@@ -751,7 +767,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="dateNews" destination="mwp-Zy-Ymt" id="SwQ-La-aSI"/>
-                                    <outlet property="imageFriendNews" destination="sQT-aF-DLh" id="xGE-Hc-VJR"/>
+                                    <outlet property="imageFriendNews" destination="2ss-oj-sSR" id="ukL-9w-cR5"/>
                                     <outlet property="imageNews" destination="xTX-ks-fAy" id="lFc-1J-kAi"/>
                                     <outlet property="nameFriend" destination="mv9-K8-nIi" id="Oz2-7I-Z6w"/>
                                     <outlet property="textNews" destination="CnG-g5-OMG" id="OVc-Kn-hOX"/>

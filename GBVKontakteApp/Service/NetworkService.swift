@@ -137,7 +137,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Photo User ===")
-                print(response.value!)
+//                print(response.value!)
         }
     }
     
@@ -182,7 +182,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Search Groups ===")
-                print(response.value!)
+//                print(response.value!)
         }
     }
     

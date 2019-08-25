@@ -38,7 +38,7 @@
 		5483886F22942B8400E76666 /* FriendsFotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483886E22942B8400E76666 /* FriendsFotoViewController.swift */; };
 		5483887122942BE100E76666 /* UserGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483887022942BE100E76666 /* UserGroupViewController.swift */; };
 		5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483887222942BF200E76666 /* FindGroupViewController.swift */; };
-		549E949A22C20471002B86F3 /* LoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949922C20471002B86F3 /* LoadController.swift */; };
+		549E949A22C20471002B86F3 /* LoadIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949922C20471002B86F3 /* LoadIndicatorView.swift */; };
 		549E949C22C25126002B86F3 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949B22C25126002B86F3 /* CustomInteractiveTransition.swift */; };
 		54A3BF002296847100B49849 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BEFF2296847100B49849 /* FriendCell.swift */; };
 		54A3BF052296896600B49849 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BF042296896600B49849 /* ImageCell.swift */; };
@@ -85,7 +85,7 @@
 		5483886E22942B8400E76666 /* FriendsFotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotoViewController.swift; sourceTree = "<group>"; };
 		5483887022942BE100E76666 /* UserGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupViewController.swift; sourceTree = "<group>"; };
 		5483887222942BF200E76666 /* FindGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupViewController.swift; sourceTree = "<group>"; };
-		549E949922C20471002B86F3 /* LoadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadController.swift; sourceTree = "<group>"; };
+		549E949922C20471002B86F3 /* LoadIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadIndicatorView.swift; sourceTree = "<group>"; };
 		549E949B22C25126002B86F3 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		54A3BEFF2296847100B49849 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		54A3BF042296896600B49849 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				54C59D43230AA5C000AC612A /* NetworkServiceBase.swift */,
+				54094F8722A10DE6001FD4D6 /* ShadowView.swift */,
 				547B6C6A229C07460092EBEA /* CustomViewController.swift */,
 				547B6C6C229C08190092EBEA /* CoreGraphics.storyboard */,
 				546DC1DB22BE3ED4001C7673 /* AvatarView.swift */,
@@ -177,8 +178,8 @@
 		5437105822AA9A6000582985 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				549E949922C20471002B86F3 /* LoadIndicatorView.swift */,
 				547B6C70229C35680092EBEA /* ImageView.swift */,
-				54094F8722A10DE6001FD4D6 /* ShadowView.swift */,
 				5437106222AAF3FF00582985 /* ImageShadowView.swift */,
 			);
 			path = Views;
@@ -224,7 +225,6 @@
 				5437105F22AAA03300582985 /* NewsViewController.swift */,
 				5438BFEF22B81A6D007F5C42 /* AnimateViewController.swift */,
 				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
-				549E949922C20471002B86F3 /* LoadController.swift */,
 				5477BCA123097B35001DD927 /* VKLoginController.swift */,
 			);
 			path = Controllers;
@@ -390,7 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54076B632309477400C4305D /* Session.swift in Sources */,
-				549E949A22C20471002B86F3 /* LoadController.swift in Sources */,
+				549E949A22C20471002B86F3 /* LoadIndicatorView.swift in Sources */,
 				54F92A0A2296BA46005FCCFA /* GroupModel.swift in Sources */,
 				5437106322AAF3FF00582985 /* ImageShadowView.swift in Sources */,
 				54A3BF072296919B00B49849 /* GroupCell.swift in Sources */,

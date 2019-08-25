@@ -1,5 +1,5 @@
 //
-//  LoadController.swift
+//  LoadIndicatorView.swift
 //  
 //
 //  Created by Dmitry on 25/06/2019.

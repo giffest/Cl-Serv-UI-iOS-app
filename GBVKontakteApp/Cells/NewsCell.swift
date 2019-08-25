@@ -13,7 +13,8 @@ class NewsCell: UICollectionViewCell {
     static let reuseIdentifier = "NewsCell"
     
 //    @IBOutlet weak var imageFriendNews: ImageCell!
-    @IBOutlet weak var imageFriendNews: ImageView!
+//    @IBOutlet weak var imageFriendNews: ImageView!
+    @IBOutlet weak var imageFriendNews: UIImageView!
     @IBOutlet weak var textNews: UILabel!
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var nameFriend: UILabel!
