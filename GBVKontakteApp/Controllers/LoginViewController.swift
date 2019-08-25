@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  
 //
 //  Created by Dmitry on 17/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     //MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!

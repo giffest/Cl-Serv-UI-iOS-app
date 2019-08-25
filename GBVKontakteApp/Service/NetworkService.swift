@@ -112,7 +112,7 @@ class NetworkService {
                     let json = JSON(value)
                     let usersJSONs = json["response"]["items"].arrayValue
                     let users = usersJSONs.map { User($0) }
-                    users.forEach { print($0.last_name + " " + $0.first_name) }
+//                    users.forEach { print($0.last_name + " " + $0.first_name) }
 //                    users.forEach { print($0.id) }
                     completion(users)
                 case .failure(let error):
@@ -137,7 +137,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Photo User ===")
-                print(response.value)
+                print(response.value!)
         }
     }
     
@@ -159,7 +159,7 @@ class NetworkService {
                     let json = JSON(value)
                     let groupsJSONs = json["response"]["items"].arrayValue
                     let groups = groupsJSONs.map { Group($0) }
-                    groups.forEach { print($0.avatarUrl) }
+//                    groups.forEach { print($0.avatarUrl) }
 //                    users.forEach { print($0.id) }
                     completion(groups)
                 case .failure(let error):
@@ -182,7 +182,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Search Groups ===")
-                print(response.value)
+                print(response.value!)
         }
     }
     
@@ -202,7 +202,7 @@ class NetworkService {
         //        AF.request("https://api.vk.com/method/likes.isLiked", method: .get, parameters: parameters)
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-                print(response.value)
+                print(response.value!)
         }
     }
     
@@ -225,7 +225,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Дабавили ЛАЙК ===")
-                print(response.value)
+                print(response.value!)
         }
     }
     
@@ -245,7 +245,7 @@ class NetworkService {
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
                 print("=== Убрали ЛАЙК ===")
-                print(response.value)
+                print(response.value!)
         }
     }
     

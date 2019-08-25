@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5014F2E734E75C1A177916C0 /* Pods_GBVKontakteApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A742D71F8E6ABB84329A6B /* Pods_GBVKontakteApp.framework */; };
 		5405975F228EED1E002A892A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5405975E228EED1E002A892A /* AppDelegate.swift */; };
-		54059761228EED1E002A892A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54059760228EED1E002A892A /* ViewController.swift */; };
+		54059761228EED1E002A892A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54059760228EED1E002A892A /* LoginViewController.swift */; };
 		54059764228EED1E002A892A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54059762228EED1E002A892A /* Main.storyboard */; };
 		54059769228EED1F002A892A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54059767228EED1F002A892A /* LaunchScreen.storyboard */; };
 		54076B632309477400C4305D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54076B622309477400C4305D /* Session.swift */; };
@@ -55,7 +55,7 @@
 /* Begin PBXFileReference section */
 		5405975B228EED1E002A892A /* GBVKontakteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBVKontakteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5405975E228EED1E002A892A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54059760228EED1E002A892A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		54059760228EED1E002A892A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54059763228EED1E002A892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54059768228EED1F002A892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5405976A228EED1F002A892A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 				54F92A052296AD9F005FCCFA /* Assets.xcassets */,
 				5405976A228EED1F002A892A /* Info.plist */,
 				544C5F6522AEDB3700D345DA /* NewsCollectionViewLayout.swift */,
+				54C73E262312C16000201C62 /* Service */,
 				5438BFED22B81A06007F5C42 /* AnimateFlowLayout.swift */,
-				54D997DE230FF3E500579E56 /* Service */,
 			);
 			path = GBVKontakteApp;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 		5483887422942C1500E76666 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				54059760228EED1E002A892A /* ViewController.swift */,
+				54059760228EED1E002A892A /* LoginViewController.swift */,
 				5483886C22942B4C00E76666 /* FriendsViewController.swift */,
 				5483886E22942B8400E76666 /* FriendsFotoViewController.swift */,
 				5483887022942BE100E76666 /* UserGroupViewController.swift */,
@@ -242,13 +242,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		54D997DE230FF3E500579E56 /* Service */ = {
+		54C73E262312C16000201C62 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				54076B622309477400C4305D /* Session.swift */,
 				54D997DC230FF38B00579E56 /* NetworkService.swift */,
 			);
-			name = Service;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		54F92A0B2296BA70005FCCFA /* Models */ = {
@@ -408,7 +408,7 @@
 				5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */,
 				546DC1D122BCE753001C7673 /* CornerAnimate.swift in Sources */,
 				5438BFF022B81A6D007F5C42 /* AnimateViewController.swift in Sources */,
-				54059761228EED1E002A892A /* ViewController.swift in Sources */,
+				54059761228EED1E002A892A /* LoginViewController.swift in Sources */,
 				54D997DD230FF38B00579E56 /* NetworkService.swift in Sources */,
 				5483886D22942B4C00E76666 /* FriendsViewController.swift in Sources */,
 				5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */,
