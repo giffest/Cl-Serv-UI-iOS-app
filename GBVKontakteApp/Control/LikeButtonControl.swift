@@ -1,5 +1,5 @@
 //
-//  LikeButton.swift
+//  LikeButtonControl.swift
 //  
 //
 //  Created by Dmitry on 31/05/2019.
@@ -9,7 +9,7 @@
 import UIKit
 
 //@IBDesignable
-class LikeButton: UIControl {
+class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
 //    public var user = 3939590

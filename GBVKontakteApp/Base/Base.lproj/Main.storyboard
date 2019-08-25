@@ -112,11 +112,12 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
+                        <segue destination="baf-lF-GRP" kind="presentation" identifier="showVKLoginController" id="NOc-TP-Gjf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720" y="499"/>
+            <point key="canvasLocation" x="728" y="499"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="6Oc-th-Os2">
@@ -152,7 +153,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqC-LU-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Z1I-Au-e97" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1454" y="499"/>
         </scene>
@@ -240,13 +240,12 @@
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
                             <connections>
-                                <segue destination="2x3-pB-TXY" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="uSx-GY-qDl"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="BEi-7d-hHY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qj2-Vj-5sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="2x3-pB-TXY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3703" y="-170"/>
         </scene>
@@ -276,7 +275,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="413" height="356"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButton" customModule="GBVKontakteApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButtonControl" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="10" y="332" width="63" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
@@ -557,7 +556,7 @@
                     <navigationItem key="navigationItem" title="My Groups" id="kHX-vF-n30">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq">
                             <connections>
-                                <segue destination="Z1I-Au-e97" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="drx-e8-2Nc"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="XPR-Hv-26f"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEw-ZI-tqj">
@@ -718,7 +717,7 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="d8Y-Wb-Bft"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-72-e0N" customClass="LikeButton" customModule="GBVKontakteApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-72-e0N" customClass="LikeButtonControl" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="13" y="501" width="60" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paK-H5-QoQ">
@@ -815,4 +814,7 @@
         <image name="ГубкаБоб" width="219" height="230"/>
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BEi-7d-hHY"/>
+    </inferredMetricsTieBreakers>
 </document>
