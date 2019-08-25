@@ -41,7 +41,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             self?.tableView.reloadData()
         }
         
-        
 //        groupsSectionData()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 //        scrollView?.addGestureRecognizer(hideKeyboardGesture)
@@ -88,12 +87,14 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
         
         //cell.groupNameLabel.text = "Пингвины Мадагаскара"
+        
 //        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
 //        cell.groupNameLabel.text = group.nameGroup
 //        cell.groupImageView.image = UIImage(named: group.imageGroup)
+        
         let group = groups[indexPath.row]
         cell.groupNameLabel.text = group.name
-//        cell.groupImageView.kf.setImage(with: group.avatarUrl) // надо переделать для картинки контрол
+        cell.groupImageView.kf.setImage(with: group.avatarUrl) // надо переделать для картинки контрол
 //        cell.groupImageView.image = UIImage(named: group.imageGroup)
 
         return cell

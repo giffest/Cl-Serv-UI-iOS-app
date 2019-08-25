@@ -15,7 +15,8 @@ class FriendsFotoViewController: UICollectionViewController {
     let networkService = NetworkService()
     
     var friendNameForTitle: String = ""
-    var friendFotoForImage: String = ""
+//    var friendFotoForImage: String = ""
+    var friendFotoForImage: URL? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,8 @@ class FriendsFotoViewController: UICollectionViewController {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
         
         //let fotoImage = friendFotoForImage
-        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
+//        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
+        cell.imageFriendView.kf.setImage(with: friendFotoForImage)
         
         return cell
     }

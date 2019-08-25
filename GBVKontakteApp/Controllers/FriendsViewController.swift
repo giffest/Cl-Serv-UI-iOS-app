@@ -31,8 +31,10 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        .sorted(by: {$0.nameUser < $1.nameUser} )
 
     var titleForSection = [String]()
-    var items = [[UserModel]]()
-    var itemsFiltered = [UserModel]()
+//    var items = [[UserModel]]()
+//    var itemsFiltered = [UserModel]()
+    var items = [[User]]()
+    var itemsFiltered = [User]()
     var searchAction = false
 
     
@@ -236,9 +238,14 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let indexPath = tableView.indexPathForSelectedRow {
             
 //            let nameUser = users[indexPath.row]
-            let nameUser = items[indexPath.section][indexPath.row]
-            friendFotoController.friendNameForTitle = nameUser.nameUser
-            friendFotoController.friendFotoForImage = nameUser.imageUser
+//            let nameUser = items[indexPath.section][indexPath.row]
+//            friendFotoController.friendNameForTitle = nameUser.nameUser
+//            friendFotoController.friendFotoForImage = nameUser.imageUser
+            
+//            let user = items[indexPath.section][indexPath.row]
+            let user = users[indexPath.row]
+            friendFotoController.friendNameForTitle = user.last_name + " " + user.first_name
+            friendFotoController.friendFotoForImage = user.avatarUrl
             }
      }
     

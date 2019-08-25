@@ -314,6 +314,7 @@
                                     <constraint firstAttribute="bottom" secondItem="E7q-1L-Sia" secondAttribute="bottom" constant="4" id="Pkz-E4-l7n"/>
                                     <constraint firstItem="Z2g-XY-cS8" firstAttribute="centerY" secondItem="0D1-gf-CPL" secondAttribute="centerY" id="aAG-Z1-mDM"/>
                                     <constraint firstItem="Z2g-XY-cS8" firstAttribute="top" secondItem="0D1-gf-CPL" secondAttribute="top" id="baZ-nO-LPF"/>
+                                    <constraint firstItem="Z2g-XY-cS8" firstAttribute="width" secondItem="0D1-gf-CPL" secondAttribute="width" id="gnJ-kn-GwP"/>
                                     <constraint firstItem="Z2g-XY-cS8" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" id="hvf-5w-6Ea"/>
                                     <constraint firstAttribute="bottom" secondItem="Z2g-XY-cS8" secondAttribute="bottom" id="jaK-FV-Jgl"/>
                                     <constraint firstItem="E7q-1L-Sia" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" priority="1" constant="10" id="wWv-2B-RRB"/>
@@ -402,81 +403,44 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-kU-zKW" customClass="ShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-kU-zKW" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madagascar" translatesAutoresizingMaskIntoConstraints="NO" id="IIf-CG-R4u">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="hAR-hf-jT3"/>
+                                                        <constraint firstAttribute="width" secondItem="IIf-CG-R4u" secondAttribute="height" multiplier="1:1" id="o2U-xz-i16"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
+                                                <constraint firstItem="IIf-CG-R4u" firstAttribute="leading" secondItem="jU4-kU-zKW" secondAttribute="leading" id="1iT-Lp-oMS"/>
+                                                <constraint firstAttribute="trailing" secondItem="IIf-CG-R4u" secondAttribute="trailing" id="4TV-zm-iB4"/>
                                                 <constraint firstAttribute="width" constant="70" id="H7d-SY-5bX"/>
-                                                <constraint firstAttribute="width" secondItem="jU4-kU-zKW" secondAttribute="height" multiplier="1:1" id="Skm-9f-sVy"/>
+                                                <constraint firstItem="IIf-CG-R4u" firstAttribute="top" secondItem="jU4-kU-zKW" secondAttribute="top" id="agX-9b-BHC"/>
+                                                <constraint firstItem="IIf-CG-R4u" firstAttribute="width" secondItem="jU4-kU-zKW" secondAttribute="height" multiplier="1:1" id="eNv-o6-EpS"/>
+                                                <constraint firstAttribute="bottom" secondItem="IIf-CG-R4u" secondAttribute="bottom" id="sxu-bC-dGx"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="2"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="7"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" red="0.76047993069999997" green="1" blue="0.798759259" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upd-fs-oc4" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
-                                            <rect key="frame" x="328" y="2" width="70" height="70"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="sj4-rr-Gfl"/>
-                                                <constraint firstAttribute="width" secondItem="Upd-fs-oc4" secondAttribute="height" multiplier="1:1" id="taz-4o-z6a"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="МосковскийЗоопарк2"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                    <real key="value" value="40"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cicleXpoint">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cicleYpoint">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageXpoint">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageYpoint">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageWidth">
-                                                    <real key="value" value="70"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageHeight">
-                                                    <real key="value" value="70"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageCornerRadius">
-                                                    <real key="value" value="35"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageBorderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="customImageView" destination="IIf-CG-R4u" id="WZe-EO-qA9"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Upd-fs-oc4" firstAttribute="top" secondItem="8ze-cS-4I0" secondAttribute="top" constant="2" id="E9R-Le-aKk"/>
                                         <constraint firstAttribute="bottom" secondItem="jU4-kU-zKW" secondAttribute="bottom" constant="2" id="Ia0-SA-Ve3"/>
                                         <constraint firstItem="jU4-kU-zKW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cQf-ve-ji0" secondAttribute="trailing" constant="8" symbolic="YES" id="Ud2-wS-KSP"/>
                                         <constraint firstItem="jU4-kU-zKW" firstAttribute="top" secondItem="8ze-cS-4I0" secondAttribute="top" constant="2" id="YHk-6D-LkC"/>
-                                        <constraint firstItem="Upd-fs-oc4" firstAttribute="centerY" secondItem="8ze-cS-4I0" secondAttribute="centerY" id="eEG-6V-9jh"/>
-                                        <constraint firstItem="Upd-fs-oc4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cQf-ve-ji0" secondAttribute="trailing" constant="8" symbolic="YES" id="gQh-b8-luo"/>
                                         <constraint firstAttribute="trailing" secondItem="jU4-kU-zKW" secondAttribute="trailing" constant="16" id="ht8-j2-DSr"/>
                                         <constraint firstItem="cQf-ve-ji0" firstAttribute="centerY" secondItem="8ze-cS-4I0" secondAttribute="centerY" id="jm3-cw-Dht"/>
-                                        <constraint firstAttribute="trailing" secondItem="Upd-fs-oc4" secondAttribute="trailing" constant="16" id="lVa-ub-24f"/>
-                                        <constraint firstAttribute="bottom" secondItem="Upd-fs-oc4" secondAttribute="bottom" constant="2" id="pzn-ut-nzj"/>
                                         <constraint firstItem="cQf-ve-ji0" firstAttribute="leading" secondItem="8ze-cS-4I0" secondAttribute="leading" constant="16" id="rcC-Af-c2J"/>
                                         <constraint firstItem="jU4-kU-zKW" firstAttribute="centerY" secondItem="8ze-cS-4I0" secondAttribute="centerY" id="xN2-5J-I8B"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
-                                    <outlet property="groupImageView" destination="Upd-fs-oc4" id="3Nx-Wi-uMZ"/>
+                                    <outlet property="groupImageView" destination="IIf-CG-R4u" id="6Lb-RT-t9I"/>
                                     <outlet property="groupNameLabel" destination="cQf-ve-ji0" id="kDy-NK-sfY"/>
                                     <segue destination="XQM-Hv-wrD" kind="unwind" unwindAction="addGroupWithSegue:" id="gO8-DR-xkt"/>
                                 </connections>
@@ -492,7 +456,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDN-SV-qml" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="XQM-Hv-wrD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5493" y="499"/>
+            <point key="canvasLocation" x="5492.753623188406" y="498.88392857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oFV-kV-bgv">
@@ -501,7 +465,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uEB-6L-83B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="9Z4-HU-xnW" kind="relationship" relationship="viewControllers" id="atq-qN-mlD"/>
@@ -544,81 +507,44 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-3p-T8c" customClass="ShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-3p-T8c" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madagascar_penguins" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-bW-ikt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="kVm-bW-ikt" secondAttribute="height" multiplier="1:1" id="XwM-e9-iVB"/>
+                                                        <constraint firstAttribute="width" constant="70" id="YzK-op-VeS"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="JOi-wc-aK2"/>
-                                                <constraint firstAttribute="width" secondItem="qc8-3p-T8c" secondAttribute="height" multiplier="1:1" id="Vl2-jC-5ly"/>
+                                                <constraint firstAttribute="trailing" secondItem="kVm-bW-ikt" secondAttribute="trailing" id="01N-JJ-JyF"/>
+                                                <constraint firstAttribute="bottom" secondItem="kVm-bW-ikt" secondAttribute="bottom" id="6BD-tx-jO1"/>
+                                                <constraint firstItem="kVm-bW-ikt" firstAttribute="top" secondItem="qc8-3p-T8c" secondAttribute="top" id="Pm0-hw-qqW"/>
+                                                <constraint firstItem="kVm-bW-ikt" firstAttribute="leading" secondItem="qc8-3p-T8c" secondAttribute="leading" id="obX-Lb-fOI"/>
+                                                <constraint firstAttribute="width" constant="70" id="ufN-uM-W2S"/>
+                                                <constraint firstItem="kVm-bW-ikt" firstAttribute="width" secondItem="qc8-3p-T8c" secondAttribute="height" multiplier="1:1" id="wKj-4a-ZSA"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="2"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="7"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" red="0.76047993069999997" green="1" blue="0.798759259" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-MS-qND" customClass="ImageView" customModule="GBVKontakteApp" customModuleProvider="target">
-                                            <rect key="frame" x="328" y="2" width="70" height="70"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="T8M-Y2-xNd"/>
-                                                <constraint firstAttribute="width" secondItem="Mjd-MS-qND" secondAttribute="height" multiplier="1:1" id="WKg-Uf-tkE"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="madagascar_penguins"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                    <real key="value" value="40"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cicleXpoint">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cicleYpoint">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageXpoint">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageYpoint">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageWidth">
-                                                    <real key="value" value="70"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageHeight">
-                                                    <real key="value" value="70"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageCornerRadius">
-                                                    <real key="value" value="35"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageBorderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="customImageView" destination="kVm-bW-ikt" id="Hfp-3B-siE"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qc8-3p-T8c" firstAttribute="centerY" secondItem="4qy-KP-7rf" secondAttribute="centerY" id="1De-FT-QkL"/>
                                         <constraint firstItem="qc8-3p-T8c" firstAttribute="top" secondItem="4qy-KP-7rf" secondAttribute="top" constant="2" id="2AQ-37-Q3d"/>
-                                        <constraint firstAttribute="trailing" secondItem="Mjd-MS-qND" secondAttribute="trailing" constant="16" id="3B0-Ns-zcz"/>
                                         <constraint firstItem="qc8-3p-T8c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9cA-lv-Bwm" secondAttribute="trailing" constant="8" symbolic="YES" id="GJC-mv-xVG"/>
-                                        <constraint firstAttribute="bottom" secondItem="Mjd-MS-qND" secondAttribute="bottom" constant="2" id="KIK-T2-HhM"/>
                                         <constraint firstItem="9cA-lv-Bwm" firstAttribute="leading" secondItem="4qy-KP-7rf" secondAttribute="leading" constant="16" id="Rg1-aw-Dyg"/>
                                         <constraint firstItem="9cA-lv-Bwm" firstAttribute="centerY" secondItem="4qy-KP-7rf" secondAttribute="centerY" id="WsO-hF-xVS"/>
-                                        <constraint firstItem="Mjd-MS-qND" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9cA-lv-Bwm" secondAttribute="trailing" constant="8" symbolic="YES" id="ZNf-NF-gpJ"/>
-                                        <constraint firstItem="Mjd-MS-qND" firstAttribute="top" secondItem="4qy-KP-7rf" secondAttribute="top" constant="2" id="eMH-Yf-6bh"/>
                                         <constraint firstAttribute="trailing" secondItem="qc8-3p-T8c" secondAttribute="trailing" constant="16" id="hGb-xB-bVa"/>
                                         <constraint firstAttribute="bottom" secondItem="qc8-3p-T8c" secondAttribute="bottom" constant="2" id="kbc-jo-eKr"/>
-                                        <constraint firstItem="Mjd-MS-qND" firstAttribute="centerY" secondItem="4qy-KP-7rf" secondAttribute="centerY" id="qaa-F4-0mi"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
-                                    <outlet property="groupImageView" destination="Mjd-MS-qND" id="AfL-18-LEa"/>
+                                    <outlet property="groupImageView" destination="kVm-bW-ikt" id="9o2-nF-fdZ"/>
                                     <outlet property="groupNameLabel" destination="9cA-lv-Bwm" id="fkV-jx-DO4"/>
                                 </connections>
                             </tableViewCell>
@@ -867,10 +793,10 @@
         <image name="background" width="1024" height="768"/>
         <image name="friend" width="25" height="25"/>
         <image name="groups" width="25" height="25"/>
+        <image name="madagascar" width="736" height="736"/>
         <image name="madagascar_penguins" width="676" height="600"/>
         <image name="news" width="25" height="25"/>
         <image name="ГубкаБоб" width="219" height="230"/>
         <image name="ГубкаБобНовости" width="1000" height="555"/>
-        <image name="МосковскийЗоопарк2" width="1200" height="690"/>
     </resources>
 </document>
