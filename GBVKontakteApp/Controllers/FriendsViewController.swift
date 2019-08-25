@@ -7,31 +7,34 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
-    let vkLoginController = VKLoginController()
+    let networkService = NetworkService()
+    private var users = [User]()
     
-    var users: [UserModel] = [
-        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
-        UserModel(idUser: 2, nameUser: "Мамонтенок", imageUser: "Мамонтенок"),
-        UserModel(idUser: 3, nameUser: "Медведь Трям", imageUser: "МедведьТрям"),
-        UserModel(idUser: 4, nameUser: "Львенок", imageUser: "Львенок"),
-        UserModel(idUser: 5, nameUser: "Незнайка", imageUser: "Незнайка"),
-        UserModel(idUser: 6, nameUser: "Карлсон", imageUser: "Карлсон2"),
-        UserModel(idUser: 7, nameUser: "Губка Боб2", imageUser: "ГубкаБоб2"),
-        UserModel(idUser: 8, nameUser: "Мамонтенок2", imageUser: "Мамонтенок2"),
-        UserModel(idUser: 9, nameUser: "Медведь Трям2", imageUser: "МедведьТрям2"),
-        UserModel(idUser: 10, nameUser: "Львенок2", imageUser: "Львенок2"),
-        UserModel(idUser: 11, nameUser: "Незнайка2", imageUser: "Незнайка2"),
-        UserModel(idUser: 12, nameUser: "Карлсон2", imageUser: "Карлсон2")
-        ]
+//    var users: [UserModel] = [
+//        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
+//        UserModel(idUser: 2, nameUser: "Мамонтенок", imageUser: "Мамонтенок"),
+//        UserModel(idUser: 3, nameUser: "Медведь Трям", imageUser: "МедведьТрям"),
+//        UserModel(idUser: 4, nameUser: "Львенок", imageUser: "Львенок"),
+//        UserModel(idUser: 5, nameUser: "Незнайка", imageUser: "Незнайка"),
+//        UserModel(idUser: 6, nameUser: "Карлсон", imageUser: "Карлсон2"),
+//        UserModel(idUser: 7, nameUser: "Губка Боб2", imageUser: "ГубкаБоб2"),
+//        UserModel(idUser: 8, nameUser: "Мамонтенок2", imageUser: "Мамонтенок2"),
+//        UserModel(idUser: 9, nameUser: "Медведь Трям2", imageUser: "МедведьТрям2"),
+//        UserModel(idUser: 10, nameUser: "Львенок2", imageUser: "Львенок2"),
+//        UserModel(idUser: 11, nameUser: "Незнайка2", imageUser: "Незнайка2"),
+//        UserModel(idUser: 12, nameUser: "Карлсон2", imageUser: "Карлсон2")
+//        ]
 //        .sorted(by: {$0.nameUser < $1.nameUser} )
 
     var titleForSection = [String]()
     var items = [[UserModel]]()
     var itemsFiltered = [UserModel]()
     var searchAction = false
+
     
 //    var someIndex = 0
     func toPhotoBoard() {
@@ -47,9 +50,12 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vkLoginController.getFriends()
+        networkService.getFriends() { [weak self] users in
+            self?.users = users
+            self?.tableView.reloadData()
+        }
         
-        friendSectionData()
+//        friendSectionData()
         refreshControl()
 //        _ = users.sort {$0.nameUser < $1.nameUser}
         
@@ -57,28 +63,28 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     // MARK: - Table view data source
     
-    func friendSectionData() {
-        var section = 0
-        
-        _ = users.sort {$0.nameUser < $1.nameUser}
-
-        titleForSection.append(String(users[0].nameUser.first!))
-        items.append([UserModel]())
-        items[section].append(users[0])
-        
-        for row in 1..<users.count {
-            let leftValue = users[row - 1].nameUser.first
-            let rightValue = users[row].nameUser.first
-            if leftValue == rightValue {
-                items[section].append(users[row])
-            } else {
-                titleForSection.append(String(rightValue!))
-                section += 1
-                items.append([UserModel]())
-                items[section].append(users[row])
-            }
-        }
-    }
+//    func friendSectionData() {
+//        var section = 0
+//
+//        _ = users.sort {$0.nameUser < $1.nameUser}
+//
+//        titleForSection.append(String(users[0].nameUser.first!))
+//        items.append([UserModel]())
+//        items[section].append(users[0])
+//
+//        for row in 1..<users.count {
+//            let leftValue = users[row - 1].nameUser.first
+//            let rightValue = users[row].nameUser.first
+//            if leftValue == rightValue {
+//                items[section].append(users[row])
+//            } else {
+//                titleForSection.append(String(rightValue!))
+//                section += 1
+//                items.append([UserModel]())
+//                items[section].append(users[row])
+//            }
+//        }
+//    }
 
     let loadIndicatorView = LoadIndicatorView()
     
@@ -120,35 +126,42 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        replicatorLayer.animation(forKey: <#T##String#>)
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return searchAction ? nil : titleForSection
-    }
+//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return searchAction ? nil : titleForSection
+//    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return searchAction ? 1 : titleForSection.count
+//        return searchAction ? 1 : titleForSection.count
+        return 1
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return searchAction ? nil : String(titleForSection[section])
-    }
+
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return searchAction ? nil : String(titleForSection[section])
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 //        return 10  // для проверки и настройки
-//        return users.count
-        return searchAction ? itemsFiltered.count : items[section].count
+        return users.count
+//        return searchAction ? itemsFiltered.count : items[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseIndentifier, for: indexPath) as? FriendCell else { return UITableViewCell() }
         
         //cell.friendNameLabel.text = "Губка Боб"
-        let section = indexPath.section
-        let row = indexPath.row
-//        let user = users[indexPath.row]
-        let user = searchAction ? itemsFiltered[row] : items[section][row]
-        cell.friendNameLabel.text = user.nameUser
-        cell.friendImageView.image = UIImage(named: user.imageUser)
+        
+//        let section = indexPath.section
+//        let row = indexPath.row
+        
+        let user = users[indexPath.row]
+        cell.friendNameLabel.text = user.last_name + " " + user.first_name
+        cell.friendImageView.kf.setImage(with: user.avatarUrl)
+        
+//        let user = searchAction ? itemsFiltered[row] : items[section][row]
+//        cell.friendNameLabel.text = user.nameUser
+//        cell.friendImageView.image = UIImage(named: user.imageUser)
+        
 //        cell.friendNameLabel2.text = user.nameUser
 //        cell.friendImageView2.image = UIImage(named: user.imageUser)
         
@@ -234,7 +247,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchAction = searchText.count == 0 ? false : true
-        itemsFiltered = users.filter { $0.nameUser.lowercased().contains(searchText.lowercased())}
+//        itemsFiltered = users.filter { $0.nameUser.lowercased().contains(searchText.lowercased())}
 
         self.tableView.reloadData()
      }

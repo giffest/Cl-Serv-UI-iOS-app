@@ -10,7 +10,7 @@ import UIKit
 
 class FindGroupViewController: UITableViewController, UISearchBarDelegate {
     
-    let vkLoginController = VKLoginController()
+    let networkService = NetworkService()
     public var groupsVK = "xcode"
 //    public var gpoupsVK = "MacOS"
 
@@ -28,7 +28,7 @@ class FindGroupViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vkLoginController.getSearchGroup(for: groupsVK)
+        networkService.getSearchGroup(for: groupsVK)
         
     //    tableView.dataSource = self
     }

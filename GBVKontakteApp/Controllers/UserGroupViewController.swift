@@ -7,22 +7,26 @@
 //
 
 import UIKit
+import Alamofire
+import Kingfisher
+
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
-    let vkLoginController = VKLoginController()
+    let networkService = NetworkService()
+    private var groups = [Group]()
     
-    var groups: [GroupModel] = [
-        GroupModel(idGroup: 1, nameGroup: "Пингвины Мадагаскара", imageGroup: "madagascar_penguins"),
-        GroupModel(idGroup: 2, nameGroup: "Собор", imageGroup: "Собор"),
-        GroupModel(idGroup: 3, nameGroup: "Том и Джерри", imageGroup: "TomAndJerry2"),
-        GroupModel(idGroup: 4, nameGroup: "Охотники за привидениями", imageGroup: "ghostbuster"),
-        GroupModel(idGroup: 5, nameGroup: "Пингвины Мадагаскара2", imageGroup: "madagascar_penguins"),
-        GroupModel(idGroup: 6, nameGroup: "Собор2", imageGroup: "Собор"),
-        GroupModel(idGroup: 7, nameGroup: "Том и Джерри2", imageGroup: "TomAndJerry2"),
-        GroupModel(idGroup: 8, nameGroup: "Охотники за привидениями2", imageGroup: "ghostbuster")
-    ]
-     .sorted(by: {$0.nameGroup < $1.nameGroup} )
+//    var groups: [GroupModel] = [
+//        GroupModel(idGroup: 1, nameGroup: "Пингвины Мадагаскара", imageGroup: "madagascar_penguins"),
+//        GroupModel(idGroup: 2, nameGroup: "Собор", imageGroup: "Собор"),
+//        GroupModel(idGroup: 3, nameGroup: "Том и Джерри", imageGroup: "TomAndJerry2"),
+//        GroupModel(idGroup: 4, nameGroup: "Охотники за привидениями", imageGroup: "ghostbuster"),
+//        GroupModel(idGroup: 5, nameGroup: "Пингвины Мадагаскара2", imageGroup: "madagascar_penguins"),
+//        GroupModel(idGroup: 6, nameGroup: "Собор2", imageGroup: "Собор"),
+//        GroupModel(idGroup: 7, nameGroup: "Том и Джерри2", imageGroup: "TomAndJerry2"),
+//        GroupModel(idGroup: 8, nameGroup: "Охотники за привидениями2", imageGroup: "ghostbuster")
+//    ]
+//     .sorted(by: {$0.nameGroup < $1.nameGroup} )
     
 //    var titleForSection = [String]()
 //    var items = [[GroupModel]]()
@@ -32,7 +36,11 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vkLoginController.getGroupsUser()
+        networkService.getGroupsUser() { [weak self] groups in
+            self?.groups = groups
+            self?.tableView.reloadData()
+        }
+        
         
 //        groupsSectionData()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -72,16 +80,21 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 //        return 1  // для проверки и настройки
-        return searchAction ? itemsFiltered.count : groups.count
+//        return searchAction ? itemsFiltered.count : groups.count
+        return groups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
         
         //cell.groupNameLabel.text = "Пингвины Мадагаскара"
-        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
-        cell.groupNameLabel.text = group.nameGroup
-        cell.groupImageView.image = UIImage(named: group.imageGroup)
+//        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+//        cell.groupNameLabel.text = group.nameGroup
+//        cell.groupImageView.image = UIImage(named: group.imageGroup)
+        let group = groups[indexPath.row]
+        cell.groupNameLabel.text = group.name
+//        cell.groupImageView.kf.setImage(with: group.avatarUrl) // надо переделать для картинки контрол
+//        cell.groupImageView.image = UIImage(named: group.imageGroup)
 
         return cell
     }
@@ -140,9 +153,9 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             let indexPath = controller.tableView.indexPathForSelectedRow {
             let group = controller.groups[indexPath.row]
             
-            guard !groups.contains(where: { $0.nameGroup == group.nameGroup } ) else { return }
+//            guard !groups.contains(where: { $0.nameGroup == group.nameGroup } ) else { return }
             
-            groups.append(group)
+//            groups.append(group)
 //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
             
             let newIndexPath = IndexPath(item: groups.count - 1, section: 0)
@@ -164,7 +177,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchAction = searchText.count == 0 ? false : true
-        itemsFiltered = groups.filter { $0.nameGroup.lowercased().contains(searchText.lowercased())}
+//        itemsFiltered = groups.filter { $0.nameGroup.lowercased().contains(searchText.lowercased())}
         
         tableView.reloadData()
     }

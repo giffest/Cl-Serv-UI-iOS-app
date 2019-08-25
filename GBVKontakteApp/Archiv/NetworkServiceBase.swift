@@ -1,5 +1,5 @@
  //
-//  NetworkService.swift
+//  NetworkServiceBase.swift
 //  GBVKontakteApp
 //
 //  Created by Dmitry on 19/08/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
- class NetworkService {
+class NetworkServiceBase {
     
     func sendRequest() {
         
@@ -60,4 +60,4 @@ import Alamofire
         }
     }
     
- }
+}

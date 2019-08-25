@@ -14,6 +14,7 @@ class GroupCell: UITableViewCell {
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupImageView: ImageView!
+//    @IBOutlet weak var groupImageView: UIImageView!
     
 //    @IBAction func animation9(_ sender: Any) {
 //        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: .curveEaseInOut, animations: {

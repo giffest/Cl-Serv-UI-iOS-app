@@ -11,7 +11,7 @@ import UIKit
 //@IBDesignable
 class LikeButton: UIControl {
     
-    let vkLoginController = VKLoginController()
+    let networkService = NetworkService()
 //    public var user = 3939590
 //    public var item_id = 436765487
     
@@ -73,7 +73,7 @@ class LikeButton: UIControl {
     
     func setupView() {
         
-        vkLoginController.likesCount()
+        networkService.likesCount()
         
         self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
         
@@ -87,12 +87,12 @@ class LikeButton: UIControl {
             likedCount -= 1
             scaleChange = 0.9
 //            vkLoginController.likeDelete(for: user, for: item_id)
-            vkLoginController.likesDelete()
+            networkService.likesDelete()
         } else {
             likedCount += 1
             scaleChange = 1.1
 //            vkLoginController.likeAdd(for: user, for: item_id)
-            vkLoginController.likesAdd()
+            networkService.likesAdd()
         }
         
         likedState.toggle()
