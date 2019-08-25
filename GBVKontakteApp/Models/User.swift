@@ -1,25 +1,30 @@
 //
 //  User.swift
-//  
+//  GBVKontakteApp
 //
-//  Created by Dmitry on 23/05/2019.
+//  Created by Dmitry on 23/08/2019.
 //  Copyright © 2019 Dmitry. All rights reserved.
 //
 
 import Foundation
+import SwiftyJSON
 
-struct UserModel {
+class User {
+    let count: Int
+    let id: String
+    let first_name: String
+    let last_name: String
+    let avatarUrl: URL?
+//    let photoString: String
     
-//    var idUser : Int
-//    var nameUser : String
-//    var imageUser : String
-    let idUser : Int
-    let nameUser : String
-    let imageUser : String
-    
-    init(idUser: Int, nameUser: String, imageUser: String) {
-        self.idUser = idUser
-        self.nameUser = nameUser
-        self.imageUser = imageUser
+    init(_ json: JSON) {
+        self.count = json["count"].intValue
+        self.id = json["id"].stringValue
+        self.first_name = json["first_name"].stringValue
+        self.last_name = json["last_name"].stringValue
+//        self.photoString = json["photo_100"].stringValue
+        let photoString = json["photo_50"].stringValue
+        self.avatarUrl = URL(string: photoString)
     }
 }
+

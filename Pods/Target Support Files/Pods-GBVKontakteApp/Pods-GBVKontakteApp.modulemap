@@ -1,0 +1,6 @@
+framework module Pods_GBVKontakteApp {
+  umbrella header "Pods-GBVKontakteApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -11,6 +11,10 @@ import UIKit
 //@IBDesignable
 class LikeButton: UIControl {
     
+    let networkService = NetworkService()
+//    public var user = 3939590
+//    public var item_id = 436765487
+    
     @IBOutlet weak var likeLebel: UILabel!
     
     @IBInspectable var fillColor: UIColor = .red
@@ -69,6 +73,8 @@ class LikeButton: UIControl {
     
     func setupView() {
         
+        networkService.likesCount()
+        
         self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
         
         super.backgroundColor = backColor
@@ -80,9 +86,13 @@ class LikeButton: UIControl {
         if likedState {
             likedCount -= 1
             scaleChange = 0.9
+//            vkLoginController.likeDelete(for: user, for: item_id)
+            networkService.likesDelete()
         } else {
             likedCount += 1
             scaleChange = 1.1
+//            vkLoginController.likeAdd(for: user, for: item_id)
+            networkService.likesAdd()
         }
         
         likedState.toggle()
