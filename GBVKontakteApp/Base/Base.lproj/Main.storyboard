@@ -112,12 +112,12 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
-                        <segue destination="baf-lF-GRP" kind="presentation" identifier="showVKLoginController" id="NOc-TP-Gjf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="XKz-1E-tlT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="728" y="499"/>
+            <point key="canvasLocation" x="555" y="499"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="6Oc-th-Os2">
@@ -240,7 +240,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="BEi-7d-hHY"/>
+                                <segue destination="XKz-1E-tlT" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="6mv-Me-hEN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -556,7 +556,7 @@
                     <navigationItem key="navigationItem" title="My Groups" id="kHX-vF-n30">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="XPR-Hv-26f"/>
+                                <segue destination="XKz-1E-tlT" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="neC-ov-oYs"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEw-ZI-tqj">
@@ -814,7 +814,4 @@
         <image name="ГубкаБоб" width="219" height="230"/>
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="BEi-7d-hHY"/>
-    </inferredMetricsTieBreakers>
 </document>

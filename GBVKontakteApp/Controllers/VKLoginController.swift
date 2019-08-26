@@ -23,10 +23,10 @@ class VKLoginController: UIViewController/*, WKNavigationDelegate*/ {
     }
     
     //MARK: - Actions
-//    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
-//        print("I logoff")
-//        logoffVK()
-//    }
+    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
+        print("I logoff")
+        logoffVK()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
