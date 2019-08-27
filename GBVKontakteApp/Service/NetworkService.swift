@@ -44,13 +44,11 @@ class NetworkService {
     }
     
     //MARK: - Method Photo
-    func getPhotoUser() {
-        let method = "photos.get"
+    func getPhotoUser(idOwner: Int, completion: @escaping ([Photo]) -> Void) {
+        let method = "photos.getAll"
         
         let parameters: Parameters = [
-//            "owner_id": String(Session.shared.userid),
-//            "owner_id": "2677052", // for test
-            "owner_id": "3939590", // for test
+            "owner_id": idOwner,
             "album_id": "profile",
             "extended": 1,
             "access_token": Session.shared.token,
@@ -59,8 +57,17 @@ class NetworkService {
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-                print("=== Photo User ===")
 //                print(response.value!)
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let photosJSONs = json["response"]["items"].arrayValue
+                    let photos = photosJSONs.map { Photo($0) }
+                    completion(photos)
+                case .failure(let error):
+                    print(error)
+                    completion([])
+                }
         }
     }
     
@@ -69,7 +76,6 @@ class NetworkService {
         let method = "groups.get"
         
         let parameters: Parameters = [
-//            "user_id": String(Session.shared.userid), // for test
             "extended": 1,
             "access_token": Session.shared.token,
             "v": "5.101"
@@ -97,7 +103,7 @@ class NetworkService {
         let parameters: Parameters = [
             "q": keyword,
             "type": "group",
-            "sort": "0",
+            "sort": 0,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
@@ -110,14 +116,12 @@ class NetworkService {
     }
     
     //MARK: - Methods Likes
-//    func likesCount(completion: @escaping ([Photo]) -> Void) {
     func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
         let method = "photos.getById"
         let photoStr: String = String(idOwner) + "_" + String(idPhoto)
         
         let parameters: Parameters = [
             "photos": photoStr,
-//            "photos": "3939590_456239081",
             "extended": 1,
             "access_token": Session.shared.token,
             "v": "5.101"
@@ -130,10 +134,7 @@ class NetworkService {
                 case .success(let value):
                     let json = JSON(value)
                     let likesJSON = json["response"][0]["likes"]["count"].intValue
-//                    let photos = photosJSONs.map {Photo($0)}
                     completion(likesJSON)
-                    print(likesJSON)
-                    
                 case .failure(let error):
                     print(error)
                     completion(0)
@@ -149,19 +150,17 @@ class NetworkService {
             "owner_id": idOwner,
             "item_id": idPhoto,
             "access_token": Session.shared.token,
-            "v": "5.68"
+            "v": "5.101" //5.68
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-                print("=== Дабавили ЛАЙК ===")
-                print(response.value!)
+//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     let likesJSON = json["response"]["likes"].intValue
                     completion(likesJSON)
-                    print(likesJSON)
                 case .failure(let error):
                     print(error)
                     completion(0)
@@ -182,14 +181,12 @@ class NetworkService {
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-                print("=== Убрали ЛАЙК ===")
-                print(response.value!)
+//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     let likesJSON = json["response"]["likes"].intValue
                     completion(likesJSON)
-                    print(likesJSON)
                 case .failure(let error):
                     print(error)
                     completion(0)

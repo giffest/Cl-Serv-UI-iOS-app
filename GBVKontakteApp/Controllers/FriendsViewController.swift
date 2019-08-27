@@ -37,7 +37,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     var itemsFiltered = [User]()
     var searchAction = false
 
-    
 //    var someIndex = 0
     func toPhotoBoard() {
 //        let selectIndexPath = IndexPath(item: someIndex, section: 0)

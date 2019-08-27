@@ -12,8 +12,6 @@ private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
-    let networkService = NetworkService()
-    
     var friendNameForTitle: String = ""
 //    var friendFotoForImage: String = ""
     var friendFotoForImage: URL? 
@@ -21,10 +19,7 @@ class FriendsFotoViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getPhotoUser()
-        
         title = friendNameForTitle
-
     }
     
     let loadIndicatorView = LoadIndicatorView()
@@ -68,7 +63,7 @@ class FriendsFotoViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
         
-        //let fotoImage = friendFotoForImage
+//        let fotoImage = friendFotoForImage
 //        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
         cell.imageFriendView.kf.setImage(with: friendFotoForImage)
         

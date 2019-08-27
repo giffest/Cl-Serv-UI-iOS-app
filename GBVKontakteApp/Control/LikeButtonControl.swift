@@ -22,7 +22,7 @@ class LikeButtonControl: UIControl {
     @IBInspectable var strokeColor: UIColor = .gray
     @IBInspectable var textLikeColor: UIColor = .red
     @IBInspectable var textDisLikeColor: UIColor = .gray
-    var backColor: UIColor = .white
+    var backColor: UIColor = .clear
 //    var likedCount = Int.random(in: 1...999)
     var likedCount: Int = 0
     var likedState = Bool.random() // необходимо переделать
