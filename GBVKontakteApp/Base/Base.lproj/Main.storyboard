@@ -276,14 +276,14 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButtonControl" customModule="GBVKontakteApp" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="332" width="54" height="20"/>
+                                            <rect key="frame" x="6" y="332" width="54" height="20"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
                                                     <rect key="frame" x="30" y="2" width="24" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="LG7-bc-mgO"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -316,7 +316,7 @@
                                     <constraint firstItem="Z2g-XY-cS8" firstAttribute="width" secondItem="0D1-gf-CPL" secondAttribute="width" id="gnJ-kn-GwP"/>
                                     <constraint firstItem="Z2g-XY-cS8" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" id="hvf-5w-6Ea"/>
                                     <constraint firstAttribute="bottom" secondItem="Z2g-XY-cS8" secondAttribute="bottom" id="jaK-FV-Jgl"/>
-                                    <constraint firstItem="E7q-1L-Sia" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" priority="1" constant="10" id="wWv-2B-RRB"/>
+                                    <constraint firstItem="E7q-1L-Sia" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" priority="1" constant="6" id="wWv-2B-RRB"/>
                                     <constraint firstAttribute="trailing" secondItem="Z2g-XY-cS8" secondAttribute="trailing" id="xz8-hN-155"/>
                                 </constraints>
                                 <connections>
@@ -721,7 +721,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-72-e0N" customClass="LikeButtonControl" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="13" y="501" width="60" height="24"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paK-H5-QoQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paK-H5-QoQ">
                                                     <rect key="frame" x="35" y="2" width="25" height="20.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>

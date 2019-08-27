@@ -12,17 +12,17 @@ import UIKit
 class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
+    private var photosUI = [Photo]()
     public var idOwner = 3939590
     public var idPhoto = 456239081
-    // id photo, id owner
     
     @IBOutlet weak var likeLebel: UILabel!
     
     @IBInspectable var fillColor: UIColor = .red
-    @IBInspectable var strokeColor: UIColor = .gray
+    @IBInspectable var strokeColor: UIColor = .darkGray
     @IBInspectable var textLikeColor: UIColor = .red
-    @IBInspectable var textDisLikeColor: UIColor = .gray
-    var backColor: UIColor = .clear
+    @IBInspectable var textDisLikeColor: UIColor = .darkGray
+    var backColor: UIColor = .lightGray
 //    var likedCount = Int.random(in: 1...999)
     var likedCount: Int = 0
     var likedState = Bool.random() // необходимо переделать
@@ -76,10 +76,16 @@ class LikeButtonControl: UIControl {
         likeLebel.text = String(likedCount)
     }
     
+//    func likesCountPhoto() {
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+//            self?.likedCount = likedCount
+//            self?.likeLebel.text = String(likedCount)
+//        }
+//    }
     func likesCountPhoto() {
-        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
-            self?.likedCount = likedCount
-            self?.likeLebel.text = String(likedCount)
+        networkService.likesCount(idOwner: idPhoto, idPhoto: idPhoto) { [weak self] photos in
+            self?.photosUI = photos
+            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
         }
     }
     

@@ -13,6 +13,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     let networkService = NetworkService()
     private var users = [User]()
+    public var idOwner = 3939590
     
 //    var users: [UserModel] = [
 //        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
@@ -156,8 +157,11 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        let row = indexPath.row
         
         let user = users[indexPath.row]
-        cell.friendNameLabel.text = user.last_name + " " + user.first_name
+        cell.friendNameLabel.text = user.first_name + " " + user.last_name
         cell.friendImageView.kf.setImage(with: user.avatarUrl)
+        
+//        let idUser = user.id
+//        let idPhzxzoto = user.photoString
         
 //        let user = searchAction ? itemsFiltered[row] : items[section][row]
 //        cell.friendNameLabel.text = user.nameUser
@@ -243,7 +247,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             
 //            let user = items[indexPath.section][indexPath.row]
             let user = users[indexPath.row]
-            friendFotoController.friendNameForTitle = user.last_name + " " + user.first_name
+            friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
             friendFotoController.friendFotoForImage = user.avatarUrl
             }
      }

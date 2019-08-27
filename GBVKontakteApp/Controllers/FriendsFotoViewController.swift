@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
+//    let networkService = NetworkService()
+    
     var friendNameForTitle: String = ""
 //    var friendFotoForImage: String = ""
     var friendFotoForImage: URL? 
