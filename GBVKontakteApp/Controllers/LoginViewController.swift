@@ -49,8 +49,8 @@ class LoginViewController: UIViewController {
         if usernameTextField.text == "",
             passwordTextField.text == "" {
             print("Успешный вход.")
-            performSegue(withIdentifier: "showMyTabController", sender: nil)
-//            performSegue(withIdentifier: "showVKLoginController", sender: nil)
+//            performSegue(withIdentifier: "showMyTabController", sender: nil)
+            performSegue(withIdentifier: "showVKLoginController", sender: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Incorrect login or password", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) {_ in
