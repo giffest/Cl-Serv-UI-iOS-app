@@ -12,8 +12,9 @@ import UIKit
 class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
-//    public var user = 3939590
-//    public var item_id = 436765487
+    public var idOwner = 3939590
+    public var idPhoto = 456239081
+    // id photo, id owner
     
     @IBOutlet weak var likeLebel: UILabel!
     
@@ -22,13 +23,15 @@ class LikeButtonControl: UIControl {
     @IBInspectable var textLikeColor: UIColor = .red
     @IBInspectable var textDisLikeColor: UIColor = .gray
     var backColor: UIColor = .white
-    var likedCount = Int.random(in: 1...999)
-    var likedState = Bool.random()
+//    var likedCount = Int.random(in: 1...999)
+    var likedCount: Int = 0
+    var likedState = Bool.random() // необходимо переделать
     var scaleChange: CGFloat = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        likesCountPhoto()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,8 +60,9 @@ class LikeButtonControl: UIControl {
 //        UIColor.red.setFill()
         fillColor.setFill()
         
-        //likeLebel.textColor = UIColor.red
-        likeLebel.text = String(likedCount)
+//        likeLebel.textColor = UIColor.red
+//        likeLebel.text = String(likedCount)
+        likesCountPhoto()
         
         //likedState ? path.fill() : path.stroke()
         if likedState {
@@ -69,11 +73,17 @@ class LikeButtonControl: UIControl {
             path.stroke()
         }
         
+        likeLebel.text = String(likedCount)
+    }
+    
+    func likesCountPhoto() {
+        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+            self?.likedCount = likedCount
+            self?.likeLebel.text = String(likedCount)
+        }
     }
     
     func setupView() {
-        
-        networkService.likesCount()
         
         self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
         
@@ -84,15 +94,19 @@ class LikeButtonControl: UIControl {
     
     @objc func changeState() {
         if likedState {
-            likedCount -= 1
+//            likedCount -= 1
             scaleChange = 0.9
-//            vkLoginController.likeDelete(for: user, for: item_id)
-            networkService.likesDelete()
+            networkService.likesDelete(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+                self?.likedCount = likedCount
+                self?.likeLebel.text = String(likedCount)
+            }
         } else {
-            likedCount += 1
+//            likedCount += 1
             scaleChange = 1.1
-//            vkLoginController.likeAdd(for: user, for: item_id)
-            networkService.likesAdd()
+            networkService.likesAdd(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+                self?.likedCount = likedCount
+                self?.likeLebel.text = String(likedCount)
+            }
         }
         
         likedState.toggle()
