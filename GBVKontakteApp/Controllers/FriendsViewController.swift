@@ -31,11 +31,12 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        .sorted(by: {$0.nameUser < $1.nameUser} )
 
     var titleForSection = [String]()
-    var items = [[UserModel]]()
-    var itemsFiltered = [UserModel]()
+//    var items = [[UserModel]]()
+//    var itemsFiltered = [UserModel]()
+    var items = [[User]]()
+    var itemsFiltered = [User]()
     var searchAction = false
 
-    
 //    var someIndex = 0
     func toPhotoBoard() {
 //        let selectIndexPath = IndexPath(item: someIndex, section: 0)
@@ -155,8 +156,11 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        let row = indexPath.row
         
         let user = users[indexPath.row]
-        cell.friendNameLabel.text = user.last_name + " " + user.first_name
+        cell.friendNameLabel.text = user.first_name + " " + user.last_name
         cell.friendImageView.kf.setImage(with: user.avatarUrl)
+        
+//        let idUser = user.id
+//        let idPhzxzoto = user.photoString
         
 //        let user = searchAction ? itemsFiltered[row] : items[section][row]
 //        cell.friendNameLabel.text = user.nameUser
@@ -204,14 +208,14 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     */
 
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-//            users.remove(at: indexPath.row)
-            items[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//
+////            users.remove(at: indexPath.row)
+//            items[indexPath.section].remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
 
     /*
     // Override to support rearranging the table view.
@@ -236,10 +240,23 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let indexPath = tableView.indexPathForSelectedRow {
             
 //            let nameUser = users[indexPath.row]
-            let nameUser = items[indexPath.section][indexPath.row]
-            friendFotoController.friendNameForTitle = nameUser.nameUser
-            friendFotoController.friendFotoForImage = nameUser.imageUser
+//            let nameUser = items[indexPath.section][indexPath.row]
+//            friendFotoController.friendNameForTitle = nameUser.nameUser
+//            friendFotoController.friendFotoForImage = nameUser.imageUser
+            
+//            let user = items[indexPath.section][indexPath.row]
+            let user = users[indexPath.row]
+            friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
+            friendFotoController.friendFotoForImage = user.avatarUrl
+            friendFotoController.idOwner = user.id
+            
             }
+//        else if segue.identifier == "FotoAnimateSegue",
+//            let amimateViewController = segue.destination as? AmimateViewController,
+//            let indexPath = tableView.indexPathForSelectedRow {
+//            let user = users[indexPath.row]
+//            amimateViewController.idOwner = user.id
+//            }
      }
     
     // MARK: SeachBar navigation

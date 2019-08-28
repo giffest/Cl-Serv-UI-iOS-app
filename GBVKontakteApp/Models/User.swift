@@ -11,19 +11,19 @@ import SwiftyJSON
 
 class User {
     let count: Int
-    let id: String
+    let id: Int
     let first_name: String
     let last_name: String
     let avatarUrl: URL?
-//    let photoString: String
+    let photoString: String
     
     init(_ json: JSON) {
         self.count = json["count"].intValue
-        self.id = json["id"].stringValue
+        self.id = json["id"].intValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
-//        self.photoString = json["photo_100"].stringValue
-        let photoString = json["photo_50"].stringValue
+        self.photoString = json["photo_100"].stringValue
+//        let photoString = json["photo_100"].stringValue
         self.avatarUrl = URL(string: photoString)
     }
 }

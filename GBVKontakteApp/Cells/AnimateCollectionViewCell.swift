@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AniamteCollectionViewCell: UICollectionViewCell {
+class AnimateCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let view = UIImageView()

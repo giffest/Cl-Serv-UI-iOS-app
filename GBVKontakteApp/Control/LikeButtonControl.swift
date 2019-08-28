@@ -1,5 +1,5 @@
 //
-//  LikeButton.swift
+//  LikeButtonControl.swift
 //  
 //
 //  Created by Dmitry on 31/05/2019.
@@ -9,30 +9,37 @@
 import UIKit
 
 //@IBDesignable
-class LikeButton: UIControl {
+class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
-//    public var user = 3939590
-//    public var item_id = 436765487
+    private var photosUI = [Photo]()
+//    var idOwner = 3939590
+    var idOwner = Session.shared.ownerid
+//    var idPhoto = 456239081
+    var idPhoto = Session.shared.photoid
     
     @IBOutlet weak var likeLebel: UILabel!
     
     @IBInspectable var fillColor: UIColor = .red
-    @IBInspectable var strokeColor: UIColor = .gray
+    @IBInspectable var strokeColor: UIColor = .darkGray
     @IBInspectable var textLikeColor: UIColor = .red
-    @IBInspectable var textDisLikeColor: UIColor = .gray
-    var backColor: UIColor = .white
-    var likedCount = Int.random(in: 1...999)
+    @IBInspectable var textDisLikeColor: UIColor = .darkGray
+    var backColor: UIColor = .lightGray
+//    var likedCount = Int.random(in: 1...999)
+    var likedCount: Int = 0
     var likedState = Bool.random()
+//    var likedState: Bool = false // необходимо переделать
     var scaleChange: CGFloat = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+//        likesCountPhoto()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+//        likesCountPhoto()
         setupView()
     }
     
@@ -57,8 +64,19 @@ class LikeButton: UIControl {
 //        UIColor.red.setFill()
         fillColor.setFill()
         
-        //likeLebel.textColor = UIColor.red
-        likeLebel.text = String(likedCount)
+//        likeLebel.textColor = UIColor.red
+//        likeLebel.text = String(likedCount)
+//        likesCountPhoto()
+        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+            self?.photosUI = photos
+            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
+//            if self!.photosUI[0].userLikesPhoto == 1 {
+//                self?.likedState = true
+//            }
+//            else {
+//                self?.likedState = false
+//            }
+        }
         
         //likedState ? path.fill() : path.stroke()
         if likedState {
@@ -69,11 +87,23 @@ class LikeButton: UIControl {
             path.stroke()
         }
         
+        likeLebel.text = String(likedCount)
     }
     
+//    func likesCountPhoto() {
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+//            self?.likedCount = likedCount
+//            self?.likeLebel.text = String(likedCount)
+//        }
+//    }
+//    func likesCountPhoto() {
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+//            self?.photosUI = photos
+//            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
+//        }
+//    }
+    
     func setupView() {
-        
-        networkService.likesCount()
         
         self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
         
@@ -84,15 +114,19 @@ class LikeButton: UIControl {
     
     @objc func changeState() {
         if likedState {
-            likedCount -= 1
+//            likedCount -= 1
             scaleChange = 0.9
-//            vkLoginController.likeDelete(for: user, for: item_id)
-            networkService.likesDelete()
+            networkService.likesDelete(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+                self?.likedCount = likedCount
+                self?.likeLebel.text = String(likedCount)
+            }
         } else {
-            likedCount += 1
+//            likedCount += 1
             scaleChange = 1.1
-//            vkLoginController.likeAdd(for: user, for: item_id)
-            networkService.likesAdd()
+            networkService.likesAdd(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+                self?.likedCount = likedCount
+                self?.likeLebel.text = String(likedCount)
+            }
         }
         
         likedState.toggle()
