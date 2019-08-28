@@ -19,7 +19,7 @@ class FriendsFotoViewController: UICollectionViewController {
 //    var friendFotoForImage: String = ""
     var friendFotoForImage: URL?
     var idOwner = 0
-    var idPhoto = 0
+    var idPhotoOwner = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +36,11 @@ class FriendsFotoViewController: UICollectionViewController {
 //            self?.idPhoto = photoId
 //        }
         networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
-            self?.idPhoto = photos[0].idPhoto
+            self?.idPhotoOwner = photos[0].idPhoto
         }
         
         Session.shared.ownerid = idOwner
-        Session.shared.photoid = idPhoto
+        Session.shared.photoid = idPhotoOwner
 
         view.addSubview(loadIndicatorView)
         

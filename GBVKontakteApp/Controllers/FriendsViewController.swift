@@ -13,7 +13,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     let networkService = NetworkService()
     private var users = [User]()
-    private var photosUI = [Photo]()
     
 //    var users: [UserModel] = [
 //        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
