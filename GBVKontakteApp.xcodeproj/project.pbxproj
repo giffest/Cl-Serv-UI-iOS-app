@@ -167,6 +167,7 @@
 		54094F8922A115C6001FD4D6 /* Archiv */ = {
 			isa = PBXGroup;
 			children = (
+				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
 				547B6C70229C35680092EBEA /* ImageView.swift */,
 				54C59D43230AA5C000AC612A /* NetworkServiceBase.swift */,
 				54094F8722A10DE6001FD4D6 /* ShadowView.swift */,
@@ -225,7 +226,6 @@
 				5483887222942BF200E76666 /* FindGroupViewController.swift */,
 				5437105F22AAA03300582985 /* NewsViewController.swift */,
 				5438BFEF22B81A6D007F5C42 /* AnimateViewController.swift */,
-				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
 				5477BCA123097B35001DD927 /* VKLoginController.swift */,
 			);
 			path = Controllers;

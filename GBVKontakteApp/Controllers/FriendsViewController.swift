@@ -13,7 +13,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     let networkService = NetworkService()
     private var users = [User]()
-    public var idOwner = 3939590
+    private var photosUI = [Photo]()
     
 //    var users: [UserModel] = [
 //        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
@@ -249,7 +249,15 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let user = users[indexPath.row]
             friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
             friendFotoController.friendFotoForImage = user.avatarUrl
+            friendFotoController.idOwner = user.id
+            
             }
+//        else if segue.identifier == "FotoAnimateSegue",
+//            let amimateViewController = segue.destination as? AmimateViewController,
+//            let indexPath = tableView.indexPathForSelectedRow {
+//            let user = users[indexPath.row]
+//            amimateViewController.idOwner = user.id
+//            }
      }
     
     // MARK: SeachBar navigation

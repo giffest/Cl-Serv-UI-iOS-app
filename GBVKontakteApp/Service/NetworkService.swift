@@ -43,8 +43,9 @@ class NetworkService {
         }
     }
     
-    func getPhotoId(idOwner: Int) {
+    func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: String) -> Void) {
         let method = "users.get"
+//        let photoId: Int
 
         let parameters: Parameters = [
             "user_ids": idOwner,
@@ -59,8 +60,9 @@ class NetworkService {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    let photoId = json["response"][0]["photo_id"].stringValue
+                    let photoId = (json["response"][0]["photo_id"].stringValue).split(separator: "_")[1]
                     print(photoId)
+                    completion(String(photoId))
                 case .failure(let error):
                     print(error)
                 }

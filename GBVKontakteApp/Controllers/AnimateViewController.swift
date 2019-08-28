@@ -13,7 +13,7 @@ class AmimateViewController: UIViewController {
     
     let networkService = NetworkService()
     private var photosUI = [Photo]()
-    public var idOwner = 3939590
+    var idOwner = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
     private var cellIdentifier = "cellPhotoAmimate"

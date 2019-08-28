@@ -12,11 +12,14 @@ private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
-//    let networkService = NetworkService()
+    let networkService = NetworkService()
+    private var photosUI = [Photo]()
     
     var friendNameForTitle: String = ""
 //    var friendFotoForImage: String = ""
-    var friendFotoForImage: URL? 
+    var friendFotoForImage: URL?
+    var idOwner = 0
+    var idPhoto = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,16 @@ class FriendsFotoViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
+//            self?.idPhoto = photoId
+//        }
+        networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
+            self?.idPhoto = photos[0].idPhoto
+        }
+        
+        Session.shared.ownerid = idOwner
+        Session.shared.photoid = idPhoto
+
         view.addSubview(loadIndicatorView)
         
         loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +97,13 @@ class FriendsFotoViewController: UICollectionViewController {
 //            cell.layer.transform = CATransform3DIdentity
 //            cell.alpha = 1.0
 //        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FotoAnimateSegue",
+            let amimateViewController = segue.destination as? AmimateViewController {
+            amimateViewController.idOwner = idOwner
+        }
     }
     
     // MARK: UICollectionViewDelegate

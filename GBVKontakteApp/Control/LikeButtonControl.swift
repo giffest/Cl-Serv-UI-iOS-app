@@ -13,8 +13,10 @@ class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
     private var photosUI = [Photo]()
-    public var idOwner = 3939590
-    public var idPhoto = 456239081
+//    var idOwner = 3939590
+    var idOwner = Session.shared.ownerid
+//    var idPhoto = 456239081
+    var idPhoto = Session.shared.photoid
     
     @IBOutlet weak var likeLebel: UILabel!
     
@@ -25,17 +27,19 @@ class LikeButtonControl: UIControl {
     var backColor: UIColor = .lightGray
 //    var likedCount = Int.random(in: 1...999)
     var likedCount: Int = 0
-    var likedState = Bool.random() // необходимо переделать
+    var likedState = Bool.random()
+//    var likedState: Bool = false // необходимо переделать
     var scaleChange: CGFloat = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        likesCountPhoto()
+//        likesCountPhoto()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+//        likesCountPhoto()
         setupView()
     }
     
@@ -62,7 +66,17 @@ class LikeButtonControl: UIControl {
         
 //        likeLebel.textColor = UIColor.red
 //        likeLebel.text = String(likedCount)
-        likesCountPhoto()
+//        likesCountPhoto()
+        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+            self?.photosUI = photos
+            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
+//            if self!.photosUI[0].userLikesPhoto == 1 {
+//                self?.likedState = true
+//            }
+//            else {
+//                self?.likedState = false
+//            }
+        }
         
         //likedState ? path.fill() : path.stroke()
         if likedState {
@@ -82,12 +96,12 @@ class LikeButtonControl: UIControl {
 //            self?.likeLebel.text = String(likedCount)
 //        }
 //    }
-    func likesCountPhoto() {
-        networkService.likesCount(idOwner: idPhoto, idPhoto: idPhoto) { [weak self] photos in
-            self?.photosUI = photos
-            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
-        }
-    }
+//    func likesCountPhoto() {
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+//            self?.photosUI = photos
+//            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
+//        }
+//    }
     
     func setupView() {
         

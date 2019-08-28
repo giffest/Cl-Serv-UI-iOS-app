@@ -11,12 +11,14 @@ import SwiftyJSON
 
 class Photo {
     let likesPhoto: Int
+    let userLikesPhoto: Int
     let idPhoto: Int
     let commentsPhoto: Int
     let photoUrl: URL?
     
     init(_ json: JSON) {
         self.likesPhoto = json["likes"]["count"].intValue
+        self.userLikesPhoto = json["likes"]["user_likes"].intValue
         self.idPhoto = json["id"].intValue
         self.commentsPhoto = json["comments"]["count"].intValue
         let sizes = json["sizes"].arrayValue

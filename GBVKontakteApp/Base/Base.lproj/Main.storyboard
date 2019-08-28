@@ -321,7 +321,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageFriendView" destination="Z2g-XY-cS8" id="Qqy-Hc-pUP"/>
-                                    <segue destination="foY-ag-NMQ" kind="show" id="fpT-eM-rG1"/>
+                                    <segue destination="foY-ag-NMQ" kind="show" identifier="FotoAnimateSegue" id="fpT-eM-rG1"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -332,7 +332,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ND1-wP-tag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4446" y="-170"/>
+            <point key="canvasLocation" x="4444.927536231884" y="-170.08928571428569"/>
         </scene>
         <!--Amimate View Controller-->
         <scene sceneID="ohX-Ks-MtT">
