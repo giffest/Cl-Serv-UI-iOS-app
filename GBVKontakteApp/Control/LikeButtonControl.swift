@@ -13,10 +13,10 @@ class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
     private var photosUI = [Photo]()
-//    var idOwner = 3939590
-    var idOwner = Session.shared.ownerid
-//    var idPhoto = 456239081
-    var idPhoto = Session.shared.photoid
+    var idOwner = 3939590
+//    var idOwner = Session.shared.ownerid
+    var idPhoto = 456239081
+//    var idPhoto = Session.shared.photoid
     
     @IBOutlet weak var likeLebel: UILabel!
     

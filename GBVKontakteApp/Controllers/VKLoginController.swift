@@ -12,6 +12,8 @@ import Alamofire
 
 class VKLoginController: UIViewController {
     
+    let networkService = NetworkService()
+    
     @IBOutlet weak var webView: WKWebView! {
         didSet{
             webView.navigationDelegate = self
@@ -78,8 +80,20 @@ extension VKLoginController: WKNavigationDelegate {
         Session.shared.token = token
         Session.shared.userid = Int(userIdString)!
 
-        performSegue(withIdentifier: "showMyTabController", sender: token)
+//        performSegue(withIdentifier: "showMyTabController", sender: token)
 //        NetworkService.loadGroups(token: token)
+        
+        networkService.getFriends() { [weak self] users in
+            self?.networkService.saveUserData(users)
+        }
+        
+        networkService.getGroupsUser() { [weak self] groups in
+            self?.networkService.saveGroupData(groups)
+        }
+        
+        networkService.getPhotoUser(idOwner: Session.shared.userid) { [weak self] photos in
+            self?.networkService.savePhotoData(photos)
+        }
         
         decisionHandler(.cancel)
     }

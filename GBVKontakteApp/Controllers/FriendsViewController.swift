@@ -8,11 +8,12 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
     let networkService = NetworkService()
-    private var users = [User]()
+//    private var users = [User]()
     
 //    var users: [UserModel] = [
 //        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
@@ -52,8 +53,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidLoad()
         
         networkService.getFriends() { [weak self] users in
-            self?.users = users
-            self?.tableView.reloadData()
+//            self?.users = users
+            self?.networkService.saveUserData(users)
+//            self?.tableView.reloadData()
         }
         
 //        friendSectionData()
@@ -142,8 +144,8 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        return 10  // для проверки и настройки
-        return users.count
+        return 10  // для проверки и настройки
+//        return users.count
 //        return searchAction ? itemsFiltered.count : items[section].count
     }
     
@@ -155,12 +157,12 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        let section = indexPath.section
 //        let row = indexPath.row
         
-        let user = users[indexPath.row]
-        cell.friendNameLabel.text = user.first_name + " " + user.last_name
-        cell.friendImageView.kf.setImage(with: user.avatarUrl)
+//        let user = users[indexPath.row]
+//        cell.friendNameLabel.text = user.first_name + " " + user.last_name
+//        cell.friendImageView.kf.setImage(with: user.avatarUrl)
         
 //        let idUser = user.id
-//        let idPhzxzoto = user.photoString
+//        let idPhoto = user.photoString
         
 //        let user = searchAction ? itemsFiltered[row] : items[section][row]
 //        cell.friendNameLabel.text = user.nameUser
@@ -245,10 +247,10 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //            friendFotoController.friendFotoForImage = nameUser.imageUser
             
 //            let user = items[indexPath.section][indexPath.row]
-            let user = users[indexPath.row]
-            friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
-            friendFotoController.friendFotoForImage = user.avatarUrl
-            friendFotoController.idOwner = user.id
+//            let user = users[indexPath.row]
+//            friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
+//            friendFotoController.friendFotoForImage = user.avatarUrl
+//            friendFotoController.idOwner = user.idFriend
             
             }
 //        else if segue.identifier == "FotoAnimateSegue",

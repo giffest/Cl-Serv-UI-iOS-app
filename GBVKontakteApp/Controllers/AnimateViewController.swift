@@ -46,9 +46,9 @@ extension AmimateViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AnimateCollectionViewCell
         
-        let photo = photosUI[indexPath.row]
+//        let photo = photosUI[indexPath.row]
 //        cell.imageView.image = UIImage(named: "image\(indexPath.row+1)")
-        cell.imageView.kf.setImage(with: photo.photoUrl)
+//        cell.imageView.kf.setImage(with: photo.photoUrl)
         
         return cell
     }

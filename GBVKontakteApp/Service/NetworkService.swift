@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class NetworkService {
 
@@ -27,7 +28,8 @@ class NetworkService {
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
-            .responseJSON { response in
+            .responseData { response in
+//            .responseJSON { response in
 //                print(response.value)
                 switch response.result {
                 case .success(let value):
@@ -109,7 +111,8 @@ class NetworkService {
         ]
         
         AF.request(urlApi+method, method: .get, parameters: parameters)
-            .responseJSON { response in
+            .responseData { response in
+//            .responseJSON { response in
 //                print(response.value)
                 switch response.result {
                 case .success(let value):
@@ -232,6 +235,42 @@ class NetworkService {
                     print(error)
                     completion(0)
                 }
+        }
+    }
+    
+    func saveUserData (_ users: [User]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(users)
+            try realm.commitWrite()
+            print(realm.configuration.fileURL)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func saveGroupData (_ groups: [Group]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(groups)
+            try realm.commitWrite()
+            print(realm.configuration.fileURL)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func savePhotoData (_ photos: [Photo]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(photos)
+            try realm.commitWrite()
+            print(realm.configuration.fileURL)
+        } catch {
+            print(error)
         }
     }
     
