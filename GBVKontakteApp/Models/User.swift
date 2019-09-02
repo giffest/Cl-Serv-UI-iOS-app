@@ -13,8 +13,8 @@ import RealmSwift
 class User: Object {
 //    @objc dynamic var count: Int = 0
     @objc dynamic var idFriend: Int = 0
-    @objc dynamic var first_name: String = ""
-    @objc dynamic var last_name: String = ""
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
 //    @objc dynamic var photoString: String = ""
     @objc dynamic var avatarUrl: String = ""
     
@@ -23,8 +23,8 @@ class User: Object {
         
 //        self.count = json["count"].intValue
         self.idFriend = json["id"].intValue
-        self.first_name = json["first_name"].stringValue
-        self.last_name = json["last_name"].stringValue
+        self.firstName = json["first_name"].stringValue
+        self.lastName = json["last_name"].stringValue
         let photoString = json["photo_100"].stringValue
         self.avatarUrl = photoString
     }
@@ -33,8 +33,8 @@ class User: Object {
 
 //class User {
 //    let idFriend: Int
-//    let first_name: String
-//    let last_name: String
+//    let firstName: String
+//    let lastName: String
 //    let photoString: String
 //    let avatarUrl: URL?
 //

@@ -158,7 +158,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        let row = indexPath.row
         
 //        let user = users[indexPath.row]
-//        cell.friendNameLabel.text = user.first_name + " " + user.last_name
+//        cell.friendNameLabel.text = user.firstName + " " + user.lastName
 //        cell.friendImageView.kf.setImage(with: user.avatarUrl)
         
 //        let idUser = user.id
@@ -248,7 +248,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             
 //            let user = items[indexPath.section][indexPath.row]
 //            let user = users[indexPath.row]
-//            friendFotoController.friendNameForTitle = user.first_name + " " + user.last_name
+//            friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
 //            friendFotoController.friendFotoForImage = user.avatarUrl
 //            friendFotoController.idOwner = user.idFriend
             

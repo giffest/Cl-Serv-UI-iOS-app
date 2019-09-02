@@ -167,6 +167,9 @@
 		54094F8922A115C6001FD4D6 /* Archiv */ = {
 			isa = PBXGroup;
 			children = (
+				54F92A072296BA39005FCCFA /* UserModel.swift */,
+				54F92A092296BA46005FCCFA /* GroupModel.swift */,
+				5437105B22AA9DAE00582985 /* NewsModel.swift */,
 				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
 				547B6C70229C35680092EBEA /* ImageView.swift */,
 				54C59D43230AA5C000AC612A /* NetworkServiceBase.swift */,
@@ -264,9 +267,6 @@
 		54F92A0B2296BA70005FCCFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				54F92A072296BA39005FCCFA /* UserModel.swift */,
-				54F92A092296BA46005FCCFA /* GroupModel.swift */,
-				5437105B22AA9DAE00582985 /* NewsModel.swift */,
 				54D997DA230FE74300579E56 /* User.swift */,
 				54D997DF23126D9000579E56 /* Group.swift */,
 				542358CC2313DC9500B6C7B4 /* Photo.swift */,

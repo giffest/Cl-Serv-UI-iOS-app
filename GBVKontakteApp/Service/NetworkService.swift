@@ -36,7 +36,7 @@ class NetworkService {
                     let json = JSON(value)
                     let usersJSONs = json["response"]["items"].arrayValue
                     let users = usersJSONs.map { User($0) }
-//                    users.forEach { print($0.last_name + " " + $0.first_name) }
+//                    users.forEach { print($0.lastName + " " + $0.firstName) }
                     completion(users)
                 case .failure(let error):
                     print(error)
@@ -241,10 +241,15 @@ class NetworkService {
     func saveUserData (_ users: [User]) {
         do {
             let realm = try Realm()
-            realm.beginWrite()
-            realm.add(users)
-            try realm.commitWrite()
-            print(realm.configuration.fileURL)
+            let oldUserData = realm.objects(User.self)
+//            realm.beginWrite()
+            try realm.write {
+                realm.delete(oldUserData)
+                realm.add(users)
+            }
+//            realm.add(users)
+//            try realm.commitWrite()
+            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
@@ -253,10 +258,12 @@ class NetworkService {
     func saveGroupData (_ groups: [Group]) {
         do {
             let realm = try Realm()
+            let oldGroupData = realm.objects(Group.self)
             realm.beginWrite()
+            realm.delete(oldGroupData)
             realm.add(groups)
             try realm.commitWrite()
-            print(realm.configuration.fileURL)
+            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
@@ -265,13 +272,19 @@ class NetworkService {
     func savePhotoData (_ photos: [Photo]) {
         do {
             let realm = try Realm()
+            let oldPhotoData = realm.objects(Photo.self)
             realm.beginWrite()
+            realm.delete(oldPhotoData)
             realm.add(photos)
             try realm.commitWrite()
-            print(realm.configuration.fileURL)
+            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
+    }
+    
+    func clearRealmData() {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     }
     
 }
