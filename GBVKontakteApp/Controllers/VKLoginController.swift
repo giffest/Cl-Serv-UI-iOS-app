@@ -87,9 +87,9 @@ extension VKLoginController: WKNavigationDelegate {
 //            self?.networkService.loadUserData()
 //        }
         
-        networkService.getGroupsUser() { [weak self] groups in
-            self?.networkService.saveGroupData(groups)
-        }
+//        networkService.getGroupsUser() { [weak self] groups in
+//            self?.networkService.saveGroupData(groups)
+//        }
         
         networkService.getPhotoUser(idOwner: Session.shared.userid) { [weak self] photos in
             self?.networkService.savePhotoData(photos)

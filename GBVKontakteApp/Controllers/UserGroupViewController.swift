@@ -9,12 +9,14 @@
 import UIKit
 import Alamofire
 import Kingfisher
+import RealmSwift
 
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
     let networkService = NetworkService()
 //    private var groups = [Group]()
+    private var groups = try! Realm().objects(Group.self)
     
 //    var groups: [GroupModel] = [
 //        GroupModel(idGroup: 1, nameGroup: "Пингвины Мадагаскара", imageGroup: "madagascar_penguins"),
@@ -36,11 +38,16 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getGroupsUser() { [weak self] groups in
-//            self?.groups = groups
-            self?.networkService.saveGroupData(groups)
-//            self?.tableView.reloadData()
+        networkService.getGroupsUser() { [weak self] in
+//            self?.networkService.saveGroupData(groups)
+            self?.tableView.reloadData()
         }
+        
+//        networkService.getGroupsUser() { [weak self] groups in
+//            self?.groups = groups
+//            self?.networkService.saveGroupData(groups)
+//            self?.tableView.reloadData()
+//        }
         
 //        groupsSectionData()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -79,9 +86,9 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1  // для проверки и настройки
+//        return 1  // для проверки и настройки
 //        return searchAction ? itemsFiltered.count : groups.count
-//        return groups.count
+        return groups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,8 +100,9 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 //        cell.groupNameLabel.text = group.nameGroup
 //        cell.groupImageView.image = UIImage(named: group.imageGroup)
         
-//        let group = groups[indexPath.row]
-//        cell.groupNameLabel.text = group.name
+        let group = groups[indexPath.row]
+        cell.groupNameLabel.text = group.name
+        cell.groupImageView.kf.setImage(with: URL(string: group.avatarUrl))
 //        cell.groupImageView.kf.setImage(with: group.avatarUrl)
 //        cell.groupImageView.image = UIImage(named: group.imageGroup)
 
@@ -153,18 +161,18 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if let controller = segue.source as? FindGroupViewController,
             let indexPath = controller.tableView.indexPathForSelectedRow {
-//            let group = controller.groups[indexPath.row]
+            let group = controller.groups[indexPath.row]
             
 //            guard !groups.contains(where: { $0.nameGroup == group.nameGroup } ) else { return }
-//            guard !groups.contains(where: { $0.name == group.name } ) else { return }
+            guard !groups.contains(where: { $0.name == group.name } ) else { return }
             
 //            groups.append(group)
 //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
 //            groups.sorted(by: {$0.name < $1.name} )
             
-//            let newIndexPath = IndexPath(item: groups.count - 1, section: 0)
-//            tableView.insertRows(at: [newIndexPath], with: .automatic)
-//            tableView.reloadData()
+            let newIndexPath = IndexPath(item: groups.count - 1, section: 0)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            tableView.reloadData()
         }
     }
     

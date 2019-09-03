@@ -102,7 +102,7 @@ class NetworkService {
     }
     
     //MARK: - Methods Groups
-    func getGroupsUser(completion: @escaping ([Group]) -> Void) {
+    func getGroupsUser(completion: @escaping () -> Void) {
         let method = "groups.get"
         
         let parameters: Parameters = [
@@ -121,10 +121,11 @@ class NetworkService {
                     let groupsJSONs = json["response"]["items"].arrayValue
                     let groups = groupsJSONs.map { Group($0) }
 //                    groups.forEach { print($0.avatarUrl) }
-                    completion(groups)
+                    self.saveGroupData(groups)
+                    completion()
                 case .failure(let error):
                     print(error)
-                    completion([])
+                    completion()
                 }
         }
     }
