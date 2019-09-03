@@ -74,7 +74,7 @@ class NetworkService {
     
     
     //MARK: - Method Photo
-    func getPhotoUser(idOwner: Int, completion: @escaping ([Photo]) -> Void) {
+    func getPhotoUser(idOwner: Int, completion: @escaping () -> Void) {
         let method = "photos.getAll"
         
         let parameters: Parameters = [
@@ -93,10 +93,11 @@ class NetworkService {
                     let json = JSON(value)
                     let photosJSONs = json["response"]["items"].arrayValue
                     let photos = photosJSONs.map { Photo($0) }
-                    completion(photos)
+                    self.savePhotoData(photos)
+                    completion()
                 case .failure(let error):
                     print(error)
-                    completion([])
+                    completion()
                 }
         }
     }
@@ -267,7 +268,7 @@ class NetworkService {
             realm.delete(oldGroupData)
             realm.add(groups)
             try realm.commitWrite()
-            print(realm.configuration.fileURL!)
+//            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }

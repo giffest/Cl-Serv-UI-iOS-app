@@ -13,11 +13,11 @@ private let reuseIdentifier = "Cell"
 class FriendsFotoViewController: UICollectionViewController {
     
     let networkService = NetworkService()
-    private var photosUI = [Photo]()
+//    private var photosUI = [Photo]()
     
     var friendNameForTitle: String = ""
-//    var friendFotoForImage: String = ""
-    var friendFotoForImage: URL?
+    var friendFotoForImage: String = ""
+//    var friendFotoForImage: URL?
     var idOwner = 0
     var idPhotoOwner = 0
     
@@ -32,12 +32,15 @@ class FriendsFotoViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
-//            self?.idPhoto = photoId
-//        }
-        networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
-            self?.idPhotoOwner = photos[0].idPhoto
+        networkService.getPhotoUser(idOwner: idOwner) { [weak self] in
+//            self?.networkService.savePhotoData()
         }
+//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
+//            self?.idPhoto = photo
+//        }
+//        networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
+//            self?.idPhotoOwner = photos[0].idPhoto
+//        }
         
         Session.shared.ownerid = idOwner
         Session.shared.photoid = idPhotoOwner
@@ -80,7 +83,8 @@ class FriendsFotoViewController: UICollectionViewController {
         
 //        let fotoImage = friendFotoForImage
 //        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
-        cell.imageFriendView.kf.setImage(with: friendFotoForImage)
+//        cell.imageFriendView.kf.setImage(with: friendFotoForImage)
+        cell.imageFriendView.kf.setImage(with: URL(string: friendFotoForImage))
         
         return cell
     }

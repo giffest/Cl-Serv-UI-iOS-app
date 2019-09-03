@@ -259,10 +259,10 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //            friendFotoController.friendFotoForImage = nameUser.imageUser
             
 //            let user = items[indexPath.section][indexPath.row]
-//            let user = users[indexPath.row]
-//            friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
-//            friendFotoController.friendFotoForImage = user.avatarUrl
-//            friendFotoController.idOwner = user.idFriend
+            let user = users[indexPath.row]
+            friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
+            friendFotoController.friendFotoForImage = user.avatarUrl
+            friendFotoController.idOwner = user.idFriend
             
             }
 //        else if segue.identifier == "FotoAnimateSegue",

@@ -12,7 +12,7 @@ import Alamofire
 
 class VKLoginController: UIViewController {
     
-    let networkService = NetworkService()
+//    let networkService = NetworkService()
     
     @IBOutlet weak var webView: WKWebView! {
         didSet{
@@ -91,9 +91,9 @@ extension VKLoginController: WKNavigationDelegate {
 //            self?.networkService.saveGroupData(groups)
 //        }
         
-        networkService.getPhotoUser(idOwner: Session.shared.userid) { [weak self] photos in
-            self?.networkService.savePhotoData(photos)
-        }
+//        networkService.getPhotoUser(idOwner: Session.shared.userid) { [weak self] photos in
+//            self?.networkService.savePhotoData(photos)
+//        }
         
 //        networkService.loadUserData()
         
