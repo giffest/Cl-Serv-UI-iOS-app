@@ -14,6 +14,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     let networkService = NetworkService()
 //    private var users = [User]()
+    private let users = try! Realm().objects(User.self)
     
 //    var users: [UserModel] = [
 //        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
@@ -54,7 +55,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         
         networkService.getFriends() { [weak self] in
             self?.networkService.loadUserData()
-//            self?.tableView.reloadData()
+            self?.tableView.reloadData()
         }
 //        networkService.getFriends() { [weak self] users in
 //            self?.users = users
@@ -153,8 +154,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10  // для проверки и настройки
-//        return users.count
+//        return 10  // для проверки и настройки
+        print(users.count)
+        return users.count
 //        return searchAction ? itemsFiltered.count : items[section].count
     }
     
@@ -166,8 +168,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        let section = indexPath.section
 //        let row = indexPath.row
         
-//        let user = users[indexPath.row]
-//        cell.friendNameLabel.text = user.firstName + " " + user.lastName
+        let user = users[indexPath.row]
+        cell.friendNameLabel.text = user.firstName + " " + user.lastName
+        cell.friendImageView.kf.setImage(with: URL(string: user.avatarUrl))
 //        cell.friendImageView.kf.setImage(with: user.avatarUrl)
         
 //        let idUser = user.id

@@ -251,7 +251,7 @@ class NetworkService {
             }
 //            realm.add(users)
 //            try realm.commitWrite()
-            print(realm.configuration.fileURL!)
+//            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
@@ -295,6 +295,7 @@ class NetworkService {
         do {
             let realm = try Realm()
             let users = realm.objects(User.self)
+//            return users
             for user in users {
                 print(user.firstName + " " + user.lastName)
             }
