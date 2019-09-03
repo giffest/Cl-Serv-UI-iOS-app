@@ -52,6 +52,10 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkService.getFriends() { [weak self] in
+            self?.networkService.loadUserData()
+//            self?.tableView.reloadData()
+        }
 //        networkService.getFriends() { [weak self] users in
 //            self?.users = users
 //            self?.networkService.saveUserData(users)

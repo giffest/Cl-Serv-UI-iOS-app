@@ -291,7 +291,7 @@ class NetworkService {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     }
     
-    func loadUserData () {
+    func loadUserData() {
         do {
             let realm = try Realm()
             let users = realm.objects(User.self)
