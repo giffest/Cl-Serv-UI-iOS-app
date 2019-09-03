@@ -95,6 +95,8 @@ extension VKLoginController: WKNavigationDelegate {
             self?.networkService.savePhotoData(photos)
         }
         
+        networkService.loadUserData()
+        
         decisionHandler(.cancel)
     }
     

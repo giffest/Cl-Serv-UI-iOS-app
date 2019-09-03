@@ -240,7 +240,8 @@ class NetworkService {
     
     func saveUserData (_ users: [User]) {
         do {
-            let realm = try Realm()
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            let realm = try Realm(configuration: config)
             let oldUserData = realm.objects(User.self)
 //            realm.beginWrite()
             try realm.write {
@@ -257,7 +258,8 @@ class NetworkService {
     
     func saveGroupData (_ groups: [Group]) {
         do {
-            let realm = try Realm()
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            let realm = try Realm(configuration: config)
             let oldGroupData = realm.objects(Group.self)
             realm.beginWrite()
             realm.delete(oldGroupData)
@@ -271,7 +273,8 @@ class NetworkService {
     
     func savePhotoData (_ photos: [Photo]) {
         do {
-            let realm = try Realm()
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            let realm = try Realm(configuration: config)
             let oldPhotoData = realm.objects(Photo.self)
             realm.beginWrite()
             realm.delete(oldPhotoData)
@@ -286,5 +289,28 @@ class NetworkService {
     func clearRealmData() {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     }
+    
+    func loadUserData () {
+        do {
+            let realm = try Realm()
+            let userData = realm.objects(User.self)
+            for user in userData {
+                print(user.firstName + " " + user.lastName)
+            }
+        } catch {
+            print(error)
+        }
+    }
+//    func loadPhotoData () {
+//        do {
+//            let realm = try Realm()
+//            let photoData = realm.objects(Photo.self)
+//            for photo in photoData {
+//                print(photo.idPhoto)
+//            }
+//        } catch {
+//            print(error)
+//        }
+//    }
     
 }
