@@ -295,12 +295,11 @@ class NetworkService {
         do {
             let realm = try Realm()
             let users = realm.objects(User.self)
-//            return users
             for user in users {
                 print(user.firstName + " " + user.lastName)
             }
-//            let cnt = users.count
-//            print(cnt)
+            let cnt = users.count
+            print(cnt)
         } catch {
             print(error)
         }

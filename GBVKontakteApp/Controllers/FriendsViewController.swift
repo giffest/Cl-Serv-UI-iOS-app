@@ -54,7 +54,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidLoad()
         
         networkService.getFriends() { [weak self] in
-            self?.networkService.loadUserData()
+//            self?.networkService.loadUserData()
             self?.tableView.reloadData()
         }
 //        networkService.getFriends() { [weak self] users in
@@ -155,7 +155,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 //        return 10  // для проверки и настройки
-        print(users.count)
+//        print(users.count)
         return users.count
 //        return searchAction ? itemsFiltered.count : items[section].count
     }
