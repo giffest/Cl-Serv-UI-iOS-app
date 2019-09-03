@@ -16,7 +16,7 @@ class NetworkService {
     private let urlApi = "https://api.vk.com/method/"
     
     //MARK: - Method Friends
-    func getFriends(completion: @escaping ([User]) -> Void) {
+    func getFriends(completion: @escaping () -> Void) {
         let method = "friends.get"
         
         let parameters: Parameters = [
@@ -37,10 +37,11 @@ class NetworkService {
                     let usersJSONs = json["response"]["items"].arrayValue
                     let users = usersJSONs.map { User($0) }
 //                    users.forEach { print($0.lastName + " " + $0.firstName) }
-                    completion(users)
+                    self.saveUserData(users)
+                    completion()
                 case .failure(let error):
                     print(error)
-                    completion([])
+                    completion()
                 }
         }
     }
@@ -293,10 +294,12 @@ class NetworkService {
     func loadUserData () {
         do {
             let realm = try Realm()
-            let userData = realm.objects(User.self)
-            for user in userData {
+            let users = realm.objects(User.self)
+            for user in users {
                 print(user.firstName + " " + user.lastName)
             }
+//            let cnt = users.count
+//            print(cnt)
         } catch {
             print(error)
         }

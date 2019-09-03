@@ -83,8 +83,8 @@ extension VKLoginController: WKNavigationDelegate {
 //        performSegue(withIdentifier: "showMyTabController", sender: token)
 //        NetworkService.loadGroups(token: token)
         
-        networkService.getFriends() { [weak self] users in
-            self?.networkService.saveUserData(users)
+        networkService.getFriends() { [weak self] in
+            self?.networkService.loadUserData()
         }
         
         networkService.getGroupsUser() { [weak self] groups in
