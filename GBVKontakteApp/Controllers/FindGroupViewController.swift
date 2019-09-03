@@ -63,7 +63,7 @@ class FindGroupViewController: UITableViewController, UISearchBarDelegate {
         
         let group = groups[indexPath.row]
         cell.groupNameLabel.text = group.name
-//        cell.groupImageView.kf.setImage(with: group.avatarUrl)
+        cell.groupImageView.kf.setImage(with: URL(string: group.avatarUrl))
 
         return cell
     }
