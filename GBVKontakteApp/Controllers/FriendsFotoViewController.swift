@@ -32,9 +32,7 @@ class FriendsFotoViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        networkService.getPhotoUser(idOwner: idOwner) { [weak self] in
-//            self?.networkService.savePhotoData()
-        }
+        networkService.getPhotoUser(idOwner: idOwner)
 //        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
 //            self?.idPhoto = photo
 //        }

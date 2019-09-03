@@ -74,7 +74,8 @@ class NetworkService {
     
     
     //MARK: - Method Photo
-    func getPhotoUser(idOwner: Int, completion: @escaping () -> Void) {
+    func getPhotoUser(idOwner: Int) {
+//    func getPhotoUser(idOwner: Int, completion: @escaping () -> Void) {
         let method = "photos.getAll"
         
         let parameters: Parameters = [
@@ -94,10 +95,10 @@ class NetworkService {
                     let photosJSONs = json["response"]["items"].arrayValue
                     let photos = photosJSONs.map { Photo($0) }
                     self.savePhotoData(photos)
-                    completion()
+//                    completion()
                 case .failure(let error):
                     print(error)
-                    completion()
+//                    completion()
                 }
         }
     }
