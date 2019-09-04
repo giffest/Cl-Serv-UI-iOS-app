@@ -17,8 +17,9 @@ class User: Object {
     @objc dynamic var lastName: String = ""
 //    @objc dynamic var photoString: String = ""
     @objc dynamic var avatarUrl: String = ""
+    let photos = List<Photo>()
     
-    convenience init(_ json: JSON) {
+    convenience init(_ json: JSON, photos: [Photo] = []) {
         self.init()
         
 //        self.count = json["count"].intValue
@@ -27,8 +28,19 @@ class User: Object {
         self.lastName = json["last_name"].stringValue
         let photoString = json["photo_100"].stringValue
         self.avatarUrl = photoString
+        
+        self.photos.append(objectsIn: photos)
     }
-
+    
+    override static func primaryKey() -> String? {
+        return "idFriend"
+    }
+    override static func indexedProperties() -> [String] {
+        return ["idFriend"]
+    }
+//    override static func ignoredProperties() -> [String] {
+//        return []
+//    }
 }
 
 //class User {

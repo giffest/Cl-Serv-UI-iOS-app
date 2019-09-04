@@ -17,6 +17,8 @@ class Photo: Object {
     @objc dynamic var commentsPhoto: Int = 0
     @objc dynamic var photoUrl: String = ""
     
+    let users = LinkingObjects(fromType: User.self, property: "photos")
+    
     convenience init(_ json: JSON) {
         self.init()
         
@@ -30,6 +32,10 @@ class Photo: Object {
             photoString = zSize["url"].stringValue
         }
         self.photoUrl = photoString
+    }
+    
+    override static func primaryKey() -> String? {
+        return "idPhoto"
     }
 }
 

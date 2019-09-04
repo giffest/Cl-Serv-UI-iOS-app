@@ -25,6 +25,10 @@ class Group: Object {
         let photoString = json["photo_100"].stringValue
         self.avatarUrl = photoString
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 //class Group {

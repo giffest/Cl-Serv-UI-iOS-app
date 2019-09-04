@@ -46,31 +46,31 @@ class NetworkService {
         }
     }
     
-    func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: String) -> Void) {
-        let method = "users.get"
-//        let photoId: Int
-
-        let parameters: Parameters = [
-            "user_ids": idOwner,
-            "fields": "photo_id",
-            "access_token": Session.shared.token,
-            "v": "5.101"
-        ]
-
-        AF.request(urlApi+method, method: .get, parameters: parameters)
-            .responseJSON { response in
-                //                print(response.value!)
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    let photoId = (json["response"][0]["photo_id"].stringValue).split(separator: "_")[1]
-                    print(photoId)
-                    completion(String(photoId))
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
+//    func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: String) -> Void) {
+//        let method = "users.get"
+////        let photoId: Int
+//
+//        let parameters: Parameters = [
+//            "user_ids": idOwner,
+//            "fields": "photo_id",
+//            "access_token": Session.shared.token,
+//            "v": "5.101"
+//        ]
+//
+//        AF.request(urlApi+method, method: .get, parameters: parameters)
+//            .responseJSON { response in
+//                //                print(response.value!)
+//                switch response.result {
+//                case .success(let value):
+//                    let json = JSON(value)
+//                    let photoId = (json["response"][0]["photo_id"].stringValue).split(separator: "_")[1]
+//                    print(photoId)
+//                    completion(String(photoId))
+//                case .failure(let error):
+//                    print(error)
+//                }
+//        }
+//    }
     
     
     //MARK: - Method Photo
@@ -246,15 +246,15 @@ class NetworkService {
         do {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
             let realm = try Realm(configuration: config)
-            let oldUserData = realm.objects(User.self)
+//            let oldUserData = realm.objects(User.self)
 //            realm.beginWrite()
             try realm.write {
-                realm.delete(oldUserData)
-                realm.add(users)
+//                realm.delete(oldUserData)
+                realm.add(users, update: .all)
             }
 //            realm.add(users)
 //            try realm.commitWrite()
-//            print(realm.configuration.fileURL!)
+            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
@@ -264,10 +264,10 @@ class NetworkService {
         do {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
             let realm = try Realm(configuration: config)
-            let oldGroupData = realm.objects(Group.self)
+//            let oldGroupData = realm.objects(Group.self)
             realm.beginWrite()
-            realm.delete(oldGroupData)
-            realm.add(groups)
+//            realm.delete(oldGroupData)
+            realm.add(groups, update: .all)
             try realm.commitWrite()
 //            print(realm.configuration.fileURL!)
         } catch {
@@ -283,30 +283,31 @@ class NetworkService {
             realm.beginWrite()
             realm.delete(oldPhotoData)
             realm.add(photos)
+//            realm.add(photos, update: .all)
             try realm.commitWrite()
-            print(realm.configuration.fileURL!)
+//            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
     }
     
-    func clearRealmData() {
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-    }
-    
-    func loadUserData() {
-        do {
-            let realm = try Realm()
-            let users = realm.objects(User.self)
-            for user in users {
-                print(user.firstName + " " + user.lastName)
-            }
-            let cnt = users.count
-            print(cnt)
-        } catch {
-            print(error)
-        }
-    }
+//    func clearRealmData() {
+//        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+//    }
+//    
+//    func loadUserData() {
+//        do {
+//            let realm = try Realm()
+//            let users = realm.objects(User.self)
+//            for user in users {
+//                print(user.firstName + " " + user.lastName)
+//            }
+//            let cnt = users.count
+//            print(cnt)
+//        } catch {
+//            print(error)
+//        }
+//    }
 //    func loadPhotoData () {
 //        do {
 //            let realm = try Realm()

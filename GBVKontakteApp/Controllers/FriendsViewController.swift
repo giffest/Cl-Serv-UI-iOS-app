@@ -54,7 +54,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidLoad()
         
         networkService.getFriends() { [weak self] in
-//            self?.networkService.loadUserData()
             self?.tableView.reloadData()
         }
 //        networkService.getFriends() { [weak self] users in
@@ -66,7 +65,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //            let users = User.self[]
 //            self?.tableView.reloadData()
 //        }
-        
         
 //        friendSectionData()
         refreshControl()

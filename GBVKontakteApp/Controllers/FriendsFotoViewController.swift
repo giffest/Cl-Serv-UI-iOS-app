@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
     let networkService = NetworkService()
-//    private var photosUI = [Photo]()
+//    private let photos = try! Realm().objects(Photo.self)
+//    private let photos = try! Realm().object(ofType: Photo.self, forPrimaryKey: "idPhoto")
     
     var friendNameForTitle: String = ""
     var friendFotoForImage: String = ""
@@ -33,6 +35,13 @@ class FriendsFotoViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         networkService.getPhotoUser(idOwner: idOwner)
+//        let realm = try! Realm()
+//        try? realm.write {
+//            let owner = User()
+//            owner.idFriend = idOwner
+//            owner.photos.append(objectsIn: photos)
+//        }
+        
 //        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
 //            self?.idPhoto = photo
 //        }
