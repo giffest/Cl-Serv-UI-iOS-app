@@ -16,6 +16,7 @@
 		54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8722A10DE6001FD4D6 /* ShadowView.swift */; };
 		54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */; };
 		542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542358CC2313DC9500B6C7B4 /* Photo.swift */; };
+		54290971231FA8F000F29A07 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54290970231FA8F000F29A07 /* RealmService.swift */; };
 		5437105A22AA9BA100582985 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105922AA9BA100582985 /* NewsCell.swift */; };
 		5437105C22AA9DAE00582985 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105B22AA9DAE00582985 /* NewsModel.swift */; };
 		5437106022AAA03300582985 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105F22AAA03300582985 /* NewsViewController.swift */; };
@@ -64,6 +65,7 @@
 		54094F8722A10DE6001FD4D6 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonControl.swift; sourceTree = "<group>"; };
 		542358CC2313DC9500B6C7B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		54290970231FA8F000F29A07 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		5437105922AA9BA100582985 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5437105B22AA9DAE00582985 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		5437105F22AAA03300582985 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -222,14 +224,14 @@
 		5483887422942C1500E76666 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5477BCA123097B35001DD927 /* VKLoginController.swift */,
 				54059760228EED1E002A892A /* LoginViewController.swift */,
 				5483886C22942B4C00E76666 /* FriendsViewController.swift */,
 				5483886E22942B8400E76666 /* FriendsFotoViewController.swift */,
+				5438BFEF22B81A6D007F5C42 /* AnimateViewController.swift */,
 				5483887022942BE100E76666 /* UserGroupViewController.swift */,
 				5483887222942BF200E76666 /* FindGroupViewController.swift */,
 				5437105F22AAA03300582985 /* NewsViewController.swift */,
-				5438BFEF22B81A6D007F5C42 /* AnimateViewController.swift */,
-				5477BCA123097B35001DD927 /* VKLoginController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -251,6 +253,7 @@
 			children = (
 				54076B622309477400C4305D /* Session.swift */,
 				54D997DC230FF38B00579E56 /* NetworkService.swift */,
+				54290970231FA8F000F29A07 /* RealmService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				5437105C22AA9DAE00582985 /* NewsModel.swift in Sources */,
 				5438BFEE22B81A06007F5C42 /* AnimateFlowLayout.swift in Sources */,
 				54F92A082296BA39005FCCFA /* UserModel.swift in Sources */,
+				54290971231FA8F000F29A07 /* RealmService.swift in Sources */,
 				5437106022AAA03300582985 /* NewsViewController.swift in Sources */,
 				54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */,
 				5483887122942BE100E76666 /* UserGroupViewController.swift in Sources */,

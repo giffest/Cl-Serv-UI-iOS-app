@@ -11,6 +11,8 @@ import SwiftyJSON
 import RealmSwift
 
 class Photo: Object {
+//    @objc dynamic var idOwner: Int = 0
+    @objc dynamic var id: String = ""
     @objc dynamic var likesPhoto: Int = 0
     @objc dynamic var userLikesPhoto: Int = 0
     @objc dynamic var idPhoto: Int = 0
@@ -19,9 +21,10 @@ class Photo: Object {
     
     let users = LinkingObjects(fromType: User.self, property: "photos")
     
-    convenience init(_ json: JSON) {
+    convenience init(_ json: JSON, owner: Int) {
         self.init()
         
+//        self.likesPhoto = json["owner_id"].intValue
         self.likesPhoto = json["likes"]["count"].intValue
         self.userLikesPhoto = json["likes"]["user_likes"].intValue
         self.idPhoto = json["id"].intValue
@@ -32,10 +35,16 @@ class Photo: Object {
             photoString = zSize["url"].stringValue
         }
         self.photoUrl = photoString
+        
+//        self.owner = owner
+        self.id = String(owner) + "_" + String(idPhoto)
     }
     
     override static func primaryKey() -> String? {
-        return "idPhoto"
+        return "id"
+    }
+    override static func indexedProperties() -> [String] {
+        return ["id"]
     }
 }
 

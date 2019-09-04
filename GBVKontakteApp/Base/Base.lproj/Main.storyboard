@@ -296,11 +296,6 @@
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="xkB-fD-mad"/>
                                                 <constraint firstItem="hRw-p0-gfT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E7q-1L-Sia" secondAttribute="leading" constant="20" symbolic="YES" id="ykz-ep-Ofg"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="backColor">
-                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="likeLebel" destination="hRw-p0-gfT" id="nWN-6x-gfm"/>
                                             </connections>
@@ -740,11 +735,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="paK-H5-QoQ" secondAttribute="trailing" id="h1X-4R-Qky"/>
                                                 <constraint firstAttribute="height" constant="24" id="qfk-0n-Vww"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="backColor">
-                                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="likeLebel" destination="paK-H5-QoQ" id="RfH-pb-Prh"/>
                                             </connections>

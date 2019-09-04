@@ -14,6 +14,7 @@ import RealmSwift
 class NetworkService {
 
     private let urlApi = "https://api.vk.com/method/"
+    let realmService = RealmService()
     
     //MARK: - Method Friends
     func getFriends(completion: @escaping () -> Void) {
@@ -37,7 +38,8 @@ class NetworkService {
                     let usersJSONs = json["response"]["items"].arrayValue
                     let users = usersJSONs.map { User($0) }
 //                    users.forEach { print($0.lastName + " " + $0.firstName) }
-                    self.saveUserData(users)
+//                    self.saveUserData(users)
+                    try? self.self.realmService.save(items: users, update: .all)
                     completion()
                 case .failure(let error):
                     print(error)
@@ -93,8 +95,9 @@ class NetworkService {
                 case .success(let value):
                     let json = JSON(value)
                     let photosJSONs = json["response"]["items"].arrayValue
-                    let photos = photosJSONs.map { Photo($0) }
-                    self.savePhotoData(photos)
+                    let photos = photosJSONs.map { Photo($0, owner: idOwner) }
+                    self.savePhotoData(photos, idOwner)
+//                    try? self.realmService.save(items: photos, update: .all)
 //                    completion()
                 case .failure(let error):
                     print(error)
@@ -123,7 +126,8 @@ class NetworkService {
                     let groupsJSONs = json["response"]["items"].arrayValue
                     let groups = groupsJSONs.map { Group($0) }
 //                    groups.forEach { print($0.avatarUrl) }
-                    self.saveGroupData(groups)
+//                    self.saveGroupData(groups)
+                    try? self.self.realmService.save(items: groups, update: .all)
                     completion()
                 case .failure(let error):
                     print(error)
@@ -180,7 +184,7 @@ class NetworkService {
 //                    let likesJSON = json["response"][0]["likes"]["count"].intValue
 //                    completion(likesJSON)
                     let photosJSONs = json["response"].arrayValue
-                    let photos = photosJSONs.map { Photo($0) }
+                    let photos = photosJSONs.map { Photo($0, owner: idOwner) }
                     completion(photos)
                 case .failure(let error):
                     print(error)
@@ -242,50 +246,61 @@ class NetworkService {
         }
     }
     
-    func saveUserData (_ users: [User]) {
-        do {
-            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-            let realm = try Realm(configuration: config)
-//            let oldUserData = realm.objects(User.self)
-//            realm.beginWrite()
-            try realm.write {
-//                realm.delete(oldUserData)
-                realm.add(users, update: .all)
-            }
-//            realm.add(users)
-//            try realm.commitWrite()
-            print(realm.configuration.fileURL!)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func saveGroupData (_ groups: [Group]) {
-        do {
-            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-            let realm = try Realm(configuration: config)
-//            let oldGroupData = realm.objects(Group.self)
-            realm.beginWrite()
-//            realm.delete(oldGroupData)
-            realm.add(groups, update: .all)
-            try realm.commitWrite()
+//    func saveUserData (_ users: [User]) {
+//        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+//        do {
+////            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+//            let realm = try Realm(configuration: config)
+////            let oldUserData = realm.objects(User.self)
+////            realm.beginWrite()
+//            try realm.write {
+////                realm.delete(oldUserData)
+//                realm.add(users, update: .all)
+//            }
+////            realm.add(users)
+////            try realm.commitWrite()
 //            print(realm.configuration.fileURL!)
-        } catch {
-            print(error)
-        }
-    }
+//        } catch {
+//            print(error)
+//        }
+//    }
     
-    func savePhotoData (_ photos: [Photo]) {
+//    func saveGroupData (_ groups: [Group]) {
+//        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+//        do {
+//            let realm = try Realm(configuration: config)
+////            let oldGroupData = realm.objects(Group.self)
+//            realm.beginWrite()
+////            realm.delete(oldGroupData)
+//            realm.add(groups, update: .all)
+//            try realm.commitWrite()
+////            print(realm.configuration.fileURL!)
+//        } catch {
+//            print(error)
+//        }
+//    }
+    
+    func savePhotoData (_ photos: [Photo], _ idOwner: Int) {
+        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
+//        let update = Realm.UpdatePolicy(rawValue: 2)!
+
         do {
-            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
             let realm = try Realm(configuration: config)
-            let oldPhotoData = realm.objects(Photo.self)
+//            let oldPhotoData = realm.objects(Photo.self)
+//            guard let oldPhotoData = realm.object(ofType: Photo.self, forPrimaryKey: idOwner) else { return }
             realm.beginWrite()
-            realm.delete(oldPhotoData)
-            realm.add(photos)
+//            try realm.write {
+//            realm.delete(oldPhotoData)
+            realm.add(photos, update: .modified)
+            guard let owner = realm.object(ofType: User.self, forPrimaryKey: idOwner) else { return }
+//            owner.idFriend = idOwner
+            owner.photos.append(objectsIn: photos)
+            realm.add(owner, update: .modified)
+                
+//            }
 //            realm.add(photos, update: .all)
             try realm.commitWrite()
-//            print(realm.configuration.fileURL!)
+            print(realm.configuration.fileURL ?? "")
         } catch {
             print(error)
         }
@@ -294,7 +309,7 @@ class NetworkService {
 //    func clearRealmData() {
 //        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
 //    }
-//    
+//
 //    func loadUserData() {
 //        do {
 //            let realm = try Realm()
