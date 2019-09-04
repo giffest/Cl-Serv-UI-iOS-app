@@ -50,7 +50,7 @@ class FriendsFotoViewController: UICollectionViewController {
 //        }
         
         Session.shared.ownerid = idOwner
-        Session.shared.photoid = idPhotoOwner
+//        Session.shared.photoid = idPhotoOwner
 
         view.addSubview(loadIndicatorView)
         

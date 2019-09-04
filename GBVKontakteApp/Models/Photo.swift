@@ -33,10 +33,13 @@ class Photo: Object {
         var photoString = json["sizes"][0]["url"].stringValue
         if let zSize = sizes.filter({ $0["type"] == "z" }).first {
             photoString = zSize["url"].stringValue
+        } else if let zSize = sizes.filter({ $0["type"] == "y" }).first {
+            photoString = zSize["url"].stringValue
+        } else if let zSize = sizes.filter({ $0["type"] == "x" }).first {
+            photoString = zSize["url"].stringValue
         }
         self.photoUrl = photoString
-        
-//        self.owner = owner
+    
         self.id = String(owner) + "_" + String(idPhoto)
     }
     
