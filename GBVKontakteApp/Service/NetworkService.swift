@@ -84,6 +84,7 @@ class NetworkService {
             "owner_id": idOwner,
             "album_id": "profile",
             "extended": 1,
+            "count": 50,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
@@ -112,6 +113,7 @@ class NetworkService {
         
         let parameters: Parameters = [
             "extended": 1,
+            "count": 1000,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
@@ -142,6 +144,7 @@ class NetworkService {
             "q": keyword,
             "type": "group",
             "sort": 0,
+            "count": 100,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
