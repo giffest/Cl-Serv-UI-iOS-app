@@ -119,7 +119,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         print("Нажата иконка.")
         //        let selectIndexPath = IndexPath(index: someIndex)
         //        tableView.deselectRow(at: selectIndexPath, animated: false)
-        self.performSegue(withIdentifier: "FriendFotoSegue", sender: self)
+        self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: self)
     }
     
     
@@ -204,7 +204,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
      // MARK: - Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FriendFotoSegue",
+        if segue.identifier == "toFriendsFotoViewController",
             let friendFotoController = segue.destination as? FriendsFotoViewController,
             let indexPath = tableView.indexPathForSelectedRow {
             

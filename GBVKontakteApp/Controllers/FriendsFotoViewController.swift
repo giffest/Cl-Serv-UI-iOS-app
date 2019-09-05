@@ -98,8 +98,8 @@ class FriendsFotoViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FotoAnimateSegue",
-            let amimateViewController = segue.destination as? AmimateViewController {
+        if segue.identifier == "toAnimateViewController",
+            let amimateViewController = segue.destination as? AnimateViewController {
             amimateViewController.idOwner = idOwner
         }
     }

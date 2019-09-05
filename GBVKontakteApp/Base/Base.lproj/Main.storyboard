@@ -112,7 +112,7 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
-                        <segue destination="baf-lF-GRP" kind="presentation" identifier="showVKLoginController" id="XPt-wC-gjJ"/>
+                        <segue destination="baf-lF-GRP" kind="presentation" identifier="toVKLoginController" id="XPt-wC-gjJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -149,7 +149,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="bWZ-f5-vVH" id="zci-se-Hfi"/>
-                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="showMyTabController" id="hOM-EY-G04"/>
+                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="hOM-EY-G04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqC-LU-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,7 +227,7 @@
                                 <connections>
                                     <outlet property="friendImageView" destination="SQ1-g9-7TF" id="ItK-X1-Rot"/>
                                     <outlet property="friendNameLabel" destination="oIM-ax-oVt" id="5qg-vN-Q1c"/>
-                                    <segue destination="Fxw-gR-cWT" kind="show" identifier="FriendFotoSegue" id="A0H-wr-8G0"/>
+                                    <segue destination="Fxw-gR-cWT" kind="show" identifier="toFriendsFotoViewController" id="A0H-wr-8G0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -316,7 +316,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageFriendView" destination="Z2g-XY-cS8" id="Qqy-Hc-pUP"/>
-                                    <segue destination="foY-ag-NMQ" kind="show" identifier="FotoAnimateSegue" id="fpT-eM-rG1"/>
+                                    <segue destination="foY-ag-NMQ" kind="show" identifier="toAnimateViewController" id="fpT-eM-rG1"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -329,10 +329,10 @@
             </objects>
             <point key="canvasLocation" x="4444.927536231884" y="-170.08928571428569"/>
         </scene>
-        <!--Amimate View Controller-->
+        <!--Animate View Controller-->
         <scene sceneID="ohX-Ks-MtT">
             <objects>
-                <viewController id="foY-ag-NMQ" customClass="AmimateViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="foY-ag-NMQ" customClass="AnimateViewController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lb7-jF-29W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

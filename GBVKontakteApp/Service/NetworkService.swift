@@ -290,10 +290,10 @@ class NetworkService {
         do {
             let realm = try Realm(configuration: config)
 //            let oldPhotoData = realm.objects(Photo.self)
-//            guard let oldPhotoData = realm.object(ofType: Photo.self, forPrimaryKey: idOwner) else { return }
+            let oldPhotoData = realm.objects(Photo.self).filter("id BEGINSWITH %@", String(idOwner))
             realm.beginWrite()
 //            try realm.write {
-//            realm.delete(oldPhotoData)
+            realm.delete(oldPhotoData)
             realm.add(photos, update: .modified)
             guard let owner = realm.object(ofType: User.self, forPrimaryKey: idOwner) else { return }
 //            owner.idFriend = idOwner

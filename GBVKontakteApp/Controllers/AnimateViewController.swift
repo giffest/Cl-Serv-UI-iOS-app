@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
-class AmimateViewController: UIViewController {
+class AnimateViewController: UIViewController {
     
     let networkService = NetworkService()
 //    private var photos = [Photo]()
@@ -42,7 +42,7 @@ class AmimateViewController: UIViewController {
     }
 }
 
-extension AmimateViewController: UICollectionViewDataSource {
+extension AnimateViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos?.count ?? 0
