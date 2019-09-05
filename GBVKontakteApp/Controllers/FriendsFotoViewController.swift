@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
 class FriendsFotoViewController: UICollectionViewController {
     
     let networkService = NetworkService()
-//    private let photos = try! Realm().objects(Photo.self)
-//    private let photos = try! Realm().object(ofType: Photo.self, forPrimaryKey: "idPhoto")
     
     var friendNameForTitle: String = ""
     var friendFotoForImage: String = ""
@@ -40,13 +37,6 @@ class FriendsFotoViewController: UICollectionViewController {
 //            let owner = User()
 //            owner.idFriend = idOwner
 //            owner.photos.append(objectsIn: photos)
-//        }
-        
-//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
-//            self?.idPhoto = photo
-//        }
-//        networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
-//            self?.idPhotoOwner = photos[0].idPhoto
 //        }
         
         Session.shared.ownerid = idOwner
@@ -89,15 +79,12 @@ class FriendsFotoViewController: UICollectionViewController {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
         
 //        let fotoImage = friendFotoForImage
-//        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
-//        cell.imageFriendView.kf.setImage(with: friendFotoForImage)
         cell.imageFriendView.kf.setImage(with: URL(string: friendFotoForImage))
         
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         //aнимация
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 500, 10, 0)
 //        //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)

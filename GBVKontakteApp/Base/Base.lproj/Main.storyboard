@@ -391,8 +391,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="cQf-ve-ji0">
-                                            <rect key="frame" x="16" y="26.5" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="cQf-ve-ji0">
+                                            <rect key="frame" x="16" y="26.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -450,7 +450,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDN-SV-qml" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="XQM-Hv-wrD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4445" y="499"/>
+            <point key="canvasLocation" x="4444.927536231884" y="498.88392857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oFV-kV-bgv">
@@ -495,8 +495,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="9cA-lv-Bwm">
-                                            <rect key="frame" x="16" y="26.5" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="9cA-lv-Bwm">
+                                            <rect key="frame" x="16" y="26.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -809,6 +809,6 @@
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="51Y-dx-shQ"/>
+        <segue reference="WMh-z7-RfU"/>
     </inferredMetricsTieBreakers>
 </document>

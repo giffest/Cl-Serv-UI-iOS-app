@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import Alamofire
 
 class VKLoginController: UIViewController {
     

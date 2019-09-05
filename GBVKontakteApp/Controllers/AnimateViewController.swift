@@ -53,7 +53,6 @@ extension AmimateViewController: UICollectionViewDataSource {
         
         let photo = photos?[indexPath.row]
 //        cell.imageView.image = UIImage(named: "image\(indexPath.row+1)")
-//        cell.imageView.kf.setImage(with: photo.photoUrl)
         cell.imageView.kf.setImage(with: URL(string: photo?.photoUrl ?? ""))
         
         return cell
