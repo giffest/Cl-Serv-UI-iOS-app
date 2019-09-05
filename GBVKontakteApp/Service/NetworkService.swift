@@ -23,7 +23,7 @@ class NetworkService {
         let parameters: Parameters = [
             "user_id": String(Session.shared.userid),
             "order": "name",
-            "fields": "photo_100",
+            "fields": "photo_200_orig",
             "access_token": Session.shared.token,
             "v": "5.98"
         ]

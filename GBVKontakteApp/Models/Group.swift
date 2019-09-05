@@ -22,7 +22,7 @@ class Group: Object {
 //        self.count = json["count"].intValue
         self.id = json["id"].intValue
         self.name = json["name"].stringValue
-        let photoString = json["photo_100"].stringValue
+        let photoString = json["photo_200"].stringValue
         self.avatarUrl = photoString
     }
     

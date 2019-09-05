@@ -29,16 +29,17 @@ class Photo: Object {
         self.userLikesPhoto = json["likes"]["user_likes"].intValue
         self.idPhoto = json["id"].intValue
         self.commentsPhoto = json["comments"]["count"].intValue
+        
         let sizes = json["sizes"].arrayValue
-        var photoString = json["sizes"][0]["url"].stringValue
         if let zSize = sizes.filter({ $0["type"] == "z" }).first {
-            photoString = zSize["url"].stringValue
+            self.photoUrl = zSize["url"].stringValue
         } else if let zSize = sizes.filter({ $0["type"] == "y" }).first {
-            photoString = zSize["url"].stringValue
+            self.photoUrl = zSize["url"].stringValue
         } else if let zSize = sizes.filter({ $0["type"] == "x" }).first {
-            photoString = zSize["url"].stringValue
+            self.photoUrl = zSize["url"].stringValue
+        } else {
+            self.photoUrl = json["sizes"][0]["url"].stringValue
         }
-        self.photoUrl = photoString
     
         self.id = String(owner) + "_" + String(idPhoto)
     }

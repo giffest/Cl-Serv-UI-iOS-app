@@ -61,6 +61,5 @@ class FriendCell: UITableViewCell {
 }
 
 protocol SomeProtocol: UITableViewController {
-    
     func toPhotoBoard()
 }

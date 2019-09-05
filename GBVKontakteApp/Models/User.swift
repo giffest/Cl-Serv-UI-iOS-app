@@ -26,7 +26,7 @@ class User: Object {
         self.idFriend = json["id"].intValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
-        let photoString = json["photo_100"].stringValue
+        let photoString = json["photo_200_orig"].stringValue
         self.avatarUrl = photoString
         
         self.photos.append(objectsIn: photos)
