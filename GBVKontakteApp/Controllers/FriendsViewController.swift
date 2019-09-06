@@ -37,19 +37,22 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         var section = 0
         
         titleForSection.append(String(users[0].lastName.first!))
-        items.append([User]())
-        items[section].append(users[0])
+//        items.append([User]())
+        items.append([users[0]])
+//        items[section].append(users[0])
         
         for row in 1..<users.count {
             let leftValue = users[row - 1].lastName.first
             let rightValue = users[row].lastName.first
             if leftValue == rightValue {
                 items[section].append(users[row])
+//                items.append([users[row]])
             } else {
                 titleForSection.append(String(rightValue!))
                 section += 1
-                items.append([User]())
-                items[section].append(users[row])
+//                items.append([User]())
+                items.append([users[row]])
+//                items[section].append(users[row])
             }
         }
     }
@@ -208,13 +211,17 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let friendFotoController = segue.destination as? FriendsFotoViewController,
             let indexPath = tableView.indexPathForSelectedRow {
             
+            let section = indexPath.section
+            let row = indexPath.row
 //            let nameUser = users[indexPath.row]
 //            let nameUser = items[indexPath.section][indexPath.row]
 //            friendFotoController.friendNameForTitle = nameUser.nameUser
 //            friendFotoController.friendFotoForImage = nameUser.imageUser
             
 //            let user = users[indexPath.row]
-            let user = items[indexPath.section][indexPath.row]
+//            let user = items[section][row]
+            let user = searchAction ? itemsFiltered[row] : items[section][row]
+//            let user = itemsFiltered[indexPath.section][indexPath.row]
             friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
             friendFotoController.friendFotoForImage = user.avatarUrl
             friendFotoController.idOwner = user.idFriend

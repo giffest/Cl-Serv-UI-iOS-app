@@ -181,8 +181,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIM-ax-oVt">
-                                            <rect key="frame" x="16" y="26.5" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIM-ax-oVt">
+                                            <rect key="frame" x="16" y="26.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -809,6 +809,6 @@
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WMh-z7-RfU"/>
+        <segue reference="51Y-dx-shQ"/>
     </inferredMetricsTieBreakers>
 </document>

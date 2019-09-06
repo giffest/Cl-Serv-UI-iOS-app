@@ -19,7 +19,8 @@ class User: Object {
     @objc dynamic var avatarUrl: String = ""
     let photos = List<Photo>()
     
-    convenience init(_ json: JSON, photos: [Photo] = []) {
+//    convenience init(_ json: JSON, photos: [Photo] = []) {
+    convenience init(_ json: JSON) {
         self.init()
         
 //        self.count = json["count"].intValue
