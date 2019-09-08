@@ -17,7 +17,8 @@ class NetworkService {
     let realmService = RealmService()
     
     //MARK: - Method Friends
-    func getFriends(completion: @escaping () -> Void) {
+    func getFriends() {
+//    func getFriends(completion: @escaping () -> Void) {
         let method = "friends.get"
         
         let parameters: Parameters = [
@@ -40,40 +41,41 @@ class NetworkService {
 //                    users.forEach { print($0.lastName + " " + $0.firstName) }
 //                    self.saveUserData(users)
                     try? self.self.realmService.save(items: users, update: .all)
-                    completion()
+//                    completion()
                 case .failure(let error):
                     print(error)
-                    completion()
+//                    completion()
                 }
         }
     }
     
-//    func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: String) -> Void) {
-//        let method = "users.get"
-////        let photoId: Int
-//
-//        let parameters: Parameters = [
-//            "user_ids": idOwner,
-//            "fields": "photo_id",
-//            "access_token": Session.shared.token,
-//            "v": "5.101"
-//        ]
-//
-//        AF.request(urlApi+method, method: .get, parameters: parameters)
-//            .responseJSON { response in
-//                //                print(response.value!)
-//                switch response.result {
-//                case .success(let value):
-//                    let json = JSON(value)
-//                    let photoId = (json["response"][0]["photo_id"].stringValue).split(separator: "_")[1]
-//                    print(photoId)
-//                    completion(String(photoId))
-//                case .failure(let error):
-//                    print(error)
-//                }
-//        }
-//    }
-    
+    func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: Int) -> Void) {
+//    func getPhotoId(idOwner: Int) {
+        let method = "users.get"
+
+        let parameters: Parameters = [
+            "user_ids": idOwner,
+            "fields": "crop_photo",
+            "access_token": Session.shared.token,
+            "v": "5.101"
+        ]
+
+        AF.request(urlApi+method, method: .get, parameters: parameters)
+            .responseJSON { response in
+//                print(response.value!)
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let photoId = (json["response"][0]["crop_photo"]["photo"]["id"].intValue)
+//                    Session.shared.photoid = photoId
+                    print(photoId)
+                    completion(photoId)
+                case .failure(let error):
+                    print(error)
+                    completion(0)
+                }
+        }
+    }
     
     //MARK: - Method Photo
     func getPhotoUser(idOwner: Int) {
@@ -108,7 +110,8 @@ class NetworkService {
     }
     
     //MARK: - Methods Groups
-    func getGroupsUser(completion: @escaping () -> Void) {
+    func getGroupsUser() {
+//    func getGroupsUser(completion: @escaping () -> Void) {
         let method = "groups.get"
         
         let parameters: Parameters = [
@@ -130,10 +133,10 @@ class NetworkService {
 //                    groups.forEach { print($0.avatarUrl) }
 //                    self.saveGroupData(groups)
                     try? self.self.realmService.save(items: groups, update: .all)
-                    completion()
+//                    completion()
                 case .failure(let error):
                     print(error)
-                    completion()
+//                    completion()
                 }
         }
     }

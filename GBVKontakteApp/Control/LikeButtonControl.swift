@@ -15,8 +15,9 @@ class LikeButtonControl: UIControl {
     private var photosUI = [Photo]()
     var idOwner = 3939590
 //    var idOwner = Session.shared.ownerid
-    var idPhoto = 456239081
-//    var idPhoto = Session.shared.photoid
+    var idPhotoOwner = 456239081
+//    var idPhotoOwner = Session.shared.photoid
+//    var idPhoto = 0
     
     @IBOutlet weak var likeLebel: UILabel!
     
@@ -67,7 +68,8 @@ class LikeButtonControl: UIControl {
 //        likeLebel.textColor = UIColor.red
 //        likeLebel.text = String(likedCount)
 //        likesCountPhoto()
-        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+        
+        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] photos in
             self?.photosUI = photos
             self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
 //            if self!.photosUI[0].userLikesPhoto == 1 {
@@ -91,13 +93,13 @@ class LikeButtonControl: UIControl {
     }
     
 //    func likesCountPhoto() {
-//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] (likedCount) in
 //            self?.likedCount = likedCount
 //            self?.likeLebel.text = String(likedCount)
 //        }
 //    }
 //    func likesCountPhoto() {
-//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhoto) { [weak self] photos in
+//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] photos in
 //            self?.photosUI = photos
 //            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
 //        }
@@ -114,19 +116,19 @@ class LikeButtonControl: UIControl {
     
     @objc func changeState() {
         if likedState {
-//            likedCount -= 1
+            likedCount -= 1
             scaleChange = 0.9
-            networkService.likesDelete(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
-                self?.likedCount = likedCount
-                self?.likeLebel.text = String(likedCount)
-            }
+//            networkService.likesDelete(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] (likedCount) in
+//                self?.likedCount = likedCount
+//                self?.likeLebel.text = String(likedCount)
+//            }
         } else {
-//            likedCount += 1
+            likedCount += 1
             scaleChange = 1.1
-            networkService.likesAdd(idOwner: idOwner, idPhoto: idPhoto) { [weak self] (likedCount) in
-                self?.likedCount = likedCount
-                self?.likeLebel.text = String(likedCount)
-            }
+//            networkService.likesAdd(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] (likedCount) in
+//                self?.likedCount = likedCount
+//                self?.likeLebel.text = String(likedCount)
+//            }
         }
         
         likedState.toggle()

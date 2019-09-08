@@ -19,11 +19,19 @@ class FriendsFotoViewController: UICollectionViewController {
 //    var friendFotoForImage: URL?
     var idOwner = 0
     var idPhotoOwner = 0
+//    var idPhotoOwner: (Int) -> Void
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = friendNameForTitle
+        
+//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
+//            self?.idPhotoOwner = photoId
+//        }
+        Session.shared.ownerid = idOwner
+        Session.shared.photoid = idPhotoOwner
+
     }
     
     let loadIndicatorView = LoadIndicatorView()
@@ -32,16 +40,19 @@ class FriendsFotoViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         networkService.getPhotoUser(idOwner: idOwner)
+
+
+        
 //        let realm = try! Realm()
 //        try? realm.write {
 //            let owner = User()
 //            owner.idFriend = idOwner
 //            owner.photos.append(objectsIn: photos)
 //        }
-        
-        Session.shared.ownerid = idOwner
-//        Session.shared.photoid = idPhotoOwner
 
+//        Session.shared.ownerid = idOwner
+//        Session.shared.photoid = idPhotoOwner
+        
         view.addSubview(loadIndicatorView)
         
         loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false

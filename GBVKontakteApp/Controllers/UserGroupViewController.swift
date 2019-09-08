@@ -13,7 +13,10 @@ import RealmSwift
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
     let networkService = NetworkService()
-    private var groups = try! Realm().objects(Group.self).sorted(byKeyPath: "name")
+    
+    private var notificationToken: NotificationToken?
+    private var groups: Results<Group>?
+//    private var groups = try! Realm().objects(Group.self).sorted(byKeyPath: "name")
     
 //    var titleForSection = [String]()
 //    var items = [[Group]]()
@@ -23,13 +26,41 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getGroupsUser() { [weak self] in
-            self?.tableView.reloadData()
-        }
-        
+        networkService.getGroupsUser()
+//        networkService.getGroupsUser() { [weak self] in
+//            self?.tableView.reloadData()
+//        }
 //        groupsSectionData()
 //        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 //        scrollView?.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        userGetGroups()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        notificationToken?.invalidate()
+    }
+    
+    func userGetGroups() {
+        guard let realm = try? Realm() else { return }
+        groups = realm.objects(Group.self).sorted(byKeyPath: "name")
+        notificationToken = groups?.observe({ [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case .initial:
+                self.tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
     }
     
     // MARK: - Table view data source
@@ -66,16 +97,16 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         
 //        return 1  // для проверки и настройки
 //        return groups.count
-        return searchAction ? itemsFiltered.count : groups.count
+        return searchAction ? itemsFiltered.count : groups?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
         
-        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+        let group = searchAction ? itemsFiltered[indexPath.row] : groups?[indexPath.row]
 //        let group = groups[indexPath.row]
-        cell.groupNameLabel.text = group.name
-        cell.groupImageView.kf.setImage(with: URL(string: group.avatarUrl))
+        cell.groupNameLabel.text = group?.name
+        cell.groupImageView.kf.setImage(with: URL(string: group?.avatarUrl ?? ""))
 
         return cell
     }
@@ -131,13 +162,13 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             let indexPath = controller.tableView.indexPathForSelectedRow {
             let group = controller.groups[indexPath.row]
             
-            guard !groups.contains(where: { $0.name == group.name } ) else { return }
+            guard groups!.contains(where: { $0.name == group.name } ) else { return }
             
 //            groups.append(group) // необходим реализовать функцию добавление группы
 //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
 //            groups.sorted(byKeyPath: "name")
             
-            let newIndexPath = IndexPath(item: groups.count - 1, section: 0)
+            let newIndexPath = IndexPath(item: groups!.count - 1, section: 0)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             tableView.reloadData()
         }
@@ -155,7 +186,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchAction = searchText.count == 0 ? false : true
-        itemsFiltered = groups.filter { $0.name.lowercased().contains(searchText.lowercased())}
+        itemsFiltered = groups!.filter { $0.name.lowercased().contains(searchText.lowercased())}
         
         tableView.reloadData()
     }
