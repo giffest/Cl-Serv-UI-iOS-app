@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private let reuseIdentifier = "Cell"
 
@@ -29,8 +30,8 @@ class FriendsFotoViewController: UICollectionViewController {
 //        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
 //            self?.idPhotoOwner = photoId
 //        }
-        Session.shared.ownerid = idOwner
-        Session.shared.photoid = idPhotoOwner
+//        Session.shared.ownerid = idOwner
+//        Session.shared.photoid = idPhotoOwner
 
     }
     
@@ -50,7 +51,7 @@ class FriendsFotoViewController: UICollectionViewController {
 //            owner.photos.append(objectsIn: photos)
 //        }
 
-//        Session.shared.ownerid = idOwner
+        Session.shared.ownerid = idOwner
 //        Session.shared.photoid = idPhotoOwner
         
         view.addSubview(loadIndicatorView)

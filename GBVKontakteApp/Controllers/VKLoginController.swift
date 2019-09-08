@@ -52,7 +52,7 @@ extension VKLoginController: WKNavigationDelegate {
         
         guard let url = navigationResponse.response.url,
             url.path == "/blank.html",
-            let fragment = url.fragment  else { decisionHandler(.allow); return}
+            let fragment = url.fragment  else { decisionHandler(.allow); return }
         
         let params = fragment
             .components(separatedBy: "&")
