@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>516014319296-48pq037h3k7ikaoqoh1lmveog4ihbhs6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.516014319296-48pq037h3k7ikaoqoh1lmveog4ihbhs6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBcmWs2fAuGGXgHhElhwCnEIlWIurEpnM4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>516014319296</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>DSS.GBVKontakteApp</string>
+	<key>PROJECT_ID</key>
+	<string>gbvkontakteapp-demo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gbvkontakteapp-demo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:516014319296:ios:205fb65b25d6a1d7df2f25</string>
+	<key>DATABASE_URL</key>
+	<string>https://gbvkontakteapp-demo.firebaseio.com</string>
+</dict>
+</plist>

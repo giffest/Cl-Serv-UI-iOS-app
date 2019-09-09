@@ -16,8 +16,11 @@
 		54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8722A10DE6001FD4D6 /* ShadowView.swift */; };
 		54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */; };
 		542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542358CC2313DC9500B6C7B4 /* Photo.swift */; };
+		5426C9662326481A00A2FD17 /* GBVKontakteAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */; };
+		5426C9682326495300A2FD17 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426C9672326495300A2FD17 /* UIViewController+Ext.swift */; };
 		54290971231FA8F000F29A07 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54290970231FA8F000F29A07 /* RealmService.swift */; };
 		542909732324F03900F29A07 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542909722324F03900F29A07 /* UITableView+Ext.swift */; };
+		542909752325ABF600F29A07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 542909742325ABF600F29A07 /* GoogleService-Info.plist */; };
 		5437105A22AA9BA100582985 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105922AA9BA100582985 /* NewsCell.swift */; };
 		5437105C22AA9DAE00582985 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105B22AA9DAE00582985 /* NewsModel.swift */; };
 		5437106022AAA03300582985 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105F22AAA03300582985 /* NewsViewController.swift */; };
@@ -66,8 +69,11 @@
 		54094F8722A10DE6001FD4D6 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonControl.swift; sourceTree = "<group>"; };
 		542358CC2313DC9500B6C7B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBVKontakteAppError.swift; sourceTree = "<group>"; };
+		5426C9672326495300A2FD17 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		54290970231FA8F000F29A07 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		542909722324F03900F29A07 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		542909742325ABF600F29A07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5437105922AA9BA100582985 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5437105B22AA9DAE00582985 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		5437105F22AAA03300582985 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				54F92A052296AD9F005FCCFA /* Assets.xcassets */,
 				5405976A228EED1F002A892A /* Info.plist */,
 				542909722324F03900F29A07 /* UITableView+Ext.swift */,
+				5426C9672326495300A2FD17 /* UIViewController+Ext.swift */,
+				542909742325ABF600F29A07 /* GoogleService-Info.plist */,
 			);
 			path = GBVKontakteApp;
 			sourceTree = "<group>";
@@ -276,6 +284,7 @@
 				54D997DA230FE74300579E56 /* User.swift */,
 				54D997DF23126D9000579E56 /* Group.swift */,
 				542358CC2313DC9500B6C7B4 /* Photo.swift */,
+				5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,6 +363,7 @@
 				54059769228EED1F002A892A /* LaunchScreen.storyboard in Resources */,
 				54F92A062296AD9F005FCCFA /* Assets.xcassets in Resources */,
 				54059764228EED1E002A892A /* Main.storyboard in Resources */,
+				542909752325ABF600F29A07 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +439,7 @@
 				5438BFF022B81A6D007F5C42 /* AnimateViewController.swift in Sources */,
 				54059761228EED1E002A892A /* LoginViewController.swift in Sources */,
 				54D997DD230FF38B00579E56 /* NetworkService.swift in Sources */,
+				5426C9662326481A00A2FD17 /* GBVKontakteAppError.swift in Sources */,
 				5483886D22942B4C00E76666 /* FriendsViewController.swift in Sources */,
 				5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */,
 				54C59D44230AA5C000AC612A /* NetworkServiceBase.swift in Sources */,
@@ -439,6 +450,7 @@
 				544C5F6222AE4A7700D345DA /* SkrollControl.swift in Sources */,
 				5437105C22AA9DAE00582985 /* NewsModel.swift in Sources */,
 				5438BFEE22B81A06007F5C42 /* AnimateFlowLayout.swift in Sources */,
+				5426C9682326495300A2FD17 /* UIViewController+Ext.swift in Sources */,
 				54F92A082296BA39005FCCFA /* UserModel.swift in Sources */,
 				54290971231FA8F000F29A07 /* RealmService.swift in Sources */,
 				5437106022AAA03300582985 /* NewsViewController.swift in Sources */,

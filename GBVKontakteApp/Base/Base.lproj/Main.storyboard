@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="baf-lF-GRP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -74,6 +74,20 @@
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F2U-ok-CNl"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he5-LJ-gcM">
+                                        <rect key="frame" x="162" y="336" width="90" height="36"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="62k-tc-xRJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signupButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XXr-7R-0uS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ZOg-i7-Sm3" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="1UT-Oe-mjA"/>
@@ -81,6 +95,7 @@
                                     <constraint firstItem="g1n-fD-o85" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="6az-QJ-rjZ"/>
                                     <constraint firstItem="ChB-ao-sfB" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="7Ah-PY-LtU"/>
                                     <constraint firstItem="oRz-YJ-22S" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="8ft-1l-rED"/>
+                                    <constraint firstItem="he5-LJ-gcM" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="9gN-hE-uCe"/>
                                     <constraint firstAttribute="trailing" secondItem="ZOg-i7-Sm3" secondAttribute="trailing" constant="20" id="DjM-C2-pNg"/>
                                     <constraint firstItem="ZOg-i7-Sm3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lu7-KY-2lP" secondAttribute="leading" id="K8R-7X-6aY"/>
                                     <constraint firstItem="oRz-YJ-22S" firstAttribute="top" secondItem="39t-YC-Omn" secondAttribute="bottom" constant="8" id="Kqk-hW-tO4"/>
@@ -88,6 +103,7 @@
                                     <constraint firstItem="GXN-s4-Ych" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="Vry-qj-YtF"/>
                                     <constraint firstItem="ChB-ao-sfB" firstAttribute="top" secondItem="g1n-fD-o85" secondAttribute="bottom" constant="8" id="bFw-Ws-mNW"/>
                                     <constraint firstItem="ZOg-i7-Sm3" firstAttribute="top" secondItem="Lu7-KY-2lP" secondAttribute="top" constant="15" id="oh2-x5-n2g"/>
+                                    <constraint firstItem="he5-LJ-gcM" firstAttribute="top" secondItem="GXN-s4-Ych" secondAttribute="bottom" constant="40" id="ovT-tP-gCs"/>
                                     <constraint firstItem="39t-YC-Omn" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="spP-22-hfz"/>
                                     <constraint firstItem="GXN-s4-Ych" firstAttribute="top" secondItem="ChB-ao-sfB" secondAttribute="bottom" constant="25" id="tQH-1y-Bxo"/>
                                     <constraint firstItem="39t-YC-Omn" firstAttribute="top" secondItem="ZOg-i7-Sm3" secondAttribute="bottom" constant="35" id="ypX-KK-Z0g"/>
@@ -112,7 +128,7 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
-                        <segue destination="baf-lF-GRP" kind="presentation" identifier="toVKLoginController" id="XPt-wC-gjJ"/>
+                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="nkY-dI-tH2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -149,12 +165,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="bWZ-f5-vVH" id="zci-se-Hfi"/>
-                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="hOM-EY-G04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqC-LU-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="499"/>
+            <point key="canvasLocation" x="1419" y="1176"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Q6I-eV-7Wh">
@@ -238,11 +253,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
-                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="51Y-dx-shQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qj2-Vj-5sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -549,11 +560,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Groups" id="kHX-vF-n30">
-                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="WMh-z7-RfU"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEw-ZI-tqj">
                             <connections>
                                 <segue destination="xmT-Ek-KUv" kind="show" id="A4x-PU-pf6"/>
@@ -808,7 +815,4 @@
         <image name="ГубкаБоб" width="219" height="230"/>
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="51Y-dx-shQ"/>
-    </inferredMetricsTieBreakers>
 </document>

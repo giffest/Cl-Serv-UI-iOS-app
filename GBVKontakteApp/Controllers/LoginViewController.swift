@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    
+    private var handle: AuthStateDidChangeListenerHandle?
 
     //MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -23,18 +26,40 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         checkTextFields()
-        
-        
-/*
-        if usernameTextField.text == "",
-            passwordTextField.text == "" {
-            print("Успешный вход.")
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        } else {
-            passwordTextField.text = ""
-            print("Неверный логин или пароль.")
+
+//        if usernameTextField.text == "",
+//            passwordTextField.text == "" {
+//            print("Успешный вход.")
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        } else {
+//            passwordTextField.text = ""
+//            print("Неверный логин или пароль.")
+//        }
+    }
+    
+    @IBAction func signupButtonPressed(_ sender: UIButton) {
+        let alertVC = UIAlertController(title: "Register", message: "Enter your e-mail/password", preferredStyle: .alert)
+        let cancleAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            Auth.auth().signInAnonymously() { (authResult, error) in
+                if let error = error {
+                    self?.show(error)
+                } else {
+                    let user = authResult!.user
+                    let isAnonymous = user.isAnonymous // true
+                    let uid = user.uid
+                    Session.shared.token = uid
+                    print("user: \(user))")
+                    print("isAnonymous: \(isAnonymous))")
+                    print("uid: \(uid))")
+                }
+            }
         }
-*/
+        
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancleAction)
+        
+        present(alertVC, animated: true, completion: nil)
     }
     
 //    @IBAction func animation9(_ sender: Any) {
@@ -46,14 +71,21 @@ class LoginViewController: UIViewController {
 //    }
     
     func checkTextFields() {
+//        Session.shared.token = "KXf3GHg5gpYHABMkyDz98ksAbie2"
         if usernameTextField.text == "",
-            passwordTextField.text == "" {
+            passwordTextField.text == "",
+            Session.shared.token != "" {
+            Auth.auth().signIn(withCustomToken: Session.shared.token) { [weak self] (result, error) in
+                if let error = error {
+                    self?.show(error)
+                }
+            }
             print("Успешный вход.")
 //            performSegue(withIdentifier: "toTabBarController", sender: nil)
             performSegue(withIdentifier: "toVKLoginController", sender: nil)
         } else {
-            let alert = UIAlertController(title: "Error", message: "Incorrect login or password", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default) {_ in
+            let alert = UIAlertController(title: "Error", message: "Push Sign UP", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default) { _ in
                 self.passwordTextField.text = ""
             }
             alert.addAction(action)
@@ -67,6 +99,20 @@ class LoginViewController: UIViewController {
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        
+        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+            }
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

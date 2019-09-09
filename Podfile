@@ -11,5 +11,10 @@ target 'GBVKontakteApp' do
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Kingfisher', '~> 5.7.1'
   pod 'RealmSwift', '~> 3.17.3'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  
 
 end
