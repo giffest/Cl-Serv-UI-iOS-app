@@ -21,6 +21,12 @@ class LoginViewController: UIViewController {
     
     //MARK: - Actions
     @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true)
+        } catch {
+            show(error)
+        }
         print("I returned")
     }
     
@@ -48,7 +54,7 @@ class LoginViewController: UIViewController {
                     let user = authResult!.user
                     let isAnonymous = user.isAnonymous // true
                     let uid = user.uid
-                    Session.shared.token = uid
+//                    Session.shared.token = uid
                     print("user: \(user))")
                     print("isAnonymous: \(isAnonymous))")
                     print("uid: \(uid))")
@@ -71,7 +77,7 @@ class LoginViewController: UIViewController {
 //    }
     
     func checkTextFields() {
-//        Session.shared.token = "KXf3GHg5gpYHABMkyDz98ksAbie2"
+        Session.shared.token = "KXf3GHg5gpYHABMkyDz98ksAbie2"
         if usernameTextField.text == "",
             passwordTextField.text == "",
             Session.shared.token != "" {
@@ -84,7 +90,7 @@ class LoginViewController: UIViewController {
 //            performSegue(withIdentifier: "toTabBarController", sender: nil)
             performSegue(withIdentifier: "toVKLoginController", sender: nil)
         } else {
-            let alert = UIAlertController(title: "Error", message: "Push Sign UP", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Push Sign-in", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) { _ in
                 self.passwordTextField.text = ""
             }
@@ -100,11 +106,6 @@ class LoginViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
         
-        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-            if user != nil {
-                self.performSegue(withIdentifier: "toVKLoginController", sender: nil)
-            }
-        })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -117,6 +118,12 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "toVKLoginController", sender: nil)
+            }
+        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         

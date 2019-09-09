@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import FirebaseAuth
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
@@ -173,6 +174,15 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             tableView.reloadData()
         }
     }
+    
+//    @IBAction func signOffButtonPressed(_ sender: Any) {
+//        do {
+//            try Auth.auth().signOut()
+//            self.dismiss(animated: true)
+//        } catch {
+//            show(error)
+//        }
+//    }
     
     /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation

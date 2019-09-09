@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import FirebaseAuth
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
@@ -272,6 +273,15 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             friendFotoController.idOwner = user.idFriend
             }
      }
+    
+//    @IBAction func signOffButtonPressed(_ sender: Any) {
+//        do {
+//            try Auth.auth().signOut()
+//            self.dismiss(animated: true)
+//        } catch {
+//            show(error)
+//        }
+//    }
     
     // MARK: SeachBar navigation
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

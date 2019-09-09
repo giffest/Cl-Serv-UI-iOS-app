@@ -132,6 +132,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Dfv-ZQ-Mpo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="688" y="499"/>
         </scene>
@@ -254,7 +255,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
-                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN"/>
+                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
+                            <connections>
+                                <segue destination="Dfv-ZQ-Mpo" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="BrW-eR-bUN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qj2-Vj-5sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -561,7 +566,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Groups" id="kHX-vF-n30">
-                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq"/>
+                        <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq">
+                            <connections>
+                                <segue destination="Dfv-ZQ-Mpo" kind="unwind" unwindAction="unwindSegueWithUnwindSegue:" id="Fj9-xZ-cBu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEw-ZI-tqj">
                             <connections>
                                 <segue destination="xmT-Ek-KUv" kind="show" id="A4x-PU-pf6"/>
