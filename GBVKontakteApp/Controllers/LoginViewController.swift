@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
         
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if user != nil {
-                self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+                self.performSegue(withIdentifier: "toVKLoginController", sender: nil)
             }
         })
     }

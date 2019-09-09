@@ -128,7 +128,7 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
-                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="nkY-dI-tH2"/>
+                        <segue destination="baf-lF-GRP" kind="presentation" identifier="toVKLoginController" id="06l-QN-fAS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -165,11 +165,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="bWZ-f5-vVH" id="zci-se-Hfi"/>
+                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="Mjv-lf-Us0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqC-LU-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419" y="1176"/>
+            <point key="canvasLocation" x="1432" y="499"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Q6I-eV-7Wh">
