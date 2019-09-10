@@ -10,8 +10,10 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import FirebaseDatabase
+import FirebaseFirestore
 
-class NetworkService {
+class NetworkService: UIViewController {
 
     private let urlApi = "https://api.vk.com/method/"
     let realmService = RealmService()
@@ -133,6 +135,9 @@ class NetworkService {
 //                    groups.forEach { print($0.avatarUrl) }
 //                    self.saveGroupData(groups)
                     try? self.self.realmService.save(items: groups, update: .all)
+                    self.saveToFirestore(groups)
+                    self.saveToDatabase(groups)
+                    
 //                    completion()
                 case .failure(let error):
                     print(error)
@@ -340,5 +345,34 @@ class NetworkService {
 //            print(error)
 //        }
 //    }
+    
+    func saveToFirestore(_ groups: [Group]) {
+        let database = Firestore.firestore()
+        
+        let groupsToSend = groups
+            .map { $0.toAnyObject() }
+            .reduce([:]) { $0.merging($1) { (current, _) in current } }
+        database
+            .collection("groups")
+            .document(Session.shared.tokenFirebase)
+            .setData(groupsToSend, merge: true) { [weak self] error in
+                if let error = error {
+                    self?.show(error)
+                } else {
+                    print("Data saved")
+                }
+        }
+    }
+    
+    func saveToDatabase(_ groups: [Group]) {
+        var usersRef = Database.database().reference(withPath: "users")
+        var userRef = usersRef.child(Session.shared.tokenFirebase.lowercased())
+        var groupsRef = userRef.child("groups")
+        
+        let groupsToSend = groups
+            .map { $0.toAnyObject() }
+
+        groupsRef.setValue(groupsToSend)
+    }
     
 }

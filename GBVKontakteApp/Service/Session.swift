@@ -17,4 +17,5 @@ class Session {
     var userid: Int = 2059120
     var ownerid: Int = 0
     var photoid: Int = 0
+    var tokenFirebase: String = ""
 }

@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import RealmSwift
+import Firebase
 
 class Group: Object {
 //    @objc dynamic var count: Int = 0
@@ -28,6 +29,12 @@ class Group: Object {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func toAnyObject() -> [String: Any] {
+        return [
+            String(id) : name
+        ]
     }
 }
 

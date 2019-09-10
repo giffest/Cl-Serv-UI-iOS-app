@@ -8,25 +8,6 @@
 
 import UIKit
 
-//class LoadController: UIViewController {
-//
-//    let loadIndicatorView = LoadIndicatorView()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        view.backgroundColor = .white
-//
-//        view.addSubview(loadIndicatorView)
-//
-//        loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-//        loadIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        loadIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//
-//        loadIndicatorView.animate()
-//    }
-//}
-
 class LoadIndicatorView: UIView {
     
     let shape = CAShapeLayer()

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController {
         } catch {
             show(error)
         }
+        Session.shared.tokenFirebase = ""
         print("I returned")
     }
     
@@ -44,20 +46,20 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signupButtonPressed(_ sender: UIButton) {
-        let alertVC = UIAlertController(title: "Register", message: "Enter your e-mail/password", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Register", message: "anonymous user entrance?", preferredStyle: .alert)
         let cancleAction = UIAlertAction(title: "Cancel", style: .cancel)
         let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            guard let self = self else { return }
             Auth.auth().signInAnonymously() { (authResult, error) in
                 if let error = error {
-                    self?.show(error)
+                    self.show(error)
                 } else {
                     let user = authResult!.user
-                    let isAnonymous = user.isAnonymous // true
+//                    let isAnonymous = user.isAnonymous // true
                     let uid = user.uid
-//                    Session.shared.token = uid
-                    print("user: \(user))")
-                    print("isAnonymous: \(isAnonymous))")
-                    print("uid: \(uid))")
+                    Session.shared.tokenFirebase = uid
+                    self.firebaseUserAdd()
+                    print("userToken: \(uid)")
                 }
             }
         }
@@ -68,20 +70,21 @@ class LoginViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-//    @IBAction func animation9(_ sender: Any) {
-//        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: .curveEaseInOut, animations: {
-//            self.label.frame.origin.y += 100
-//            //            self.label.frame.origin.y
-//        })
-//        
-//    }
+    func firebaseUserAdd() {
+        var users = [FirebaseUser]()
+        let usersRef = Database.database().reference(withPath: "users")
+
+        let user = FirebaseUser(userToken: Session.shared.tokenFirebase)
+        let userRef = usersRef.child(Session.shared.tokenFirebase.lowercased())
+        userRef.setValue(user.toAnyObject())
+    }
     
     func checkTextFields() {
-        Session.shared.token = "KXf3GHg5gpYHABMkyDz98ksAbie2"
+//        Session.shared.tokenFirebase= ""
         if usernameTextField.text == "",
             passwordTextField.text == "",
-            Session.shared.token != "" {
-            Auth.auth().signIn(withCustomToken: Session.shared.token) { [weak self] (result, error) in
+            Session.shared.tokenFirebase != "" {
+            Auth.auth().signIn(withCustomToken: Session.shared.tokenFirebase) { [weak self] (result, error) in
                 if let error = error {
                     self?.show(error)
                 }
@@ -90,7 +93,7 @@ class LoginViewController: UIViewController {
 //            performSegue(withIdentifier: "toTabBarController", sender: nil)
             performSegue(withIdentifier: "toVKLoginController", sender: nil)
         } else {
-            let alert = UIAlertController(title: "Error", message: "Push Sign-in", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Push Sign In", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) { _ in
                 self.passwordTextField.text = ""
             }

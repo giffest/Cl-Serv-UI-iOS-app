@@ -11,8 +11,6 @@ import WebKit
 
 class VKLoginController: UIViewController {
     
-//    let networkService = NetworkService()
-    
     @IBOutlet weak var webView: WKWebView! {
         didSet{
             webView.navigationDelegate = self
@@ -80,21 +78,6 @@ extension VKLoginController: WKNavigationDelegate {
         Session.shared.userid = Int(userIdString)!
 
         performSegue(withIdentifier: "toTabBarController", sender: token)
-//        NetworkService.loadGroups(token: token)
-        
-//        networkService.getFriends() { [weak self] in
-//            self?.networkService.loadUserData()
-//        }
-        
-//        networkService.getGroupsUser() { [weak self] groups in
-//            self?.networkService.saveGroupData(groups)
-//        }
-        
-//        networkService.getPhotoUser(idOwner: Session.shared.userid) { [weak self] photos in
-//            self?.networkService.savePhotoData(photos)
-//        }
-        
-//        networkService.loadUserData()
         
         decisionHandler(.cancel)
     }

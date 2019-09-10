@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import RealmSwift
 import FirebaseAuth
+import FirebaseDatabase
 
 class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
@@ -17,10 +18,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
     private var notificationToken: NotificationToken?
     private var groups: Results<Group>?
-//    private var groups = try! Realm().objects(Group.self).sorted(byKeyPath: "name")
-    
-//    var titleForSection = [String]()
-//    var items = [[Group]]()
+
     var itemsFiltered = [Group]()
     var searchAction = false
     
@@ -28,12 +26,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         networkService.getGroupsUser()
-//        networkService.getGroupsUser() { [weak self] in
-//            self?.tableView.reloadData()
-//        }
-//        groupsSectionData()
-//        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,13 +55,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             }
         })
     }
-    
-    // MARK: - Table view data source
-/*    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-*/
     
 //    func groupsSectionData() {
 //        var section = 0
@@ -105,7 +90,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
         
         let group = searchAction ? itemsFiltered[indexPath.row] : groups?[indexPath.row]
-//        let group = groups[indexPath.row]
+
         cell.groupNameLabel.text = group?.name
         cell.groupImageView.kf.setImage(with: URL(string: group?.avatarUrl ?? ""))
 
@@ -125,14 +110,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             cell.alpha = 1.0
         }
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -143,19 +120,10 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 
-    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
     @IBAction func addGroup(segue: UIStoryboardSegue) {
@@ -165,14 +133,19 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             
             guard groups!.contains(where: { $0.name == group.name } ) else { return }
             
-//            groups.append(group) // необходим реализовать функцию добавление группы
-//            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
-//            groups.sorted(byKeyPath: "name")
-            
             let newIndexPath = IndexPath(item: groups!.count - 1, section: 0)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             tableView.reloadData()
         }
+    }
+    
+    func firebaseUserAdd() {
+        var users = [FirebaseUser]()
+        var usersRef = Database.database().reference(withPath: "users")
+        
+        var user = FirebaseUser(userToken: Session.shared.tokenFirebase)
+        var userRef = usersRef.child(Session.shared.tokenFirebase.lowercased())
+        userRef.setValue(user.toAnyObject())
     }
     
 //    @IBAction func signOffButtonPressed(_ sender: Any) {
@@ -183,14 +156,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 //            show(error)
 //        }
 //    }
-    
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: SeachBar navigation
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

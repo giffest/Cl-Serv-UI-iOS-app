@@ -18,6 +18,7 @@
 		542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542358CC2313DC9500B6C7B4 /* Photo.swift */; };
 		5426C9662326481A00A2FD17 /* GBVKontakteAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */; };
 		5426C9682326495300A2FD17 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426C9672326495300A2FD17 /* UIViewController+Ext.swift */; };
+		5426C96B2326869D00A2FD17 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426C96A2326869D00A2FD17 /* FirebaseUser.swift */; };
 		54290971231FA8F000F29A07 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54290970231FA8F000F29A07 /* RealmService.swift */; };
 		542909732324F03900F29A07 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542909722324F03900F29A07 /* UITableView+Ext.swift */; };
 		542909752325ABF600F29A07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 542909742325ABF600F29A07 /* GoogleService-Info.plist */; };
@@ -71,6 +72,7 @@
 		542358CC2313DC9500B6C7B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBVKontakteAppError.swift; sourceTree = "<group>"; };
 		5426C9672326495300A2FD17 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		5426C96A2326869D00A2FD17 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		54290970231FA8F000F29A07 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		542909722324F03900F29A07 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		542909742325ABF600F29A07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				54D997DF23126D9000579E56 /* Group.swift */,
 				542358CC2313DC9500B6C7B4 /* Photo.swift */,
 				5426C9652326481A00A2FD17 /* GBVKontakteAppError.swift */,
+				5426C96A2326869D00A2FD17 /* FirebaseUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */,
 				5438BFEC22B8198C007F5C42 /* AnimateCollectionViewCell.swift in Sources */,
 				54A3BF052296896600B49849 /* ImageCell.swift in Sources */,
+				5426C96B2326869D00A2FD17 /* FirebaseUser.swift in Sources */,
 				5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */,
 				542909732324F03900F29A07 /* UITableView+Ext.swift in Sources */,
 				546DC1D122BCE753001C7673 /* CornerAnimate.swift in Sources */,
