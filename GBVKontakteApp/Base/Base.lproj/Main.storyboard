@@ -643,18 +643,6 @@
                                                 <constraint firstItem="2ss-oj-sSR" firstAttribute="top" secondItem="sQT-aF-DLh" secondAttribute="top" id="wIQ-UA-ja2"/>
                                                 <constraint firstAttribute="width" secondItem="sQT-aF-DLh" secondAttribute="height" multiplier="1:1" id="z2y-Ll-85R"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageBorderWidth">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageCornerRadius">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ГубкаБоб"/>
-                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="customImageView" destination="2ss-oj-sSR" id="SbD-VF-Pce"/>
                                             </connections>
