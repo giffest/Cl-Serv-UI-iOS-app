@@ -398,7 +398,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-kU-zKW" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madagascar" translatesAutoresizingMaskIntoConstraints="NO" id="IIf-CG-R4u">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IIf-CG-R4u">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -502,7 +502,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-3p-T8c" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="328" y="2" width="70" height="70"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madagascar_penguins" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-bW-ikt">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-bW-ikt">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -635,7 +635,6 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="2ss-oj-sSR" secondAttribute="trailing" id="7fs-Do-541"/>
                                                 <constraint firstAttribute="width" constant="70" id="GFy-AS-Dld"/>
@@ -800,8 +799,6 @@
         <image name="background" width="1024" height="768"/>
         <image name="friend" width="25" height="25"/>
         <image name="groups" width="25" height="25"/>
-        <image name="madagascar" width="736" height="736"/>
-        <image name="madagascar_penguins" width="676" height="600"/>
         <image name="news" width="25" height="25"/>
         <image name="ГубкаБоб" width="219" height="230"/>
         <image name="ГубкаБобНовости" width="1000" height="555"/>
