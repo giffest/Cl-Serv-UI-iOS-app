@@ -165,17 +165,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="bbu-4y-bYJ">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             <connections>
                                 <outlet property="delegate" destination="ktn-5F-jYa" id="GcQ-5G-Nrk"/>
                             </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="75" id="ffc-PA-1D4" customClass="FriendCell" customModule="GBVKontakteApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffc-PA-1D4" id="WMA-dB-4iu">
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="74.5"/>
@@ -311,6 +311,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Z2g-XY-cS8" secondAttribute="bottom" id="jaK-FV-Jgl"/>
                                     <constraint firstItem="E7q-1L-Sia" firstAttribute="leading" secondItem="0D1-gf-CPL" secondAttribute="leading" priority="1" constant="6" id="wWv-2B-RRB"/>
                                     <constraint firstAttribute="trailing" secondItem="Z2g-XY-cS8" secondAttribute="trailing" id="xz8-hN-155"/>
+                                    <constraint firstItem="Z2g-XY-cS8" firstAttribute="centerY" secondItem="0D1-gf-CPL" secondAttribute="centerY" id="ygj-C3-K6Q"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageFriendView" destination="Z2g-XY-cS8" id="Qqy-Hc-pUP"/>
@@ -362,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzL-oU-ASy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5212" y="-170"/>
+            <point key="canvasLocation" x="5201" y="-170"/>
         </scene>
         <!--Available Groups-->
         <scene sceneID="Sjt-y9-w7i">
