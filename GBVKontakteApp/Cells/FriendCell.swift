@@ -8,15 +8,13 @@
 
 import UIKit
 
-class FriendCell: UITableViewCell {
+class FriendCell: UITableViewCell, UITableViewDelegate {
     
     static let reuseIndentifier = "FriendCell"
 
     @IBOutlet weak var friendNameLabel: UILabel!
-    @IBOutlet weak var friendNameLabel2: UILabel!
     
     @IBOutlet weak var friendImageView: UIImageView!
-    @IBOutlet weak var friendImageView2: UIImageView!
     
     var delegate: SomeProtocol!
     

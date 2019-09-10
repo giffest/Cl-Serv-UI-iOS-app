@@ -13,6 +13,7 @@ class ImageShadowView: UIView {
     private var shadowLayer: CAShapeLayer!
     
     @IBInspectable var shadowColor: UIColor = UIColor.black
+    @IBInspectable var shadowbackColor: UIColor = UIColor.white
     @IBInspectable var shadowRadius: CGFloat = 4
     @IBInspectable var shadowOpacity: Float = 0.9
     
@@ -23,6 +24,8 @@ class ImageShadowView: UIView {
         
         customImageView.layer.cornerRadius = frame.height / 2
         customImageView.clipsToBounds = true
+        customImageView.backgroundColor = .white
+        customImageView.tintColorDidChange()
         
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
@@ -32,7 +35,9 @@ class ImageShadowView: UIView {
             shadowLayer.shadowOffset = .zero
             shadowLayer.shadowOpacity = shadowOpacity
             shadowLayer.shadowRadius = shadowRadius
+            shadowLayer.backgroundColor = shadowbackColor.cgColor
             layer.insertSublayer(shadowLayer, at: 0)
+            
         }
     }
 }
