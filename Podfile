@@ -11,5 +11,6 @@ target 'GBVKontakteApp' do
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Kingfisher', '~> 5.7.1'
   pod 'RealmSwift', '~> 3.17.3'
+  pod 'AppCenter', '~> 2.3.0'
 
 end
