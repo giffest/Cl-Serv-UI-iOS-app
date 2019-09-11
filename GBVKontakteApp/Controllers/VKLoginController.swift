@@ -78,8 +78,9 @@ extension VKLoginController: WKNavigationDelegate {
         
         Session.shared.token = token
         Session.shared.userid = Int(userIdString)!
-
+        
         performSegue(withIdentifier: "toTabBarController", sender: token)
+        
 //        NetworkService.loadGroups(token: token)
         
 //        networkService.getFriends() { [weak self] in

@@ -30,20 +30,27 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidLoad()
         
         networkService.getFriends()
-//        networkService.getFriends() { [weak self] in
-//            self?.tableView.reloadData()
-//        }
-//        userGetFriends()
+
 //        (firstCharacter, sortedUsers) = sort(users)
 //        friendSectionData()
+        notificationToken = users.observe({ [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case .initial:
+                break
+            case .update:
+                self.friendSectionData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
         refreshControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        userGetFriends()
-        friendSectionData()
+        userNotificationObserve()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -52,26 +59,14 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         notificationToken?.invalidate()
     }
 
-    func userGetFriends() {
-//        guard let realm = try? Realm() else { return }
-//        users = realm.objects(User.self).sorted(byKeyPath: "lastName")
-//        let section = 0
+    func userNotificationObserve() {
         notificationToken = users.observe({ [weak self] changes in
             guard let self = self else { return }
             switch changes {
             case .initial:
-//                self.friendSectionData()
                 self.tableView.reloadData()
             case .update:
-//                self.friendSectionData()
                 self.tableView.reloadData()
-//            case .update(_, let deletions, let insertions, let modifications):
-//                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications, section: self.items[section].count)
-//                self.tableView.beginUpdates()
-//                self.tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//                self.tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//                self.tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//                self.tableView.endUpdates()
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -80,25 +75,20 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     // MARK: - Table view data source
     private func friendSectionData() {
-        var section = 0
+        var sect = 0
         
         titleForSection.append(String(users[0].lastName.first ?? "!"))
-//        items.append([User]())
         items.append([users[0]])
-//        items[section].append(users[0])
         
         for row in 1..<users.count {
             let leftValue = users[row - 1].lastName.first
             let rightValue = users[row].lastName.first
             if leftValue == rightValue {
-                items[section].append(users[row])
-//                items.append([users[row]])
+                items[sect].append(users[row])
             } else {
                 titleForSection.append(String(rightValue!))
-                section += 1
-//                items.append([User]())
+                sect += 1
                 items.append([users[row]])
-//                items[section].append(users[row])
             }
         }
     }
