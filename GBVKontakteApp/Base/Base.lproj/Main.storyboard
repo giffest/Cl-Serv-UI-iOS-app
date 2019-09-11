@@ -190,7 +190,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpN-m8-IxT" customClass="ImageShadowView" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="290" y="2" width="70" height="70"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SQ1-g9-7TF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SQ1-g9-7TF">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="YGj-3a-2ht"/>
@@ -803,6 +803,6 @@
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WMh-z7-RfU"/>
+        <segue reference="51Y-dx-shQ"/>
     </inferredMetricsTieBreakers>
 </document>
