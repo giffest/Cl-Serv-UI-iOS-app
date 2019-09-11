@@ -35,7 +35,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        }
 //        userGetFriends()
 //        (firstCharacter, sortedUsers) = sort(users)
-        friendSectionData()
+//        friendSectionData()
         refreshControl()
     }
     
@@ -43,7 +43,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidAppear(animated)
         
         userGetFriends()
-//        friendSectionData()
+        friendSectionData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -82,7 +82,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     private func friendSectionData() {
         var section = 0
         
-        titleForSection.append(String(users[0].lastName.first ?? "я"))
+        titleForSection.append(String(users[0].lastName.first ?? "!"))
 //        items.append([User]())
         items.append([users[0]])
 //        items[section].append(users[0])
