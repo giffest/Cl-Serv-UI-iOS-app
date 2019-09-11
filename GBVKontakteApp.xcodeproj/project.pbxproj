@@ -160,11 +160,11 @@
 				5437106122AAEE4D00582985 /* Control */,
 				54C73E272312DC3D00201C62 /* Layout */,
 				546DC1CD22BCE633001C7673 /* NavigationControllers */,
+				540D319923298C55005A265F /* Extension */,
 				546DC1D222BCECE2001C7673 /* Base */,
 				54C73E262312C16000201C62 /* Service */,
 				54F92A052296AD9F005FCCFA /* Assets.xcassets */,
 				5405976A228EED1F002A892A /* Info.plist */,
-				542909722324F03900F29A07 /* UITableView+Ext.swift */,
 			);
 			path = GBVKontakteApp;
 			sourceTree = "<group>";
@@ -184,6 +184,14 @@
 				546DC1DB22BE3ED4001C7673 /* AvatarView.swift */,
 			);
 			path = Archiv;
+			sourceTree = "<group>";
+		};
+		540D319923298C55005A265F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				542909722324F03900F29A07 /* UITableView+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		5437105822AA9A6000582985 /* Views */ = {

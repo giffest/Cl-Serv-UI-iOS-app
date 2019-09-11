@@ -24,26 +24,15 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         checkTextFields()
         
-        
-/*
-        if usernameTextField.text == "",
-            passwordTextField.text == "" {
-            print("Успешный вход.")
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        } else {
-            passwordTextField.text = ""
-            print("Неверный логин или пароль.")
-        }
-*/
+//        if usernameTextField.text == "",
+//            passwordTextField.text == "" {
+//            print("Успешный вход.")
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        } else {
+//            passwordTextField.text = ""
+//            print("Неверный логин или пароль.")
+//        }
     }
-    
-//    @IBAction func animation9(_ sender: Any) {
-//        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: .curveEaseInOut, animations: {
-//            self.label.frame.origin.y += 100
-//            //            self.label.frame.origin.y
-//        })
-//        
-//    }
     
     func checkTextFields() {
         if usernameTextField.text == "",

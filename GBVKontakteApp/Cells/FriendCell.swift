@@ -13,7 +13,6 @@ class FriendCell: UITableViewCell, UITableViewDelegate {
     static let reuseIndentifier = "FriendCell"
 
     @IBOutlet weak var friendNameLabel: UILabel!
-    
     @IBOutlet weak var friendImageView: UIImageView!
     
     var delegate: SomeProtocol!
@@ -53,7 +52,8 @@ class FriendCell: UITableViewCell, UITableViewDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        friendImageView.backgroundColor = .white
+        
     }
     
 }

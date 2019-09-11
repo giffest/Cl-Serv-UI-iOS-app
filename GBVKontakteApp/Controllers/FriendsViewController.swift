@@ -21,9 +21,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //    var firstCharacter = [Character]()
 //    var sortedUsers = [Character: users] = [:]
     var titleForSection = [String]()
-//    var items = [[User]]()
     var items = [[User]]()
-//    var itemsFiltered = [User]()
     var itemsFiltered = [User]()
     var searchAction = false
     

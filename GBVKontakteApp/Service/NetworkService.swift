@@ -315,30 +315,5 @@ class NetworkService {
 //    func clearRealmData() {
 //        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
 //    }
-//
-//    func loadUserData() {
-//        do {
-//            let realm = try Realm()
-//            let users = realm.objects(User.self)
-//            for user in users {
-//                print(user.firstName + " " + user.lastName)
-//            }
-//            let cnt = users.count
-//            print(cnt)
-//        } catch {
-//            print(error)
-//        }
-//    }
-//    func loadPhotoData () {
-//        do {
-//            let realm = try Realm()
-//            let photoData = realm.objects(Photo.self)
-//            for photo in photoData {
-//                print(photo.idPhoto)
-//            }
-//        } catch {
-//            print(error)
-//        }
-//    }
-    
+
 }

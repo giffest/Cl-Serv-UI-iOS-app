@@ -14,6 +14,7 @@ class ImageShadowView: UIView {
     
     @IBInspectable var shadowColor: UIColor = UIColor.black
     @IBInspectable var shadowbackColor: UIColor = UIColor.white
+    @IBInspectable var shadowbackfillColor: UIColor = UIColor.white
     @IBInspectable var shadowRadius: CGFloat = 4
     @IBInspectable var shadowOpacity: Float = 0.9
     
@@ -36,6 +37,7 @@ class ImageShadowView: UIView {
             shadowLayer.shadowOpacity = shadowOpacity
             shadowLayer.shadowRadius = shadowRadius
             shadowLayer.backgroundColor = shadowbackColor.cgColor
+            shadowLayer.fillColor = shadowbackfillColor.cgColor
             layer.insertSublayer(shadowLayer, at: 0)
             
         }
