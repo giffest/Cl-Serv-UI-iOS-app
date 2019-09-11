@@ -27,8 +27,18 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         super.viewDidLoad()
 
         networkService.getFriends()
-
-        friendSectionData()
+        
+        notificationToken = users.observe({ [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case .initial:
+                break
+            case .update:
+                self.friendSectionData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
         
         refreshControl()
     }
@@ -36,8 +46,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        userGetFriends()
-//        friendSectionData()
+        userNotificationObserve()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -46,7 +55,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         notificationToken?.invalidate()
     }
   
-    func userGetFriends() {
+    func userNotificationObserve() {
         notificationToken = users.observe({ [weak self] changes in
             guard let self = self else { return }
             switch changes {
