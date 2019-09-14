@@ -35,24 +35,17 @@ class LoadIndicatorView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layer.backgroundColor = UIColor.white.cgColor
-        
         shape.frame.size = CGSize(width: 20, height: 20)
         shape.anchorPoint = CGPoint(x: -4.5 , y: 1)
-        
-        
         shape.path = CGPath(ellipseIn: shape.frame, transform: nil)
         shape.fillColor = UIColor.lightGray.cgColor
-        
         replicatorLayer.instanceCount = instanceCount
-        
 //        let fullCircle = CGFloat.pi * 2
 //        let angle = fullCircle / CGFloat(replicatorLayer.instanceCount)
         let xpoint = CGFloat(shape.frame.width) * CGFloat(replicatorLayer.instanceCount) / 2
 //        replicatorLayer.instanceTransform = CATransform3DMakeRotation(angle, 0, 0, 1)
         replicatorLayer.instanceTransform = CATransform3DMakeTranslation(xpoint, 0, 0)
-        
         replicatorLayer.bounds.size = CGSize(width: shape.frame.height * .pi, height: shape.frame.height)
         replicatorLayer.addSublayer(shape)
         layer.addSublayer(replicatorLayer)
@@ -80,5 +73,4 @@ class LoadIndicatorView: UIView {
         shape.add(fadeOutAnimation, forKey: nil)
         replicatorLayer.instanceDelay = fadeOutAnimation.duration / CFTimeInterval(instanceCount)
     }
-    
 }

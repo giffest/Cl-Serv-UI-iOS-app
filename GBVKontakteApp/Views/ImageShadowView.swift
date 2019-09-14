@@ -22,12 +22,10 @@ class ImageShadowView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         customImageView.layer.cornerRadius = frame.height / 2
         customImageView.clipsToBounds = true
         customImageView.backgroundColor = .white
         customImageView.tintColorDidChange()
-        
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
             shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: frame.size.height / 2).cgPath
@@ -38,8 +36,7 @@ class ImageShadowView: UIView {
             shadowLayer.shadowRadius = shadowRadius
             shadowLayer.backgroundColor = shadowbackColor.cgColor
             shadowLayer.fillColor = shadowbackfillColor.cgColor
-            layer.insertSublayer(shadowLayer, at: 0)
-            
+            layer.insertSublayer(shadowLayer, at: 0)            
         }
     }
 }

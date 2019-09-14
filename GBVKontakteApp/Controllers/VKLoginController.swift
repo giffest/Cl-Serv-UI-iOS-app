@@ -18,14 +18,13 @@ class VKLoginController: UIViewController {
     }
     
     //MARK: - Actions
-    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
-        print("I logoff")
-        logoffVK()
-    }
+//    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
+//        print("I logoff")
+//        logoffVK()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -37,9 +36,9 @@ class VKLoginController: UIViewController {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.98")
+            URLQueryItem(name: "test_mode", value: "1"),
+            URLQueryItem(name: "v", value: "5.101")
         ]
-        
         let request = URLRequest(url: urlComponents.url!)
         webView.load(request)
     }
@@ -47,11 +46,9 @@ class VKLoginController: UIViewController {
 
 extension VKLoginController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
         guard let url = navigationResponse.response.url,
             url.path == "/blank.html",
             let fragment = url.fragment  else { decisionHandler(.allow); return }
-        
         let params = fragment
             .components(separatedBy: "&")
             .map { $0.components(separatedBy: "=") }
@@ -63,7 +60,6 @@ extension VKLoginController: WKNavigationDelegate {
                 return dict
         }
         print("Параметры авторизации:\n\(params)")
-        
 //        let token = params["access_token"]
         guard let token = params["access_token"],
             let userIdString = params["user_id"],
@@ -71,12 +67,9 @@ extension VKLoginController: WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
         }
-        
         Session.shared.token = token
         Session.shared.userid = Int(userIdString)!
-
-        performSegue(withIdentifier: "toTabBarController", sender: token)
-        
+        performSegue(withIdentifier: "toTabBarController", sender: Any?.self)
         decisionHandler(.cancel)
     }
     

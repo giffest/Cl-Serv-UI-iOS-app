@@ -18,7 +18,6 @@ class Group: Object {
     
     convenience init(_ json: JSON) {
         self.init()
-        
 //        self.count = json["count"].intValue
         self.id = json["id"].intValue
         self.name = json["name"].stringValue

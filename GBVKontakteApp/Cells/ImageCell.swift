@@ -13,5 +13,4 @@ class ImageCell: UICollectionViewCell {
     static let reuseIdentifier = "ImageCell"
     
     @IBOutlet weak var imageFriendView: UIImageView!
-
 }

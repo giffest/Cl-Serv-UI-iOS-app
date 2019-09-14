@@ -12,22 +12,17 @@ import RealmSwift
 
 class AnimateViewController: UIViewController {
     
+    private var cellIdentifier = "cellPhotoAmimate"
     let networkService = NetworkService()
-//    private var photos = [Photo]()
     var idOwner = 0
-//    private lazy var photos = try? Realm().objects(Photo.self).filter("id BEGINSWITH %@", idOwner)
-//    private lazy var photos = try! Realm().objects(Photo.self)
+//    var friendNameForTitle: String = ""
+//    var friendFotoForImage: String = ""
     lazy var photos = try? Realm().objects(Photo.self).filter("id BEGINSWITH %@", String(Session.shared.ownerid))
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var cellIdentifier = "cellPhotoAmimate"
-    
-//    var friendNameForTitle: String = ""
-//    var friendFotoForImage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //       networkService.getPhotoUser(idOwner: idOwner)
 //        networkService.getPhotoUser(idOwner: idOwner) { [weak self] in
 //            self?.photosUI = photos
@@ -37,7 +32,6 @@ class AnimateViewController: UIViewController {
 //        title = friendNameForTitle
         collectionView?.dataSource = self
         collectionView?.register(AnimateCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        
         collectionView.collectionViewLayout = AnimateFlowLayout()
     }
 }
@@ -50,11 +44,8 @@ extension AnimateViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AnimateCollectionViewCell
-        
         let photo = photos?[indexPath.row]
-//        cell.imageView.image = UIImage(named: "image\(indexPath.row+1)")
         cell.imageView.kf.setImage(with: URL(string: photo?.photoUrl ?? ""))
-        
         return cell
     }
 }

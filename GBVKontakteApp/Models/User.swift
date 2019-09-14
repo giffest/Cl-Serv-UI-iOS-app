@@ -22,14 +22,12 @@ class User: Object {
 //    convenience init(_ json: JSON, photos: [Photo] = []) {
     convenience init(_ json: JSON) {
         self.init()
-        
 //        self.count = json["count"].intValue
         self.idFriend = json["id"].intValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
         let photoString = json["photo_200_orig"].stringValue
         self.avatarUrl = photoString
-        
         self.photos.append(objectsIn: photos)
     }
     

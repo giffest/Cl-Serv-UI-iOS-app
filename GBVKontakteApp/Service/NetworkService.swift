@@ -17,10 +17,8 @@ class NetworkService {
     let realmService = RealmService()
     
     //MARK: - Method Friends
-    func getFriends() {
-//    func getFriends(completion: @escaping () -> Void) {
+    func getFriends(completion: @escaping ([User]) -> Void) {
         let method = "friends.get"
-        
         let parameters: Parameters = [
             "user_id": String(Session.shared.userid),
             "order": "name",
@@ -28,23 +26,18 @@ class NetworkService {
             "access_token": Session.shared.token,
             "v": "5.98"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseData { response in
-//            .responseJSON { response in
-//                print(response.value)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     let usersJSONs = json["response"]["items"].arrayValue
                     let users = usersJSONs.map { User($0) }
-//                    users.forEach { print($0.lastName + " " + $0.firstName) }
-//                    self.saveUserData(users)
-                    try? self.self.realmService.save(items: users, update: .all)
-//                    completion()
+//                    try? self.self.realmService.save(items: users, update: .modified)
+                    completion(users)
                 case .failure(let error):
                     print(error)
-//                    completion()
+                    completion([])
                 }
         }
     }
@@ -52,17 +45,14 @@ class NetworkService {
     func getPhotoId(idOwner: Int, completion: @escaping (_ photoId: Int) -> Void) {
 //    func getPhotoId(idOwner: Int) {
         let method = "users.get"
-
         let parameters: Parameters = [
             "user_ids": idOwner,
             "fields": "crop_photo",
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -79,7 +69,6 @@ class NetworkService {
     
     //MARK: - Method Photo
     func getPhotoUser(idOwner: Int) {
-//    func getPhotoUser(idOwner: Int, completion: @escaping () -> Void) {
         let method = "photos.getAll"
         
         let parameters: Parameters = [
@@ -111,32 +100,23 @@ class NetworkService {
     
     //MARK: - Methods Groups
     func getGroupsUser() {
-//    func getGroupsUser(completion: @escaping () -> Void) {
         let method = "groups.get"
-        
         let parameters: Parameters = [
             "extended": 1,
             "count": 1000,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseData { response in
-//            .responseJSON { response in
-//                print(response.value)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     let groupsJSONs = json["response"]["items"].arrayValue
                     let groups = groupsJSONs.map { Group($0) }
-//                    groups.forEach { print($0.avatarUrl) }
-//                    self.saveGroupData(groups)
                     try? self.self.realmService.save(items: groups, update: .all)
-//                    completion()
                 case .failure(let error):
                     print(error)
-//                    completion()
                 }
         }
     }
@@ -151,10 +131,8 @@ class NetworkService {
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -173,17 +151,14 @@ class NetworkService {
     func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping ([Photo]) -> Void) {
         let method = "photos.getById"
         let photoStr: String = String(idOwner) + "_" + String(idPhoto)
-        
         let parameters: Parameters = [
             "photos": photoStr,
             "extended": 1,
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -202,7 +177,6 @@ class NetworkService {
     
     func likesAdd(idOwner: Int, idPhoto: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
         let method = "likes.add"
-        
         let parameters: Parameters = [
             "type": "photo",
             "owner_id": idOwner,
@@ -210,10 +184,8 @@ class NetworkService {
             "access_token": Session.shared.token,
             "v": "5.101" //5.68
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -228,7 +200,6 @@ class NetworkService {
     
     func likesDelete(idOwner: Int, idPhoto: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
         let method = "likes.delete"
-        
         let parameters: Parameters = [
             "type": "photo",
             "owner_id": idOwner,
@@ -236,10 +207,8 @@ class NetworkService {
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -252,44 +221,8 @@ class NetworkService {
         }
     }
     
-//    func saveUserData (_ users: [User]) {
-//        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//        do {
-////            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//            let realm = try Realm(configuration: config)
-////            let oldUserData = realm.objects(User.self)
-////            realm.beginWrite()
-//            try realm.write {
-////                realm.delete(oldUserData)
-//                realm.add(users, update: .all)
-//            }
-////            realm.add(users)
-////            try realm.commitWrite()
-//            print(realm.configuration.fileURL!)
-//        } catch {
-//            print(error)
-//        }
-//    }
-    
-//    func saveGroupData (_ groups: [Group]) {
-//        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//        do {
-//            let realm = try Realm(configuration: config)
-////            let oldGroupData = realm.objects(Group.self)
-//            realm.beginWrite()
-////            realm.delete(oldGroupData)
-//            realm.add(groups, update: .all)
-//            try realm.commitWrite()
-////            print(realm.configuration.fileURL!)
-//        } catch {
-//            print(error)
-//        }
-//    }
-    
     func savePhotoData (_ photos: [Photo], _ idOwner: Int) {
         let config = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
-//        let update = Realm.UpdatePolicy(rawValue: 2)!
-
         do {
             let realm = try Realm(configuration: config)
 //            let oldPhotoData = realm.objects(Photo.self)
@@ -302,7 +235,6 @@ class NetworkService {
 //            owner.idFriend = idOwner
             owner.photos.append(objectsIn: photos)
             realm.add(owner, update: .modified)
-                
 //            }
 //            realm.add(photos, update: .all)
             try realm.commitWrite()
@@ -315,5 +247,4 @@ class NetworkService {
 //    func clearRealmData() {
 //        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
 //    }
-
 }

@@ -25,5 +25,4 @@ class RealmService {
             print(error)
         }
     }
-    
 }

@@ -21,8 +21,7 @@ class AnimateCollectionViewCell: UICollectionViewCell {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+        super.init(frame: frame)        
         contentView.addSubview(imageView)
         contentView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false

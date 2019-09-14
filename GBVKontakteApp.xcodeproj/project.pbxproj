@@ -15,6 +15,8 @@
 		54076B632309477400C4305D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54076B622309477400C4305D /* Session.swift */; };
 		54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8722A10DE6001FD4D6 /* ShadowView.swift */; };
 		54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */; };
+		540D319B232C5F2D005A265F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D319A232C5F2D005A265F /* UIViewController+Ext.swift */; };
+		540D319D232C5FAA005A265F /* GBVKontakteAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D319C232C5FAA005A265F /* GBVKontakteAppError.swift */; };
 		542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542358CC2313DC9500B6C7B4 /* Photo.swift */; };
 		54290971231FA8F000F29A07 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54290970231FA8F000F29A07 /* RealmService.swift */; };
 		542909732324F03900F29A07 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542909722324F03900F29A07 /* UITableView+Ext.swift */; };
@@ -65,6 +67,8 @@
 		54076B622309477400C4305D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		54094F8722A10DE6001FD4D6 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonControl.swift; sourceTree = "<group>"; };
+		540D319A232C5F2D005A265F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		540D319C232C5FAA005A265F /* GBVKontakteAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBVKontakteAppError.swift; sourceTree = "<group>"; };
 		542358CC2313DC9500B6C7B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		54290970231FA8F000F29A07 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		542909722324F03900F29A07 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
@@ -161,8 +165,8 @@
 				54C73E272312DC3D00201C62 /* Layout */,
 				546DC1CD22BCE633001C7673 /* NavigationControllers */,
 				540D319923298C55005A265F /* Extension */,
-				546DC1D222BCECE2001C7673 /* Base */,
 				54C73E262312C16000201C62 /* Service */,
+				546DC1D222BCECE2001C7673 /* Base */,
 				54F92A052296AD9F005FCCFA /* Assets.xcassets */,
 				5405976A228EED1F002A892A /* Info.plist */,
 			);
@@ -174,7 +178,6 @@
 			children = (
 				54F92A072296BA39005FCCFA /* UserModel.swift */,
 				54F92A092296BA46005FCCFA /* GroupModel.swift */,
-				5437105B22AA9DAE00582985 /* NewsModel.swift */,
 				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
 				547B6C70229C35680092EBEA /* ImageView.swift */,
 				54C59D43230AA5C000AC612A /* NetworkServiceBase.swift */,
@@ -190,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				542909722324F03900F29A07 /* UITableView+Ext.swift */,
+				540D319A232C5F2D005A265F /* UIViewController+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -284,6 +288,8 @@
 				54D997DA230FE74300579E56 /* User.swift */,
 				54D997DF23126D9000579E56 /* Group.swift */,
 				542358CC2313DC9500B6C7B4 /* Photo.swift */,
+				5437105B22AA9DAE00582985 /* NewsModel.swift */,
+				540D319C232C5FAA005A265F /* GBVKontakteAppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 				549E949A22C20471002B86F3 /* LoadIndicatorView.swift in Sources */,
 				54F92A0A2296BA46005FCCFA /* GroupModel.swift in Sources */,
 				5437106322AAF3FF00582985 /* ImageShadowView.swift in Sources */,
+				540D319B232C5F2D005A265F /* UIViewController+Ext.swift in Sources */,
 				54A3BF072296919B00B49849 /* GroupCell.swift in Sources */,
 				54A3BF002296847100B49849 /* FriendCell.swift in Sources */,
 				547B6C6B229C07460092EBEA /* CustomViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				546DC1DC22BE3ED4001C7673 /* AvatarView.swift in Sources */,
 				54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */,
 				5438BFEC22B8198C007F5C42 /* AnimateCollectionViewCell.swift in Sources */,
+				540D319D232C5FAA005A265F /* GBVKontakteAppError.swift in Sources */,
 				54A3BF052296896600B49849 /* ImageCell.swift in Sources */,
 				5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */,
 				542909732324F03900F29A07 /* UITableView+Ext.swift in Sources */,

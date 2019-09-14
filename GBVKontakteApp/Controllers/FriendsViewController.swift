@@ -14,51 +14,40 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 
     let networkService = NetworkService()
     let loadIndicatorView = LoadIndicatorView()
+    let realmService = RealmService()
     
     private var notificationToken: NotificationToken?
-//    private var users: Results<User>?
-    private let users = try! Realm().objects(User.self).sorted(byKeyPath: "lastName")
-//    var firstCharacter = [Character]()
-//    var sortedUsers = [Character: users] = [:]
+    private lazy var usersResults = try! Realm().objects(User.self).filter("firstName != 'DELETED'").sorted(byKeyPath: "lastName")
     var titleForSection = [String]()
-    var items = [[User]]()
-    var itemsFiltered = [User]()
+    var itemsForSection = [[User]]()
+    var itemsFiltered = [[User]]()
     var searchAction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkService.getFriends()
-        
-        notificationToken = users.observe({ [weak self] changes in
+        networkService.getFriends { [weak self] users in
             guard let self = self else { return }
-            switch changes {
-            case .initial:
-                break
-            case .update:
-                self.friendSectionData()
-            case .error(let error):
-                fatalError("\(error)")
-            }
-        })
-//        (firstCharacter, sortedUsers) = sort(users)
+            self.loadIndicatorView.animate()
+            try? self.realmService.save(items: users, update: .modified)
+            let users = self.usersResults
+            (self.titleForSection, self.itemsForSection) = (self.sortedItemsForSection(users))
+//            (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(users))
+        }
         refreshControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         userNotificationObserves()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         notificationToken?.invalidate()
     }
 
-    func userNotificationObserves() {
-        notificationToken = users.observe({ [weak self] changes in
+    private func userNotificationObserves() {
+        notificationToken = usersResults.observe({ [weak self] changes in
             guard let self = self else { return }
             switch changes {
             case .initial:
@@ -72,50 +61,27 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     }
     
     // MARK: - Table view data source
-    private func friendSectionData() {
+    private func sortedItemsForSection(_ users: Results<User>) -> (titleForSection: [String], items: [[User]]) {
         var section = 0
-        
-        titleForSection.append(String(users[0].lastName.first ?? "я"))
-//        items.append([User]())
+        var titleForSection = [String]()
+        var items = [[User]]()
+        titleForSection.append(String(users[0].lastName.first ?? "!"))
         items.append([users[0]])
-//        items[section].append(users[0])
-        
         for row in 1..<users.count {
             let leftValue = users[row - 1].lastName.first
             let rightValue = users[row].lastName.first
             if leftValue == rightValue {
                 items[section].append(users[row])
-//                items.append([users[row]])
             } else {
                 titleForSection.append(String(rightValue!))
                 section += 1
-//                items.append([User]())
                 items.append([users[row]])
-//                items[section].append(users[row])
             }
         }
+        return (titleForSection, items)
     }
-//    private func sort(_ items: [User]) -> (characters: [Character], sortedItems: [Character: [User]]) {
-//        var characters = [Character]()
-//        var sortedItems = [Character: [User]]()
-//
-//        items.forEach { item in
-//            guard let character = item.lastName.first else { return }
-////            guard let character = item.firstName.first else { return }
-//            if var thisCharItems = sortedItems[character] {
-//                thisCharItems.append(item)
-//                sortedItems[character] = thisCharItems
-//            } else {
-//                sortedItems[character] = [item]
-//                characters.append(character)
-//            }
-//        }
-//        characters.sort()
-//
-//        return (characters, sortedItems)
-//    }
 
-    func refreshControl() {
+    private func refreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = .clear
         refreshControl?.tintColor = .clear
@@ -161,38 +127,36 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         //        tableView.deselectRow(at: selectIndexPath, animated: false)
         self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: self)
     }
-    
-    
+
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return searchAction ? nil : titleForSection
+        return titleForSection
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return searchAction ? 1 : titleForSection.count
-//        return 1
+        return titleForSection.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return searchAction ? nil : String(titleForSection[section])
+        return String(titleForSection[section])
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        return 10  // для проверки и настройки
-//        return users.count
-        return searchAction ? itemsFiltered.count : items[section].count
+        return searchAction ? itemsFiltered[section].count : itemsForSection[section].count
+//        return itemsForSection[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseIndentifier, for: indexPath) as? FriendCell else { return UITableViewCell() }
-        
         let section = indexPath.section
         let row = indexPath.row
-//        let user = users[indexPath.row]
-        let user = searchAction ? itemsFiltered[row] : items[section][row]
-        
+        let user = searchAction ? itemsFiltered[section][row] : itemsForSection[section][row]
+//        let user = itemsForSection[section][row]
         cell.friendNameLabel.text = user.firstName + " " + user.lastName
         cell.friendImageView.kf.setImage(with: URL(string: user.avatarUrl))
+        cell.avatarTappedHandler = { [weak self] in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: Any?.self)
+        }
 //        cell.friendImageView.kf.setImage(with: user.avatarUrl)
         
         //aнимация
@@ -200,7 +164,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 ////        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
 //        cell.layer.transform = rotationTransform
 //        cell.alpha = 0.5
-//
 //        UIView.animate(withDuration: 0.3) {
 //            cell.layer.transform = CATransform3DIdentity
 //            cell.alpha = 1.0
@@ -209,34 +172,21 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         //aнимация
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -100, 10, 0) // 1 вариант
         let rotationTransform = CATransform3DMakeTranslation(-100, 10, 0) // 2 вариант
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
         cell.layer.transform = rotationTransform
         cell.alpha = 0.5
-        
         UIView.animate(withDuration: 0.5) {
             cell.layer.transform = CATransform3DIdentity
             cell.alpha = 1.0
         }
     }
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     // Override to support editing the table view.
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {
-//
-////            users.remove(at: indexPath.row)
 //            items[indexPath.section].remove(at: indexPath.row)
 //            tableView.deleteRows(at: [indexPath], with: .fade)
 //        }
@@ -247,17 +197,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         if segue.identifier == "toFriendsFotoViewController",
             let friendFotoController = segue.destination as? FriendsFotoViewController,
             let indexPath = tableView.indexPathForSelectedRow {
-            
             let section = indexPath.section
             let row = indexPath.row
-//            let nameUser = users[indexPath.row]
-//            let nameUser = items[indexPath.section][indexPath.row]
-//            friendFotoController.friendNameForTitle = nameUser.nameUser
-//            friendFotoController.friendFotoForImage = nameUser.imageUser
-            
-//            let user = users[indexPath.row]
-//            let user = items[section][row]
-            let user = searchAction ? itemsFiltered[row] : items[section][row]
+            let user = searchAction ? itemsFiltered[section][row] : itemsForSection[section][row]
             friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
             friendFotoController.friendFotoForImage = user.avatarUrl
             friendFotoController.idOwner = user.idFriend
@@ -266,11 +208,17 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     // MARK: SeachBar navigation
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchAction = searchText.count == 0 ? false : true
-//        itemsFiltered = users.filter { $0.nameUser.lowercased().contains(searchText.lowercased())}
-        itemsFiltered = users.filter { ($0.firstName + $0.lastName).lowercased().contains(searchText.lowercased())}
-        self.tableView.reloadData()
+        let searchPredicate = NSPredicate(format: "(lastName CONTAINS[cd] %@) OR (firstName CONTAINS[cd] %@)", searchText.lowercased(), searchText.lowercased())
+        let searchResultsText = usersResults.filter(searchPredicate)
+        if searchAction && searchResultsText.count > 0 {
+            (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(searchResultsText))
+            self.tableView.reloadData()
+        } else if searchText.count == 0 {
+            (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(usersResults))
+            self.tableView.reloadData()
+        }
+//        self.tableView.reloadData()
      }
     
     // функция приводит к ошибке при наличии секции
@@ -280,6 +228,8 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchAction = false
+        (self.titleForSection, self.itemsForSection) = (self.sortedItemsForSection(usersResults))
+//        (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(usersResults))
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -290,25 +240,19 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         searchAction = false
     }
     
-    
      // эксперимент 1
 //    override func viewWillAppear(_ animated: Bool) {
 //        animateTable()
 //    }
-//
 //    func animateTable() {
 //        tableView.reloadData()
-//
 //        let cells = tableView.visibleCells
 //        let tableHeight: CGFloat = tableView.bounds.size.height
-//
 //        for i in cells {
 //            let cell: UITableViewCell = i as UITableViewCell
 //            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
 //        }
-//
 //        var index = 0
-//
 //        for a in cells {
 //            let cell: UITableViewCell = a as UITableViewCell
 //            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
@@ -316,9 +260,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 ////            UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
 ////                cell.transform = CGAffineTransformMakeTranslation(0, 0);
 ////            }, completion: nil)
-//
 //            index += 1
 //        }
 //    }
-    
 }

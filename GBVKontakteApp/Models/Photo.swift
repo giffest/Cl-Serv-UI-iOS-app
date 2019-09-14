@@ -29,7 +29,6 @@ class Photo: Object {
         self.userLikesPhoto = json["likes"]["user_likes"].intValue
         self.idPhoto = json["id"].intValue
         self.commentsPhoto = json["comments"]["count"].intValue
-        
         let sizes = json["sizes"].arrayValue
         if let zSize = sizes.filter({ $0["type"] == "z" }).first {
             self.photoUrl = zSize["url"].stringValue
@@ -39,8 +38,7 @@ class Photo: Object {
             self.photoUrl = zSize["url"].stringValue
         } else {
             self.photoUrl = json["sizes"][0]["url"].stringValue
-        }
-    
+        }    
         self.id = String(owner) + "_" + String(idPhoto)
     }
     
