@@ -114,17 +114,25 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Navigation
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-        if let controller = segue.source as? FindGroupViewController,
-            let indexPath = controller.tableView.indexPathForSelectedRow {
-            let group = controller.groups[indexPath.row]
-            guard groups!.contains(where: { $0.name == group.name } ) else { return }
-//            groups.append(group) // необходим реализовать функцию добавление группы
-//            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
-//            groups.sorted(byKeyPath: "name")
-            let newIndexPath = IndexPath(item: groups!.count - 1, section: 0)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-            tableView.reloadData()
+        let alertVC = UIAlertController(title: "Add group", message: "Do you want add selected group?", preferredStyle: .alert)
+        let cancleAction = UIAlertAction(title: "No", style: .cancel)
+        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            if let controller = segue.source as? FindGroupViewController,
+                let indexPath = controller.tableView.indexPathForSelectedRow {
+                let group = controller.groups[indexPath.row]
+                guard self.groups!.contains(where: { $0.name == group.name }) else { return }
+                //            groups.append(group) // необходим реализовать функцию добавление группы
+                //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
+                //            groups.sorted(byKeyPath: "name")
+                let newIndexPath = IndexPath(item: self.groups!.count - 1, section: 0)
+                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                self.tableView.reloadData()
+            }
         }
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancleAction)
+        present(alertVC, animated: true, completion: nil)
     }
     
     // MARK: SeachBar navigation
