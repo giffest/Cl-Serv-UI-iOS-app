@@ -114,7 +114,7 @@ class NetworkService {
                     let json = JSON(value)
                     let groupsJSONs = json["response"]["items"].arrayValue
                     let groups = groupsJSONs.map { Group($0) }
-                    try? self.self.realmService.save(items: groups, update: .all)
+                    try? self.self.realmService.save(items: groups, update: .modified)
                 case .failure(let error):
                     print(error)
                 }

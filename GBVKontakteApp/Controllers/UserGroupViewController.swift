@@ -15,7 +15,8 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     let networkService = NetworkService()
     
     private var notificationToken: NotificationToken?
-    private var groups: Results<Group>?
+//    private var groups: Results<Group>?
+    private lazy var groups = try! Realm().objects(Group.self)
     var itemsFiltered = [Group]()
     var searchAction = false
     
@@ -43,13 +44,15 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     func userGetGroups() {
         guard let realm = try? Realm() else { return }
         groups = realm.objects(Group.self).sorted(byKeyPath: "name")
-        notificationToken = groups?.observe({ [weak self] changes in
+        notificationToken = groups.observe({ [weak self] changes in
             guard let self = self else { return }
             switch changes {
             case .initial:
                 self.tableView.reloadData()
-            case .update(_, let deletions, let insertions, let modifications):
-                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+//            case .update(_, let deletions, let insertions, let modifications):
+            case .update:
+//                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+                self.tableView.reloadData()
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -78,14 +81,14 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 //    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchAction ? itemsFiltered.count : groups?.count ?? 1
+        return searchAction ? itemsFiltered.count : groups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
-        let group = searchAction ? itemsFiltered[indexPath.row] : groups?[indexPath.row]
-        cell.groupNameLabel.text = group?.name
-        cell.groupImageView.kf.setImage(with: URL(string: group?.avatarUrl ?? ""))
+        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+        cell.groupNameLabel.text = group.name
+        cell.groupImageView.kf.setImage(with: URL(string: group.avatarUrl))
         return cell
     }
 
@@ -104,6 +107,8 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let groupDel = groups[indexPath.row]
+            try? RealmService().deleteItem(item: groupDel)
 //            groups.remove(at: indexPath.row) // необходимо реализовать функцию удаления из базы
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -114,31 +119,45 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Navigation
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-        let alertVC = UIAlertController(title: "Add group", message: "Do you want add selected group?", preferredStyle: .alert)
-        let cancleAction = UIAlertAction(title: "No", style: .cancel)
-        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
-            guard let self = self else { return }
+//        let alertVC = UIAlertController(title: "Add group", message: "Do you want add selected group?", preferredStyle: .alert)
+//        let cancleAction = UIAlertAction(title: "No", style: .cancel)
+//        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+//            guard let self = self else { return }
             if let controller = segue.source as? FindGroupViewController,
                 let indexPath = controller.tableView.indexPathForSelectedRow {
-                let group = controller.groups[indexPath.row]
-                guard self.groups!.contains(where: { $0.name == group.name }) else { return }
+                let groupAdd = controller.groups[indexPath.row]
+//                let groupMy = try! Realm().objects(Group.self)
+                guard !self.groups.contains(where: { $0.name == groupAdd.name }) else { return }
+//                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
+//                do {
+//                    let realm = try Realm(configuration: config)
+//                    realm.beginWrite()
+//                    realm.add(groupAdd, update: .modified)
+//                    try realm.commitWrite()
+//                } catch {
+//                    print(error)
+//                }
+                try? RealmService().saveItem(item: groupAdd, update: .modified)
                 //            groups.append(group) // необходим реализовать функцию добавление группы
                 //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
                 //            groups.sorted(byKeyPath: "name")
-                let newIndexPath = IndexPath(item: self.groups!.count - 1, section: 0)
+                let newIndexPath = IndexPath(item: self.groups.count - 1, section: 0)
                 self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
+//                self.performSegue(withIdentifier: "Groups", sender: Any?.self)
             }
-        }
-        alertVC.addAction(okAction)
-        alertVC.addAction(cancleAction)
-        present(alertVC, animated: true, completion: nil)
+//        }
+//        alertVC.addAction(okAction)
+//        alertVC.addAction(cancleAction)
+//        present(alertVC, animated: true)
+//        tableView.reloadData()
     }
+    
     
     // MARK: SeachBar navigation
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchAction = searchText.count == 0 ? false : true
-        itemsFiltered = groups!.filter { $0.name.lowercased().contains(searchText.lowercased())}
+        itemsFiltered = groups.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         tableView.reloadData()
     }
     
