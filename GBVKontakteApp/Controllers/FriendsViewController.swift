@@ -39,6 +39,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         userNotificationObserves()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {

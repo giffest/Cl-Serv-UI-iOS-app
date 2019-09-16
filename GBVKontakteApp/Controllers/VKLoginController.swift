@@ -59,7 +59,7 @@ extension VKLoginController: WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
-        print("Параметры авторизации:\n\(params)")
+//        print("Параметры авторизации:\n\(params)")
 //        let token = params["access_token"]
         guard let token = params["access_token"],
             let userIdString = params["user_id"],

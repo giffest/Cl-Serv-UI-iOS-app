@@ -164,8 +164,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="bbu-4y-bYJ">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="поиск" id="bbu-4y-bYJ">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <textInputTraits key="textInputTraits"/>
@@ -175,7 +175,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="75" id="ffc-PA-1D4" customClass="FriendCell" customModule="GBVKontakteApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffc-PA-1D4" id="WMA-dB-4iu">
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="74.5"/>
@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="51Y-dx-shQ"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="4BU-tF-bvF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -633,7 +633,6 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="2ss-oj-sSR" secondAttribute="trailing" id="7fs-Do-541"/>
                                                 <constraint firstAttribute="width" constant="70" id="GFy-AS-Dld"/>
@@ -642,18 +641,6 @@
                                                 <constraint firstItem="2ss-oj-sSR" firstAttribute="top" secondItem="sQT-aF-DLh" secondAttribute="top" id="wIQ-UA-ja2"/>
                                                 <constraint firstAttribute="width" secondItem="sQT-aF-DLh" secondAttribute="height" multiplier="1:1" id="z2y-Ll-85R"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageBorderWidth">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="imageCornerRadius">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="ГубкаБоб"/>
-                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="customImageView" destination="2ss-oj-sSR" id="SbD-VF-Pce"/>
                                             </connections>

@@ -109,7 +109,6 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
         if editingStyle == .delete {
             let groupDel = groups[indexPath.row]
             try? RealmService().deleteItem(item: groupDel)
-//            groups.remove(at: indexPath.row) // необходимо реализовать функцию удаления из базы
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -119,40 +118,24 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Navigation
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-//        let alertVC = UIAlertController(title: "Add group", message: "Do you want add selected group?", preferredStyle: .alert)
-//        let cancleAction = UIAlertAction(title: "No", style: .cancel)
-//        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
-//            guard let self = self else { return }
+        let alertVC = UIAlertController(title: "Add group", message: "Do you want add selected group?", preferredStyle: .alert)
+        let cancleAction = UIAlertAction(title: "No", style: .cancel)
+        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
             if let controller = segue.source as? FindGroupViewController,
                 let indexPath = controller.tableView.indexPathForSelectedRow {
                 let groupAdd = controller.groups[indexPath.row]
-//                let groupMy = try! Realm().objects(Group.self)
                 guard !self.groups.contains(where: { $0.name == groupAdd.name }) else { return }
-//                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
-//                do {
-//                    let realm = try Realm(configuration: config)
-//                    realm.beginWrite()
-//                    realm.add(groupAdd, update: .modified)
-//                    try realm.commitWrite()
-//                } catch {
-//                    print(error)
-//                }
                 try? RealmService().saveItem(item: groupAdd, update: .modified)
-                //            groups.append(group) // необходим реализовать функцию добавление группы
-                //            groups.sorted(by: {$0.nameGroup < $1.nameGroup} )
-                //            groups.sorted(byKeyPath: "name")
-                let newIndexPath = IndexPath(item: self.groups.count - 1, section: 0)
-                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                self.tableView.reloadData()
-//                self.performSegue(withIdentifier: "Groups", sender: Any?.self)
+//                let newIndexPath = IndexPath(item: self.groups.count - 1, section: 0)
+//                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                self.navigationController?.popToRootViewController(animated: true)
             }
-//        }
-//        alertVC.addAction(okAction)
-//        alertVC.addAction(cancleAction)
-//        present(alertVC, animated: true)
-//        tableView.reloadData()
+        }
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancleAction)
+        present(alertVC, animated: true)
     }
-    
     
     // MARK: SeachBar navigation
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -168,6 +151,7 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchAction = false
+        searchBar.text = ""
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

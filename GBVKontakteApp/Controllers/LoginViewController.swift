@@ -17,8 +17,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     //MARK: - Actions
-    @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwindToLoginVC(unwindSegue: UIStoryboardSegue) {
         print("I returned")
+        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "unwindToLoginVCWithUnwindSegue", sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
