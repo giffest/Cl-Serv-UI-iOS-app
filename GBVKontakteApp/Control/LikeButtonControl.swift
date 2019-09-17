@@ -12,14 +12,10 @@ import UIKit
 class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
-    private var photosUI = [Photo]()
 //    var idOwner = 3939590
-//    var idOwner = 0
 //    var idOwner = Session.shared.ownerid
 //    var idPhotoOwner = 456239081
-//    var idPhotoOwner = 0
 //    var idPhotoOwner = Session.shared.photoid
-//    var idPhoto = 0
     
     @IBOutlet weak var likeLebel: UILabel!
     
@@ -28,21 +24,19 @@ class LikeButtonControl: UIControl {
     @IBInspectable var textLikeColor: UIColor = .red
     @IBInspectable var textDisLikeColor: UIColor = .darkGray
     var backColor: UIColor = .lightGray
-//    var likedCount = Int.random(in: 1...999)
     var likedCount: Int = 0
-    var likedState = Bool.random()
-//    var likedState: Bool = false // необходимо переделать
+//    var likedState = Bool.random()
+    var userLiked: Int = 0
+    var likedState = false // необходимо переделать
     var scaleChange: CGFloat = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-//        likesCountPhoto()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        likesCountPhoto()
         setupView()
     }
     
@@ -64,55 +58,40 @@ class LikeButtonControl: UIControl {
         
 //        likeLebel.textColor = UIColor.red
 //        likeLebel.text = String(likedCount)
-//        likesCountPhoto()
-
-        networkService.getPhotoId(idOwner: Session.shared.ownerid) { [weak self] (photoId) in
-            Session.shared.photoid = photoId
-            self?.networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: photoId) { (likesPhoto) in
-                self?.likeLebel.text = String(likesPhoto)
-            }
-        }
-//        networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: Session.shared.photoid) { likesJSON in
-//            self.likeLebel.text = String(likesJSON)
-//        }
-//        networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: Session.shared.photoid) { [weak self] photos in
-//            guard let self = self else { return }
-//            self.photosUI = photos
-//            self.likeLebel.text = String(photos[0].likesPhoto)
-//            if self!.photosUI[0].userLikesPhoto == 1 {
-//                self?.likedState = true
-//            }
-//            else {
-//                self?.likedState = false
-//            }
-//        }
+        likesPhotoGet()
         
-        //likedState ? path.fill() : path.stroke()
+//        likedState ? path.fill() : path.stroke()
         if likedState {
-            likeLebel.textColor = textLikeColor
+//            likeLebel.textColor = textLikeColor
             path.fill()
         } else {
-            likeLebel.textColor = textDisLikeColor
+//            likeLebel.textColor = textDisLikeColor
             path.stroke()
         }
 //        likeLebel.text = String(likedCount)
     }
     
-//    func likesCountPhoto() {
-//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] (likedCount) in
-//            self?.likedCount = likedCount
-//            self?.likeLebel.text = String(likedCount)
-//        }
-//    }
-//    func likesCountPhoto() {
-//        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] photos in
-//            self?.photosUI = photos
-//            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
-//        }
-//    }
+    func likesPhotoGet() {
+        networkService.getPhotoId(idOwner: Session.shared.ownerid) { [weak self] (photoId) in
+            guard let self = self else { return }
+            Session.shared.photoid = photoId
+            self.networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: photoId) { [weak self] (likesPhoto, userLike) in
+                guard let self = self else { return }
+                self.likeLebel.text = String(likesPhoto)
+//                self.likedState = userLike == 1 ? true : false
+                self.userLiked = userLike
+                if userLike == 1 {
+                    self.likedState = true
+                    self.likeLebel.textColor = self.textLikeColor
+                } else {
+                    self.likedState = false
+                    self.likeLebel.textColor = self.textDisLikeColor
+                }
+            }
+        }
+    }
     
     func setupView() {
-        
         self.addTarget(self, action: #selector(likeChangeState), for: .touchUpInside)
         
         super.backgroundColor = backColor
