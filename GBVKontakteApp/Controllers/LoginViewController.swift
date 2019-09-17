@@ -19,10 +19,9 @@ class LoginViewController: UIViewController {
     //MARK: - Actions
     @IBAction func unwindToLoginVC(unwindSegue: UIStoryboardSegue) {
         print("I returned")
-        self.dismiss(animated: true, completion: nil)
-        self.performSegue(withIdentifier: "unwindToLoginVCWithUnwindSegue", sender: self)
+        dismiss(animated: true, completion: nil)
+//        performSegue(withIdentifier: "unwindToLoginV", sender: nil)
     }
-    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         checkTextFields()
 //        if usernameTextField.text == "",
@@ -34,13 +33,16 @@ class LoginViewController: UIViewController {
 //            print("Неверный логин или пароль.")
 //        }
     }
+    @IBAction func loginVkButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "toVKLoginController", sender: nil)
+    }
     
-    func checkTextFields() {
+    private func checkTextFields() {
         if usernameTextField.text == "",
             passwordTextField.text == "" {
             print("Успешный вход.")
-//            performSegue(withIdentifier: "toTabBarController", sender: nil)
-            performSegue(withIdentifier: "toVKLoginController", sender: nil)
+            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//            performSegue(withIdentifier: "toVKLoginController", sender: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Incorrect login or password", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) {_ in

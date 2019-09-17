@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="baf-lF-GRP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39t-YC-Omn">
-                                        <rect key="frame" x="158.5" y="86" width="97.5" height="24"/>
+                                        <rect key="frame" x="158" y="86" width="98" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXN-s4-Ych">
-                                        <rect key="frame" x="162" y="260" width="90" height="36"/>
+                                        <rect key="frame" x="152" y="260" width="110" height="36"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="EkV-TI-Phb"/>
@@ -72,6 +72,22 @@
                                         </state>
                                         <connections>
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F2U-ok-CNl"/>
+                                            <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="Nz6-Mm-cIK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14G-gq-M6B">
+                                        <rect key="frame" x="152" y="360" width="110" height="36"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="OLn-Sv-l86"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="fCY-IG-hby"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Log In VK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginVkButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e7a-Hs-Qys"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -88,8 +104,11 @@
                                     <constraint firstItem="GXN-s4-Ych" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="Vry-qj-YtF"/>
                                     <constraint firstItem="ChB-ao-sfB" firstAttribute="top" secondItem="g1n-fD-o85" secondAttribute="bottom" constant="8" id="bFw-Ws-mNW"/>
                                     <constraint firstItem="ZOg-i7-Sm3" firstAttribute="top" secondItem="Lu7-KY-2lP" secondAttribute="top" constant="15" id="oh2-x5-n2g"/>
+                                    <constraint firstItem="14G-gq-M6B" firstAttribute="centerX" secondItem="GXN-s4-Ych" secondAttribute="centerX" id="rQK-zs-z4Z"/>
                                     <constraint firstItem="39t-YC-Omn" firstAttribute="centerX" secondItem="Lu7-KY-2lP" secondAttribute="centerX" id="spP-22-hfz"/>
                                     <constraint firstItem="GXN-s4-Ych" firstAttribute="top" secondItem="ChB-ao-sfB" secondAttribute="bottom" constant="25" id="tQH-1y-Bxo"/>
+                                    <constraint firstItem="14G-gq-M6B" firstAttribute="leading" secondItem="GXN-s4-Ych" secondAttribute="leading" id="vTn-gY-JEh"/>
+                                    <constraint firstItem="14G-gq-M6B" firstAttribute="top" secondItem="GXN-s4-Ych" secondAttribute="bottom" constant="64" id="wxK-73-lWd"/>
                                     <constraint firstItem="39t-YC-Omn" firstAttribute="top" secondItem="ZOg-i7-Sm3" secondAttribute="bottom" constant="35" id="ypX-KK-Z0g"/>
                                 </constraints>
                             </scrollView>
@@ -112,24 +131,25 @@
                         <outlet property="scrollView" destination="Lu7-KY-2lP" id="RZh-CH-ASg"/>
                         <outlet property="titleLabel" destination="ZOg-i7-Sm3" id="rw4-jL-2vx"/>
                         <outlet property="usernameTextField" destination="oRz-YJ-22S" id="euC-Qr-499"/>
-                        <segue destination="baf-lF-GRP" kind="presentation" identifier="toVKLoginController" id="XPt-wC-gjJ"/>
+                        <segue destination="baf-lF-GRP" kind="presentation" identifier="toVKLoginController" id="Bwv-56-GRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="anm-1f-SRz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="688" y="499"/>
+            <point key="canvasLocation" x="715.94202898550725" y="498.88392857142856"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="6Oc-th-Os2">
             <objects>
                 <viewController id="baf-lF-GRP" customClass="VKLoginController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5uJ-4b-3Wh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWZ-f5-vVH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -138,23 +158,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3mH-z5-sJz" firstAttribute="bottom" secondItem="bWZ-f5-vVH" secondAttribute="bottom" id="aNp-h0-4yw"/>
-                            <constraint firstItem="bWZ-f5-vVH" firstAttribute="top" secondItem="3mH-z5-sJz" secondAttribute="top" id="abJ-sZ-yq6"/>
-                            <constraint firstItem="bWZ-f5-vVH" firstAttribute="leading" secondItem="3mH-z5-sJz" secondAttribute="leading" id="dct-TU-xGw"/>
-                            <constraint firstItem="3mH-z5-sJz" firstAttribute="trailing" secondItem="bWZ-f5-vVH" secondAttribute="trailing" id="sQH-ok-1Pi"/>
+                            <constraint firstAttribute="bottom" secondItem="bWZ-f5-vVH" secondAttribute="bottom" id="aNp-h0-4yw"/>
+                            <constraint firstItem="bWZ-f5-vVH" firstAttribute="top" secondItem="5uJ-4b-3Wh" secondAttribute="top" id="abJ-sZ-yq6"/>
+                            <constraint firstItem="bWZ-f5-vVH" firstAttribute="leading" secondItem="5uJ-4b-3Wh" secondAttribute="leading" id="dct-TU-xGw"/>
+                            <constraint firstAttribute="trailing" secondItem="bWZ-f5-vVH" secondAttribute="trailing" id="sQH-ok-1Pi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3mH-z5-sJz"/>
+                        <viewLayoutGuide key="safeArea" id="A3l-yY-Wf5"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="bWZ-f5-vVH" id="zci-se-Hfi"/>
-                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="hOM-EY-G04"/>
+                        <segue destination="iYn-YR-vn7" kind="presentation" identifier="toTabBarController" id="wuV-wn-Uhv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqC-LU-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="499"/>
+            <point key="canvasLocation" x="1457" y="499"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Q6I-eV-7Wh">
@@ -164,7 +185,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="поиск" id="bbu-4y-bYJ">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search" id="bbu-4y-bYJ">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -238,7 +259,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="nwp-9X-D4x">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fNo-4Y-pjN">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="4BU-tF-bvF"/>
+                                <segue destination="anm-1f-SRz" kind="unwind" identifier="unwindToLoginVC" unwindAction="unwindToLoginVCWithUnwindSegue:" id="Icb-eI-8vj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -276,8 +297,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-1L-Sia" customClass="LikeButtonControl" customModule="GBVKontakteApp" customModuleProvider="target">
                                             <rect key="frame" x="6" y="332" width="54" height="20"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
-                                                    <rect key="frame" x="30" y="2" width="24" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRw-p0-gfT">
+                                                    <rect key="frame" x="30" y="10" width="24" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="LG7-bc-mgO"/>
                                                     </constraints>
@@ -372,7 +393,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="M3O-FA-6RF">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search" id="M3O-FA-6RF">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -475,7 +496,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="tmx-xU-EhZ">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search" id="tmx-xU-EhZ">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -547,7 +568,7 @@
                     <navigationItem key="navigationItem" title="My Groups" id="kHX-vF-n30">
                         <barButtonItem key="leftBarButtonItem" title="Log Off" id="fhc-sM-xIq">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="WMh-z7-RfU"/>
+                                <segue destination="anm-1f-SRz" kind="unwind" identifier="unwindToLoginVC" unwindAction="unwindToLoginVCWithUnwindSegue:" id="r47-NH-oaq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEw-ZI-tqj">
@@ -565,7 +586,9 @@
         <scene sceneID="IQe-ut-l31">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Z4-HU-xnW" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="friend" landscapeImage="friend" largeContentSizeImage="friend" id="8TU-ue-08f"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friend" landscapeImage="friend" largeContentSizeImage="friend" id="8TU-ue-08f">
+                        <color key="badgeColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QhU-3V-EtE">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -584,7 +607,9 @@
         <scene sceneID="hfB-Pg-DKr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8pj-Zr-MI1" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" image="groups" landscapeImage="groups" largeContentSizeImage="groups" id="je9-8z-aAO"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="groups" landscapeImage="groups" largeContentSizeImage="groups" id="je9-8z-aAO">
+                        <color key="badgeColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lHM-Mw-Jdy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -765,7 +790,9 @@
         <scene sceneID="RP5-ry-LF9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fP-MB-NYu" customClass="CornerNavogationController" customModule="GBVKontakteApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="news" landscapeImage="news" largeContentSizeImage="news" selectedImage="news" id="zug-0e-KuY"/>
+                    <tabBarItem key="tabBarItem" title="News" image="news" landscapeImage="news" largeContentSizeImage="news" selectedImage="news" id="zug-0e-KuY">
+                        <color key="badgeColor" red="0.36499945589999999" green="0.65775687000000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rh9-Y9-KoZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -790,6 +817,6 @@
         <image name="ГубкаБобНовости" width="1000" height="555"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WMh-z7-RfU"/>
+        <segue reference="Nz6-Mm-cIK"/>
     </inferredMetricsTieBreakers>
 </document>

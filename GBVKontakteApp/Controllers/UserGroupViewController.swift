@@ -49,10 +49,12 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
             switch changes {
             case .initial:
                 self.tableView.reloadData()
+                self.tabBarController?.tabBar.items?[2].badgeValue = String(self.groups.count)
 //            case .update(_, let deletions, let insertions, let modifications):
             case .update:
 //                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
                 self.tableView.reloadData()
+                self.tabBarController?.tabBar.items?[2].badgeValue = String(self.groups.count)
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -141,6 +143,11 @@ class UserGroupViewController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchAction = searchText.count == 0 ? false : true
         itemsFiltered = groups.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        if searchAction {
+            self.tabBarController?.tabBar.items?[2].badgeValue = String(itemsFiltered.count)
+        } else {
+            self.tabBarController?.tabBar.items?[2].badgeValue = String(groups.count)
+        }
         tableView.reloadData()
     }
     

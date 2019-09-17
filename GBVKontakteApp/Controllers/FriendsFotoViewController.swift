@@ -19,13 +19,15 @@ class FriendsFotoViewController: UICollectionViewController {
     var friendNameForTitle: String = ""
     var friendFotoForImage: String = ""
 //    var friendFotoForImage: URL?
-    var idOwner = 0
-    var idPhotoOwner = 0
+//    var idOwner = 0
+//    var idPhotoOwner = 0
 //    var idPhotoOwner: (Int) -> Void
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = friendNameForTitle
+        
+//        networkService.getPhotoId(idOwner: Session.shared.ownerid)
 //        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
 //            self?.idPhotoOwner = photoId
 //        }
@@ -35,8 +37,8 @@ class FriendsFotoViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        networkService.getPhotoUser(idOwner: idOwner)
-        Session.shared.ownerid = idOwner
+        networkService.getPhotoUser(idOwner: Session.shared.ownerid)
+//        Session.shared.ownerid = idOwner
 //        Session.shared.photoid = idPhotoOwner
         view.addSubview(loadIndicatorView)
         loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +73,7 @@ class FriendsFotoViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAnimateViewController",
             let amimateViewController = segue.destination as? AnimateViewController {
-            amimateViewController.idOwner = idOwner
+            amimateViewController.idOwner = Session.shared.ownerid
         }
     }
 }

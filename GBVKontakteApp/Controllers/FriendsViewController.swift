@@ -32,6 +32,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let users = self.usersResults
             (self.titleForSection, self.itemsForSection) = (self.sortedItemsForSection(users))
 //            (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(users))
+//            self.tabBarController?.tabBar.items?[0].badgeValue = String(self.usersResults.count)
         }
         refreshControl()
     }
@@ -39,7 +40,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         userNotificationObserves()
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -53,8 +53,10 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             switch changes {
             case .initial:
                 self.tableView.reloadData()
+                self.tabBarController?.tabBar.items?[0].badgeValue = String(self.usersResults.count)
             case .update:
                 self.tableView.reloadData()
+                self.tabBarController?.tabBar.items?[0].badgeValue = String(self.usersResults.count)
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -203,7 +205,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             let user = searchAction ? itemsFiltered[section][row] : itemsForSection[section][row]
             friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
             friendFotoController.friendFotoForImage = user.avatarUrl
-            friendFotoController.idOwner = user.idFriend
+            Session.shared.ownerid = user.idFriend
+//            friendFotoController.idOwner = user.idFriend
+//            networkService.getPhotoId(idOwner: user.idFriend)
             }
      }
     
@@ -212,11 +216,14 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         searchAction = searchText.count == 0 ? false : true
         let searchPredicate = NSPredicate(format: "(lastName CONTAINS[cd] %@) OR (firstName CONTAINS[cd] %@)", searchText.lowercased(), searchText.lowercased())
         let searchResultsText = usersResults.filter(searchPredicate)
+        self.tabBarController?.tabBar.items?[0].badgeValue = String(searchResultsText.count)
         if searchAction && searchResultsText.count > 0 {
             (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(searchResultsText))
+            self.tabBarController?.tabBar.items?[0].badgeValue = String(searchResultsText.count)
             self.tableView.reloadData()
-        } else if searchText.count == 0 {
+        } else if searchText.count == 0 || searchResultsText.count == 0 {
             (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(usersResults))
+            self.tabBarController?.tabBar.items?[0].badgeValue = String(usersResults.count)
             self.tableView.reloadData()
         }
 //        self.tableView.reloadData()

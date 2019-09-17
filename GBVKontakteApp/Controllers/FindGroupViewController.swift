@@ -59,6 +59,11 @@ class FindGroupViewController: UITableViewController, UISearchBarDelegate {
             self.itemsFiltered = groups
             self.tableView.reloadData()
         }
+//        if searchAction {
+//            self.tabBarController?.tabBar.items?[2].badgeValue = String(itemsFiltered.count)
+//        } else {
+//            self.tabBarController?.tabBar.items?[2].badgeValue = String(groups.count)
+//        }
         searchAction = searchText.count == 0 ? false : true
     }
     

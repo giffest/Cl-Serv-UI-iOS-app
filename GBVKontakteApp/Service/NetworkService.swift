@@ -147,8 +147,9 @@ class NetworkService {
     }
     
     //MARK: - Methods Likes
-//    func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
-    func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping ([Photo]) -> Void) {
+//    func likesCount(idOwner: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
+    func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping (_ likesJSON: Int) -> Void) {
+//    func likesCount(idOwner: Int, idPhoto: Int, completion: @escaping ([Photo]) -> Void) {
         let method = "photos.getById"
         let photoStr: String = String(idOwner) + "_" + String(idPhoto)
         let parameters: Parameters = [
@@ -162,15 +163,15 @@ class NetworkService {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-//                    let likesJSON = json["response"][0]["likes"]["count"].intValue
-//                    completion(likesJSON)
-                    let photosJSONs = json["response"].arrayValue
-                    let photos = photosJSONs.map { Photo($0, owner: idOwner) }
-                    completion(photos)
+                    let likesJSON = json["response"][0]["likes"]["count"].intValue
+                    completion(likesJSON)
+//                    let photosJSONs = json["response"].arrayValue
+//                    let photos = photosJSONs.map { Photo($0, owner: idOwner) }
+//                    completion(photos)
                 case .failure(let error):
                     print(error)
-//                    completion(0)
-                    completion([])
+                    completion(0)
+//                    completion([])
                 }
         }
     }

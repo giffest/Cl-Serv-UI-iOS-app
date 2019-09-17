@@ -13,9 +13,11 @@ class LikeButtonControl: UIControl {
     
     let networkService = NetworkService()
     private var photosUI = [Photo]()
-    var idOwner = 3939590
+//    var idOwner = 3939590
+//    var idOwner = 0
 //    var idOwner = Session.shared.ownerid
-    var idPhotoOwner = 456239081
+//    var idPhotoOwner = 456239081
+//    var idPhotoOwner = 0
 //    var idPhotoOwner = Session.shared.photoid
 //    var idPhoto = 0
     
@@ -63,17 +65,27 @@ class LikeButtonControl: UIControl {
 //        likeLebel.textColor = UIColor.red
 //        likeLebel.text = String(likedCount)
 //        likesCountPhoto()
-        
-        networkService.likesCount(idOwner: idOwner, idPhoto: idPhotoOwner) { [weak self] photos in
-            self?.photosUI = photos
-            self?.likeLebel.text = String(self!.photosUI[0].likesPhoto)
+
+        networkService.getPhotoId(idOwner: Session.shared.ownerid) { [weak self] (photoId) in
+            Session.shared.photoid = photoId
+            self?.networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: photoId) { (likesPhoto) in
+                self?.likeLebel.text = String(likesPhoto)
+            }
+        }
+//        networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: Session.shared.photoid) { likesJSON in
+//            self.likeLebel.text = String(likesJSON)
+//        }
+//        networkService.likesCount(idOwner: Session.shared.ownerid, idPhoto: Session.shared.photoid) { [weak self] photos in
+//            guard let self = self else { return }
+//            self.photosUI = photos
+//            self.likeLebel.text = String(photos[0].likesPhoto)
 //            if self!.photosUI[0].userLikesPhoto == 1 {
 //                self?.likedState = true
 //            }
 //            else {
 //                self?.likedState = false
 //            }
-        }
+//        }
         
         //likedState ? path.fill() : path.stroke()
         if likedState {
@@ -83,7 +95,7 @@ class LikeButtonControl: UIControl {
             likeLebel.textColor = textDisLikeColor
             path.stroke()
         }
-        likeLebel.text = String(likedCount)
+//        likeLebel.text = String(likedCount)
     }
     
 //    func likesCountPhoto() {
@@ -101,14 +113,14 @@ class LikeButtonControl: UIControl {
     
     func setupView() {
         
-        self.addTarget(self, action: #selector(changeState), for: .touchUpInside)
+        self.addTarget(self, action: #selector(likeChangeState), for: .touchUpInside)
         
         super.backgroundColor = backColor
         self.layer.cornerRadius = min(self.bounds.height, self.bounds.width) / 5
         clipsToBounds = true
     }
     
-    @objc func changeState() {
+    @objc func likeChangeState() {
         if likedState {
             likedCount -= 1
             scaleChange = 0.9
