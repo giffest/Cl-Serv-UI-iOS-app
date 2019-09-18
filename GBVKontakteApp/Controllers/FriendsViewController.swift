@@ -12,6 +12,9 @@ import RealmSwift
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
+    var searchController: UISearchController! = nil
+//    fileprivate var searchController: UISearchController!
+    
     let networkService = NetworkService()
     let loadIndicatorView = LoadIndicatorView()
     let realmService = RealmService()
@@ -22,6 +25,8 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     var itemsForSection = [[User]]()
     var itemsFiltered = [[User]]()
     var searchAction = false
+    
+    @IBOutlet weak var searchBarContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //            self.tabBarController?.tabBar.items?[0].badgeValue = String(self.usersResults.count)
         }
         refreshControl()
+        setSearchController()
+//        searchController = UISearchController(searchResultsController: nil)
+//        self.searchBarContainer.addSubview(searchController.searchBar)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +53,14 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         notificationToken?.invalidate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        var frame = searchController.searchBar.bounds
+//        frame.size.width = self.view.bounds.size.width
+//        searchController.searchBar.frame = frame
+        positionSearchController()
     }
 
     private func userNotificationObserves() {
@@ -83,7 +99,79 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         }
         return (titleForSection, items)
     }
+    
+    //MARK:- Custom SearchBar
+    fileprivate func setSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+//        self.searchBarContainer.addSubview(searchController.searchBar)
+        searchController.delegate = self as? UISearchControllerDelegate
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 414, height: 56)
+        searchController.searchBar.placeholder = "Search..."
+        searchController.searchBar.returnKeyType = .done
+        searchController.dimsBackgroundDuringPresentation = false // затенение
+        searchController.hidesNavigationBarDuringPresentation = true // скрыть бар навигации
+        searchController.searchBar.endEditing(true)
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.barTintColor = .lightGray
+//        searchController.searchBar.barTintColor = UIColor(red: 93.0 / 255.0, green: 168.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
+        searchController.searchBar.isHidden = false // ?
+//        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.isTranslucent = false
+//        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        
+        // изменение цвета текста и курсора поиска
+        let topView: UIView = searchController.searchBar.subviews[0] as UIView
+        for subView: UIView in topView.subviews {
+            if let searchField = subView as? UITextField {
+                searchField.tintColor = UIColor.blue
+                searchField.textColor = UIColor(red: 93.0 / 255.0, green: 168.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
+            }
+        }
 
+//        searchFieldMove()
+        
+//        definesPresentationContext = true
+//        navigationItem.hidesBackButton = true
+        
+        positionSearchController()
+    }
+    
+    func searchFieldMove() {
+        let topView: UIView = searchController.searchBar.subviews[0] as UIView
+        var searchField: UITextField!
+        for subView in topView.subviews {
+            if subView is UITextField {
+                searchField = (subView as! UITextField)
+                break
+            }
+        }
+        if ((searchField) != nil) {
+            let leftview = searchField.leftView as! UIImageView
+            let magnifyimage = leftview.image
+            let imageView = UIImageView(frame: CGRect(x: searchController.searchBar.frame.width/3, y: (searchController.searchBar.frame.height)/3, width: 15, height: 15))
+            imageView.image = magnifyimage
+            searchField.leftView = UIView(frame: CGRect(x: 0 , y: 0, width: searchController.searchBar.frame.width/3, height: 20) )
+            searchField.leftViewMode = .unlessEditing
+            searchField.superview?.addSubview(imageView)
+        }
+    }
+    
+    fileprivate func positionSearchController() {
+        searchBarContainer.addSubview(searchController.searchBar)
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = true
+        searchController.searchBar.leftAnchor.constraint(equalTo: searchBarContainer.leftAnchor).isActive = true
+        searchController.searchBar.rightAnchor.constraint(equalTo: searchBarContainer.rightAnchor).isActive = true
+        searchController.searchBar.topAnchor.constraint(equalTo: searchBarContainer.topAnchor).isActive = true
+        searchController.searchBar.bottomAnchor.constraint(equalTo: searchBarContainer.bottomAnchor).isActive = true
+//        var frame = searchController.searchBar.bounds
+//        frame.size.width = self.view.bounds.size.width
+//        searchController.searchBar.frame = frame
+    }
+    
+    // MARK: Animation control
     private func refreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = .clear
@@ -121,16 +209,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        replicatorLayer.animation(forKey: <#T##String#>)
     }
     
-    //    var someIndex = 0
-    func toPhotoBoard() {
-        //        let selectIndexPath = IndexPath(item: someIndex, section: 0)
-        //        collectionView.selectItem(at: selectIndexPath, animated: false, scrollPosition: [])
-        print("Нажата иконка.")
-        //        let selectIndexPath = IndexPath(index: someIndex)
-        //        tableView.deselectRow(at: selectIndexPath, animated: false)
-        self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: self)
-    }
-
+    // MARK: TableView config
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return titleForSection
     }
@@ -206,27 +285,41 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
             friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
             friendFotoController.friendFotoForImage = user.avatarUrl
             Session.shared.ownerid = user.idFriend
-//            friendFotoController.idOwner = user.idFriend
-//            networkService.getPhotoId(idOwner: user.idFriend)
+            searchController.searchBar.text = ""
+            searchController.dismiss(animated: false)
+            setSearchController()
             }
      }
+    //    var someIndex = 0
+    func toPhotoBoard() {
+        //        let selectIndexPath = IndexPath(item: someIndex, section: 0)
+        //        collectionView.selectItem(at: selectIndexPath, animated: false, scrollPosition: [])
+        print("Нажата иконка.")
+        //        let selectIndexPath = IndexPath(index: someIndex)
+        //        tableView.deselectRow(at: selectIndexPath, animated: false)
+        self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: self)
+    }
     
     // MARK: SeachBar navigation
+    var countBadge: Int = 0
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchAction = searchText.count == 0 ? false : true
         let searchPredicate = NSPredicate(format: "(lastName CONTAINS[cd] %@) OR (firstName CONTAINS[cd] %@)", searchText.lowercased(), searchText.lowercased())
         let searchResultsText = usersResults.filter(searchPredicate)
-        self.tabBarController?.tabBar.items?[0].badgeValue = String(searchResultsText.count)
-        if searchAction && searchResultsText.count > 0 {
+//        self.tabBarController?.tabBar.items?[0].badgeValue = String(searchResultsText.count)
+        if (searchAction && searchResultsText.count > 0) {
             (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(searchResultsText))
-            self.tabBarController?.tabBar.items?[0].badgeValue = String(searchResultsText.count)
+            countBadge = searchResultsText.count
+            self.tabBarController?.tabBar.items?[0].badgeValue = String(countBadge)
             self.tableView.reloadData()
-        } else if searchText.count == 0 || searchResultsText.count == 0 {
+        } else if searchText.count == 0 {
             (self.titleForSection, self.itemsFiltered) = (self.sortedItemsForSection(usersResults))
             self.tabBarController?.tabBar.items?[0].badgeValue = String(usersResults.count)
             self.tableView.reloadData()
+        } else if (searchText.count != 0 && searchResultsText.count == 0) {
+            self.tabBarController?.tabBar.items?[0].badgeValue = String(countBadge)
+            return
         }
-//        self.tableView.reloadData()
      }
     
     // функция приводит к ошибке при наличии секции
@@ -242,6 +335,9 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchAction = false
+        searchBar.text = ""
+        (self.titleForSection, self.itemsForSection) = (self.sortedItemsForSection(usersResults))
+        self.tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

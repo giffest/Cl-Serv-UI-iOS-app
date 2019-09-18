@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     
     //MARK: - Actions
     @IBAction func unwindToLoginVC(unwindSegue: UIStoryboardSegue) {
-        print("I returned")
+//        print("I returned")
         dismiss(animated: true, completion: nil)
 //        performSegue(withIdentifier: "unwindToLoginV", sender: nil)
     }
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     private func checkTextFields() {
         if usernameTextField.text == "",
             passwordTextField.text == "" {
-            print("Успешный вход.")
+//            print("Успешный вход.")
             performSegue(withIdentifier: "toTabBarController", sender: nil)
 //            performSegue(withIdentifier: "toVKLoginController", sender: nil)
         } else {

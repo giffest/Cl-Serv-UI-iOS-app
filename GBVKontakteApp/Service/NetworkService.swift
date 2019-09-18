@@ -36,6 +36,7 @@ class NetworkService {
 //                    try? self.self.realmService.save(items: users, update: .modified)
                     completion(users)
                 case .failure(let error):
+//                    fatalError("\(error)")
                     print(error)
                     completion([])
                 }
@@ -57,7 +58,6 @@ class NetworkService {
                 case .success(let value):
                     let json = JSON(value)
                     let photoId = (json["response"][0]["crop_photo"]["photo"]["id"].intValue)
-//                    print(photoId)
                     completion(photoId)
                 case .failure(let error):
                     print(error)
@@ -69,7 +69,6 @@ class NetworkService {
     //MARK: - Method Photo
     func getPhotoUser(idOwner: Int) {
         let method = "photos.getAll"
-        
         let parameters: Parameters = [
             "owner_id": idOwner,
             "album_id": "profile",
@@ -78,10 +77,8 @@ class NetworkService {
             "access_token": Session.shared.token,
             "v": "5.101"
         ]
-        
         AF.request(urlApi+method, method: .get, parameters: parameters)
             .responseJSON { response in
-//                print(response.value!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
