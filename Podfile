@@ -6,9 +6,9 @@ target 'GBVKontakteApp' do
   use_frameworks!
 
   # Pods for GBVKontakteApp
-  #pod 'Alamofire', '~> 4.8'
-  pod 'Alamofire', '~> 5.0.0-beta.5'
+  pod 'Alamofire', '~> 5.0.0-rc.2'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Kingfisher', '~> 5.7.1'
+  pod 'RealmSwift', '~> 3.18.0'
 
 end
