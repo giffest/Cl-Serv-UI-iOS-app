@@ -29,6 +29,7 @@ class FriendCell: UITableViewCell {
 //        self.friendImageView.clipsToBounds = true
     
         setupView()
+        
     }
     
     public func setupView() {
@@ -36,7 +37,6 @@ class FriendCell: UITableViewCell {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         friendImageView.isUserInteractionEnabled = true
         friendImageView.addGestureRecognizer(tapGR)
-        
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -61,6 +61,5 @@ class FriendCell: UITableViewCell {
 }
 
 protocol SomeProtocol: UITableViewController {
-    
     func toPhotoBoard()
 }
