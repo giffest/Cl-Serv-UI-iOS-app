@@ -8,86 +8,115 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendsViewController: UITableViewController, UISearchBarDelegate, SomeProtocol {
 
     let networkService = NetworkService()
-    private var users = [User]()
+    let loadIndicatorView = LoadIndicatorView()
     
-//    var users: [UserModel] = [
-//        UserModel(idUser: 1, nameUser: "Губка Боб", imageUser: "ГубкаБоб"),
-//        UserModel(idUser: 2, nameUser: "Мамонтенок", imageUser: "Мамонтенок"),
-//        UserModel(idUser: 3, nameUser: "Медведь Трям", imageUser: "МедведьТрям"),
-//        UserModel(idUser: 4, nameUser: "Львенок", imageUser: "Львенок"),
-//        UserModel(idUser: 5, nameUser: "Незнайка", imageUser: "Незнайка"),
-//        UserModel(idUser: 6, nameUser: "Карлсон", imageUser: "Карлсон2"),
-//        UserModel(idUser: 7, nameUser: "Губка Боб2", imageUser: "ГубкаБоб2"),
-//        UserModel(idUser: 8, nameUser: "Мамонтенок2", imageUser: "Мамонтенок2"),
-//        UserModel(idUser: 9, nameUser: "Медведь Трям2", imageUser: "МедведьТрям2"),
-//        UserModel(idUser: 10, nameUser: "Львенок2", imageUser: "Львенок2"),
-//        UserModel(idUser: 11, nameUser: "Незнайка2", imageUser: "Незнайка2"),
-//        UserModel(idUser: 12, nameUser: "Карлсон2", imageUser: "Карлсон2")
-//        ]
-//        .sorted(by: {$0.nameUser < $1.nameUser} )
-
+    private var notificationToken: NotificationToken?
+//    private var users: Results<User>?
+    private let users = try! Realm().objects(User.self).sorted(byKeyPath: "lastName")
+//    var firstCharacter = [Character]()
+//    var sortedUsers = [Character: users] = [:]
     var titleForSection = [String]()
-    var items = [[UserModel]]()
-    var itemsFiltered = [UserModel]()
+//    var items = [[User]]()
+    var items = [[User]]()
+//    var itemsFiltered = [User]()
+    var itemsFiltered = [User]()
     var searchAction = false
-
-    
-//    var someIndex = 0
-    func toPhotoBoard() {
-//        let selectIndexPath = IndexPath(item: someIndex, section: 0)
-//        collectionView.selectItem(at: selectIndexPath, animated: false, scrollPosition: [])
-        print("Нажата иконка.")
-//        let selectIndexPath = IndexPath(index: someIndex)
-//        tableView.deselectRow(at: selectIndexPath, animated: false)
-//        self.performSegue(withIdentifier: "FriendFotoSegue", sender: self)
-        self.performSegue(withIdentifier: "FriendFotoSegue",sender: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getFriends() { [weak self] users in
-            self?.users = users
-            self?.tableView.reloadData()
-        }
+        networkService.getFriends()
         
-//        friendSectionData()
+        notificationToken = users.observe({ [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case .initial:
+                break
+            case .update:
+                self.friendSectionData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
+//        (firstCharacter, sortedUsers) = sort(users)
         refreshControl()
-//        _ = users.sort {$0.nameUser < $1.nameUser}
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        userNotificationObserves()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        notificationToken?.invalidate()
     }
 
-    // MARK: - Table view data source
+    func userNotificationObserves() {
+        notificationToken = users.observe({ [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case .initial:
+                self.tableView.reloadData()
+            case .update:
+                self.tableView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
+    }
     
-//    func friendSectionData() {
-//        var section = 0
-//
-//        _ = users.sort {$0.nameUser < $1.nameUser}
-//
-//        titleForSection.append(String(users[0].nameUser.first!))
-//        items.append([UserModel]())
+    // MARK: - Table view data source
+    private func friendSectionData() {
+        var section = 0
+        
+        titleForSection.append(String(users[0].lastName.first ?? "я"))
+//        items.append([User]())
+        items.append([users[0]])
 //        items[section].append(users[0])
+        
+        for row in 1..<users.count {
+            let leftValue = users[row - 1].lastName.first
+            let rightValue = users[row].lastName.first
+            if leftValue == rightValue {
+                items[section].append(users[row])
+//                items.append([users[row]])
+            } else {
+                titleForSection.append(String(rightValue!))
+                section += 1
+//                items.append([User]())
+                items.append([users[row]])
+//                items[section].append(users[row])
+            }
+        }
+    }
+//    private func sort(_ items: [User]) -> (characters: [Character], sortedItems: [Character: [User]]) {
+//        var characters = [Character]()
+//        var sortedItems = [Character: [User]]()
 //
-//        for row in 1..<users.count {
-//            let leftValue = users[row - 1].nameUser.first
-//            let rightValue = users[row].nameUser.first
-//            if leftValue == rightValue {
-//                items[section].append(users[row])
+//        items.forEach { item in
+//            guard let character = item.lastName.first else { return }
+////            guard let character = item.firstName.first else { return }
+//            if var thisCharItems = sortedItems[character] {
+//                thisCharItems.append(item)
+//                sortedItems[character] = thisCharItems
 //            } else {
-//                titleForSection.append(String(rightValue!))
-//                section += 1
-//                items.append([UserModel]())
-//                items[section].append(users[row])
+//                sortedItems[character] = [item]
+//                characters.append(character)
 //            }
 //        }
+//        characters.sort()
+//
+//        return (characters, sortedItems)
 //    }
 
-    let loadIndicatorView = LoadIndicatorView()
-    
     func refreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = .clear
@@ -95,7 +124,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         
 //        let rect = refreshControl!.bounds
 //        loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-
         
 //        view.centerXAnchor.constraint(equalTo: CGPoint(rect.width/2))
 //        view.centerYAnchor.constraint(equalTo: CGPoint(rect.height/2))
@@ -126,44 +154,48 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //        replicatorLayer.animation(forKey: <#T##String#>)
     }
     
-//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return searchAction ? nil : titleForSection
-//    }
+    //    var someIndex = 0
+    func toPhotoBoard() {
+        //        let selectIndexPath = IndexPath(item: someIndex, section: 0)
+        //        collectionView.selectItem(at: selectIndexPath, animated: false, scrollPosition: [])
+        print("Нажата иконка.")
+        //        let selectIndexPath = IndexPath(index: someIndex)
+        //        tableView.deselectRow(at: selectIndexPath, animated: false)
+        self.performSegue(withIdentifier: "toFriendsFotoViewController", sender: self)
+    }
+    
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return searchAction ? nil : titleForSection
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        return searchAction ? 1 : titleForSection.count
-        return 1
+        return searchAction ? 1 : titleForSection.count
+//        return 1
     }
 
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return searchAction ? nil : String(titleForSection[section])
-//    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return searchAction ? nil : String(titleForSection[section])
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 //        return 10  // для проверки и настройки
-        return users.count
-//        return searchAction ? itemsFiltered.count : items[section].count
+//        return users.count
+        return searchAction ? itemsFiltered.count : items[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseIndentifier, for: indexPath) as? FriendCell else { return UITableViewCell() }
         
-        //cell.friendNameLabel.text = "Губка Боб"
+        let section = indexPath.section
+        let row = indexPath.row
+//        let user = users[indexPath.row]
+        let user = searchAction ? itemsFiltered[row] : items[section][row]
         
-//        let section = indexPath.section
-//        let row = indexPath.row
-        
-        let user = users[indexPath.row]
-        cell.friendNameLabel.text = user.last_name + " " + user.first_name
-        cell.friendImageView.kf.setImage(with: user.avatarUrl)
-        
-//        let user = searchAction ? itemsFiltered[row] : items[section][row]
-//        cell.friendNameLabel.text = user.nameUser
-//        cell.friendImageView.image = UIImage(named: user.imageUser)
-        
-//        cell.friendNameLabel2.text = user.nameUser
-//        cell.friendImageView2.image = UIImage(named: user.imageUser)
+        cell.friendNameLabel.text = user.firstName + " " + user.lastName
+        cell.friendImageView.kf.setImage(with: URL(string: user.avatarUrl))
+//        cell.friendImageView.kf.setImage(with: user.avatarUrl)
         
         //aнимация
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -100, 10, 0)
@@ -175,7 +207,6 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
 //            cell.layer.transform = CATransform3DIdentity
 //            cell.alpha = 1.0
 //        }
-        
         return cell
     }
 
@@ -184,7 +215,7 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
         //aнимация
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -100, 10, 0) // 1 вариант
         let rotationTransform = CATransform3DMakeTranslation(-100, 10, 0) // 2 вариант
-        //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
+//        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
         cell.layer.transform = rotationTransform
         cell.alpha = 0.5
         
@@ -204,51 +235,43 @@ class FriendsViewController: UITableViewController, UISearchBarDelegate, SomePro
     */
 
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-//            users.remove(at: indexPath.row)
-            items[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//
+////            users.remove(at: indexPath.row)
+//            items[indexPath.section].remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
 
      // MARK: - Navigation
-    
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FriendFotoSegue",
+        if segue.identifier == "toFriendsFotoViewController",
             let friendFotoController = segue.destination as? FriendsFotoViewController,
             let indexPath = tableView.indexPathForSelectedRow {
             
+            let section = indexPath.section
+            let row = indexPath.row
 //            let nameUser = users[indexPath.row]
-            let nameUser = items[indexPath.section][indexPath.row]
-            friendFotoController.friendNameForTitle = nameUser.nameUser
-            friendFotoController.friendFotoForImage = nameUser.imageUser
+//            let nameUser = items[indexPath.section][indexPath.row]
+//            friendFotoController.friendNameForTitle = nameUser.nameUser
+//            friendFotoController.friendFotoForImage = nameUser.imageUser
+            
+//            let user = users[indexPath.row]
+//            let user = items[section][row]
+            let user = searchAction ? itemsFiltered[row] : items[section][row]
+            friendFotoController.friendNameForTitle = user.firstName + " " + user.lastName
+            friendFotoController.friendFotoForImage = user.avatarUrl
+            friendFotoController.idOwner = user.idFriend
             }
      }
     
     // MARK: SeachBar navigation
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchAction = searchText.count == 0 ? false : true
 //        itemsFiltered = users.filter { $0.nameUser.lowercased().contains(searchText.lowercased())}
-
+        itemsFiltered = users.filter { ($0.firstName + $0.lastName).lowercased().contains(searchText.lowercased())}
         self.tableView.reloadData()
      }
     

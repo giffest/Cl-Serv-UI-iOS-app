@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private let reuseIdentifier = "Cell"
 
@@ -16,13 +17,21 @@ class FriendsFotoViewController: UICollectionViewController {
     
     var friendNameForTitle: String = ""
     var friendFotoForImage: String = ""
+//    var friendFotoForImage: URL?
+    var idOwner = 0
+    var idPhotoOwner = 0
+//    var idPhotoOwner: (Int) -> Void
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getPhotoUser()
-        
         title = friendNameForTitle
+        
+//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
+//            self?.idPhotoOwner = photoId
+//        }
+//        Session.shared.ownerid = idOwner
+//        Session.shared.photoid = idPhotoOwner
 
     }
     
@@ -30,6 +39,20 @@ class FriendsFotoViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        networkService.getPhotoUser(idOwner: idOwner)
+
+
+        
+//        let realm = try! Realm()
+//        try? realm.write {
+//            let owner = User()
+//            owner.idFriend = idOwner
+//            owner.photos.append(objectsIn: photos)
+//        }
+
+        Session.shared.ownerid = idOwner
+//        Session.shared.photoid = idPhotoOwner
         
         view.addSubview(loadIndicatorView)
         
@@ -67,14 +90,13 @@ class FriendsFotoViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
         
-        //let fotoImage = friendFotoForImage
-        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
+//        let fotoImage = friendFotoForImage
+        cell.imageFriendView.kf.setImage(with: URL(string: friendFotoForImage))
         
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         //aнимация
 //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 500, 10, 0)
 //        //        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
@@ -85,6 +107,13 @@ class FriendsFotoViewController: UICollectionViewController {
 //            cell.layer.transform = CATransform3DIdentity
 //            cell.alpha = 1.0
 //        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAnimateViewController",
+            let amimateViewController = segue.destination as? AnimateViewController {
+            amimateViewController.idOwner = idOwner
+        }
     }
     
     // MARK: UICollectionViewDelegate

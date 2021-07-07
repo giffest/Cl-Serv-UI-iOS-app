@@ -8,15 +8,13 @@
 
 import UIKit
 
-class FriendCell: UITableViewCell {
+class FriendCell: UITableViewCell, UITableViewDelegate {
     
     static let reuseIndentifier = "FriendCell"
 
     @IBOutlet weak var friendNameLabel: UILabel!
-    @IBOutlet weak var friendNameLabel2: UILabel!
     
     @IBOutlet weak var friendImageView: UIImageView!
-    @IBOutlet weak var friendImageView2: UIImageView!
     
     var delegate: SomeProtocol!
     
@@ -29,6 +27,7 @@ class FriendCell: UITableViewCell {
 //        self.friendImageView.clipsToBounds = true
     
         setupView()
+        
     }
     
     public func setupView() {
@@ -36,7 +35,6 @@ class FriendCell: UITableViewCell {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         friendImageView.isUserInteractionEnabled = true
         friendImageView.addGestureRecognizer(tapGR)
-        
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -61,6 +59,5 @@ class FriendCell: UITableViewCell {
 }
 
 protocol SomeProtocol: UITableViewController {
-    
     func toPhotoBoard()
 }
