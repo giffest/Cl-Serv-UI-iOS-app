@@ -25,14 +25,14 @@ class CornerAnimate: NSObject, UIViewControllerAnimatedTransitioning {
         
         isPresenting ? container.addSubview(toView) : container.insertSubview(toView, belowSubview: fromView)
         
-        if(isPresenting) {
+        if (isPresenting) {
             toView.setAnchorPoint(CGPoint(x: 1, y: 0))
             toView.transform = CGAffineTransform(rotationAngle: -.pi / 2)
         }
         toView.layoutIfNeeded()
         
         UIView.animate(withDuration: duration, animations: {
-            if(self.isPresenting) {
+            if (self.isPresenting) {
                 toView.transform = CGAffineTransform(rotationAngle: 0)
             } else {
                 fromView.transform = CGAffineTransform(rotationAngle: -.pi / 2)

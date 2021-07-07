@@ -7,36 +7,41 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
-class AmimateViewController: UIViewController {
+class AnimateViewController: UIViewController {
+    
+    let networkService = NetworkService()
+
+    var idOwner = 0
+
+    lazy var photos = try? Realm().objects(Photo.self).filter("id BEGINSWITH %@", String(Session.shared.ownerid))
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var cellIdentifier = "cell"
-    
-//    var friendNameForTitle: String = ""
-//    var friendFotoForImage: String = ""
+    private var cellIdentifier = "cellPhotoAmimate"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        title = friendNameForTitle
+
         collectionView?.dataSource = self
-        collectionView?.register(AniamteCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView?.register(AnimateCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         
         collectionView.collectionViewLayout = AnimateFlowLayout()
     }
 }
 
-extension AmimateViewController: UICollectionViewDataSource {
-    
+extension AnimateViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return photos?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AniamteCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AnimateCollectionViewCell
         
-        cell.imageView.image = UIImage(named: "image\(indexPath.row+1)")
+        let photo = photos?[indexPath.row]
+        cell.imageView.kf.setImage(with: URL(string: photo?.photoUrl ?? ""))
         
         return cell
     }
