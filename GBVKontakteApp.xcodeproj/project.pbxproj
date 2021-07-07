@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		5014F2E734E75C1A177916C0 /* Pods_GBVKontakteApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A742D71F8E6ABB84329A6B /* Pods_GBVKontakteApp.framework */; };
 		5405975F228EED1E002A892A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5405975E228EED1E002A892A /* AppDelegate.swift */; };
-		54059761228EED1E002A892A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54059760228EED1E002A892A /* ViewController.swift */; };
+		54059761228EED1E002A892A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54059760228EED1E002A892A /* LoginViewController.swift */; };
 		54059764228EED1E002A892A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54059762228EED1E002A892A /* Main.storyboard */; };
 		54059769228EED1F002A892A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54059767228EED1F002A892A /* LaunchScreen.storyboard */; };
 		54076B632309477400C4305D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54076B622309477400C4305D /* Session.swift */; };
 		54094F8822A10DE6001FD4D6 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8722A10DE6001FD4D6 /* ShadowView.swift */; };
-		54094F8B22A1291D001FD4D6 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8A22A1291D001FD4D6 /* LikeButton.swift */; };
+		54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */; };
+		542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542358CC2313DC9500B6C7B4 /* Photo.swift */; };
 		5437105A22AA9BA100582985 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105922AA9BA100582985 /* NewsCell.swift */; };
 		5437105C22AA9DAE00582985 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105B22AA9DAE00582985 /* NewsModel.swift */; };
 		5437106022AAA03300582985 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5437105F22AAA03300582985 /* NewsViewController.swift */; };
@@ -27,7 +28,7 @@
 		546DC1CF22BCE699001C7673 /* CornerNavogationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1CE22BCE699001C7673 /* CornerNavogationController.swift */; };
 		546DC1D122BCE753001C7673 /* CornerAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1D022BCE753001C7673 /* CornerAnimate.swift */; };
 		546DC1D422BCF58A001C7673 /* AnimateImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1D322BCF58A001C7673 /* AnimateImageController.swift */; };
-		546DC1DA22BE2557001C7673 /* LaunchScreen2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546DC1D922BE2557001C7673 /* LaunchScreen2.xib */; };
+		546DC1DA22BE2557001C7673 /* LaunchScreenLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546DC1D922BE2557001C7673 /* LaunchScreenLogo.xib */; };
 		546DC1DC22BE3ED4001C7673 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DC1DB22BE3ED4001C7673 /* AvatarView.swift */; };
 		5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5477BCA123097B35001DD927 /* VKLoginController.swift */; };
 		5477BCA423097E7E001DD927 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5477BCA323097E7E001DD927 /* WebKit.framework */; };
@@ -38,7 +39,7 @@
 		5483886F22942B8400E76666 /* FriendsFotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483886E22942B8400E76666 /* FriendsFotoViewController.swift */; };
 		5483887122942BE100E76666 /* UserGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483887022942BE100E76666 /* UserGroupViewController.swift */; };
 		5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5483887222942BF200E76666 /* FindGroupViewController.swift */; };
-		549E949A22C20471002B86F3 /* LoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949922C20471002B86F3 /* LoadController.swift */; };
+		549E949A22C20471002B86F3 /* LoadIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949922C20471002B86F3 /* LoadIndicatorView.swift */; };
 		549E949C22C25126002B86F3 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E949B22C25126002B86F3 /* CustomInteractiveTransition.swift */; };
 		54A3BF002296847100B49849 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BEFF2296847100B49849 /* FriendCell.swift */; };
 		54A3BF052296896600B49849 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BF042296896600B49849 /* ImageCell.swift */; };
@@ -55,13 +56,14 @@
 /* Begin PBXFileReference section */
 		5405975B228EED1E002A892A /* GBVKontakteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBVKontakteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5405975E228EED1E002A892A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54059760228EED1E002A892A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		54059760228EED1E002A892A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54059763228EED1E002A892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54059768228EED1F002A892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5405976A228EED1F002A892A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54076B622309477400C4305D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		54094F8722A10DE6001FD4D6 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		54094F8A22A1291D001FD4D6 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonControl.swift; sourceTree = "<group>"; };
+		542358CC2313DC9500B6C7B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		5437105922AA9BA100582985 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5437105B22AA9DAE00582985 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		5437105F22AAA03300582985 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 		546DC1CE22BCE699001C7673 /* CornerNavogationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerNavogationController.swift; sourceTree = "<group>"; };
 		546DC1D022BCE753001C7673 /* CornerAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerAnimate.swift; sourceTree = "<group>"; };
 		546DC1D322BCF58A001C7673 /* AnimateImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateImageController.swift; sourceTree = "<group>"; };
-		546DC1D922BE2557001C7673 /* LaunchScreen2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen2.xib; sourceTree = "<group>"; };
+		546DC1D922BE2557001C7673 /* LaunchScreenLogo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreenLogo.xib; sourceTree = "<group>"; };
 		546DC1DB22BE3ED4001C7673 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		5477BCA123097B35001DD927 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
 		5477BCA323097E7E001DD927 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -85,7 +87,7 @@
 		5483886E22942B8400E76666 /* FriendsFotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotoViewController.swift; sourceTree = "<group>"; };
 		5483887022942BE100E76666 /* UserGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupViewController.swift; sourceTree = "<group>"; };
 		5483887222942BF200E76666 /* FindGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupViewController.swift; sourceTree = "<group>"; };
-		549E949922C20471002B86F3 /* LoadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadController.swift; sourceTree = "<group>"; };
+		549E949922C20471002B86F3 /* LoadIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadIndicatorView.swift; sourceTree = "<group>"; };
 		549E949B22C25126002B86F3 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		54A3BEFF2296847100B49849 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		54A3BF042296896600B49849 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -152,13 +154,12 @@
 				54A3BF03229685D000B49849 /* Cells */,
 				54F92A0B2296BA70005FCCFA /* Models */,
 				5437106122AAEE4D00582985 /* Control */,
+				54C73E272312DC3D00201C62 /* Layout */,
 				546DC1CD22BCE633001C7673 /* NavigationControllers */,
 				546DC1D222BCECE2001C7673 /* Base */,
+				54C73E262312C16000201C62 /* Service */,
 				54F92A052296AD9F005FCCFA /* Assets.xcassets */,
 				5405976A228EED1F002A892A /* Info.plist */,
-				544C5F6522AEDB3700D345DA /* NewsCollectionViewLayout.swift */,
-				5438BFED22B81A06007F5C42 /* AnimateFlowLayout.swift */,
-				54D997DE230FF3E500579E56 /* Service */,
 			);
 			path = GBVKontakteApp;
 			sourceTree = "<group>";
@@ -166,7 +167,13 @@
 		54094F8922A115C6001FD4D6 /* Archiv */ = {
 			isa = PBXGroup;
 			children = (
+				54F92A072296BA39005FCCFA /* UserModel.swift */,
+				54F92A092296BA46005FCCFA /* GroupModel.swift */,
+				5437105B22AA9DAE00582985 /* NewsModel.swift */,
+				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
+				547B6C70229C35680092EBEA /* ImageView.swift */,
 				54C59D43230AA5C000AC612A /* NetworkServiceBase.swift */,
+				54094F8722A10DE6001FD4D6 /* ShadowView.swift */,
 				547B6C6A229C07460092EBEA /* CustomViewController.swift */,
 				547B6C6C229C08190092EBEA /* CoreGraphics.storyboard */,
 				546DC1DB22BE3ED4001C7673 /* AvatarView.swift */,
@@ -177,8 +184,7 @@
 		5437105822AA9A6000582985 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				547B6C70229C35680092EBEA /* ImageView.swift */,
-				54094F8722A10DE6001FD4D6 /* ShadowView.swift */,
+				549E949922C20471002B86F3 /* LoadIndicatorView.swift */,
 				5437106222AAF3FF00582985 /* ImageShadowView.swift */,
 			);
 			path = Views;
@@ -187,7 +193,7 @@
 		5437106122AAEE4D00582985 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				54094F8A22A1291D001FD4D6 /* LikeButton.swift */,
+				54094F8A22A1291D001FD4D6 /* LikeButtonControl.swift */,
 				544C5F6122AE4A7700D345DA /* SkrollControl.swift */,
 			);
 			path = Control;
@@ -208,7 +214,7 @@
 			children = (
 				54059762228EED1E002A892A /* Main.storyboard */,
 				54059767228EED1F002A892A /* LaunchScreen.storyboard */,
-				546DC1D922BE2557001C7673 /* LaunchScreen2.xib */,
+				546DC1D922BE2557001C7673 /* LaunchScreenLogo.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -216,15 +222,13 @@
 		5483887422942C1500E76666 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				54059760228EED1E002A892A /* ViewController.swift */,
+				54059760228EED1E002A892A /* LoginViewController.swift */,
 				5483886C22942B4C00E76666 /* FriendsViewController.swift */,
 				5483886E22942B8400E76666 /* FriendsFotoViewController.swift */,
 				5483887022942BE100E76666 /* UserGroupViewController.swift */,
 				5483887222942BF200E76666 /* FindGroupViewController.swift */,
 				5437105F22AAA03300582985 /* NewsViewController.swift */,
 				5438BFEF22B81A6D007F5C42 /* AnimateViewController.swift */,
-				546DC1D322BCF58A001C7673 /* AnimateImageController.swift */,
-				549E949922C20471002B86F3 /* LoadController.swift */,
 				5477BCA123097B35001DD927 /* VKLoginController.swift */,
 			);
 			path = Controllers;
@@ -242,23 +246,30 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		54D997DE230FF3E500579E56 /* Service */ = {
+		54C73E262312C16000201C62 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				54076B622309477400C4305D /* Session.swift */,
 				54D997DC230FF38B00579E56 /* NetworkService.swift */,
 			);
-			name = Service;
+			path = Service;
+			sourceTree = "<group>";
+		};
+		54C73E272312DC3D00201C62 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				544C5F6522AEDB3700D345DA /* NewsCollectionViewLayout.swift */,
+				5438BFED22B81A06007F5C42 /* AnimateFlowLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		54F92A0B2296BA70005FCCFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				54F92A072296BA39005FCCFA /* UserModel.swift */,
-				54F92A092296BA46005FCCFA /* GroupModel.swift */,
-				5437105B22AA9DAE00582985 /* NewsModel.swift */,
 				54D997DA230FE74300579E56 /* User.swift */,
 				54D997DF23126D9000579E56 /* Group.swift */,
+				542358CC2313DC9500B6C7B4 /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,7 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				546DC1DA22BE2557001C7673 /* LaunchScreen2.xib in Resources */,
+				546DC1DA22BE2557001C7673 /* LaunchScreenLogo.xib in Resources */,
 				547B6C6D229C08190092EBEA /* CoreGraphics.storyboard in Resources */,
 				54059769228EED1F002A892A /* LaunchScreen.storyboard in Resources */,
 				54F92A062296AD9F005FCCFA /* Assets.xcassets in Resources */,
@@ -390,7 +401,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				54076B632309477400C4305D /* Session.swift in Sources */,
-				549E949A22C20471002B86F3 /* LoadController.swift in Sources */,
+				542358CD2313DC9500B6C7B4 /* Photo.swift in Sources */,
+				549E949A22C20471002B86F3 /* LoadIndicatorView.swift in Sources */,
 				54F92A0A2296BA46005FCCFA /* GroupModel.swift in Sources */,
 				5437106322AAF3FF00582985 /* ImageShadowView.swift in Sources */,
 				54A3BF072296919B00B49849 /* GroupCell.swift in Sources */,
@@ -408,7 +420,7 @@
 				5477BCA223097B35001DD927 /* VKLoginController.swift in Sources */,
 				546DC1D122BCE753001C7673 /* CornerAnimate.swift in Sources */,
 				5438BFF022B81A6D007F5C42 /* AnimateViewController.swift in Sources */,
-				54059761228EED1E002A892A /* ViewController.swift in Sources */,
+				54059761228EED1E002A892A /* LoginViewController.swift in Sources */,
 				54D997DD230FF38B00579E56 /* NetworkService.swift in Sources */,
 				5483886D22942B4C00E76666 /* FriendsViewController.swift in Sources */,
 				5483887322942BF200E76666 /* FindGroupViewController.swift in Sources */,
@@ -422,7 +434,7 @@
 				5438BFEE22B81A06007F5C42 /* AnimateFlowLayout.swift in Sources */,
 				54F92A082296BA39005FCCFA /* UserModel.swift in Sources */,
 				5437106022AAA03300582985 /* NewsViewController.swift in Sources */,
-				54094F8B22A1291D001FD4D6 /* LikeButton.swift in Sources */,
+				54094F8B22A1291D001FD4D6 /* LikeButtonControl.swift in Sources */,
 				5483887122942BE100E76666 /* UserGroupViewController.swift in Sources */,
 				546DC1CF22BCE699001C7673 /* CornerNavogationController.swift in Sources */,
 			);

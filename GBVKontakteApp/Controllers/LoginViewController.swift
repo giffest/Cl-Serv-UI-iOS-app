@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  
 //
 //  Created by Dmitry on 17/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     //MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     //MARK: - Actions
     @IBAction func unwindSegue(unwindSegue: UIStoryboardSegue) {
-    //    print("I returned")
+        print("I returned")
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -49,7 +49,8 @@ class ViewController: UIViewController {
         if usernameTextField.text == "",
             passwordTextField.text == "" {
             print("Успешный вход.")
-            performSegue(withIdentifier: "showMyTabController", sender: nil)
+//            performSegue(withIdentifier: "showMyTabController", sender: nil)
+            performSegue(withIdentifier: "showVKLoginController", sender: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Incorrect login or password", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) {_ in

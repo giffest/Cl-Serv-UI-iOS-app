@@ -13,17 +13,18 @@ private let reuseIdentifier = "Cell"
 class FriendsFotoViewController: UICollectionViewController {
     
     let networkService = NetworkService()
+    private var photosUI = [Photo]()
     
     var friendNameForTitle: String = ""
-    var friendFotoForImage: String = ""
+//    var friendFotoForImage: String = ""
+    var friendFotoForImage: URL?
+    var idOwner = 0
+    var idPhotoOwner = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getPhotoUser()
-        
         title = friendNameForTitle
-
     }
     
     let loadIndicatorView = LoadIndicatorView()
@@ -31,6 +32,16 @@ class FriendsFotoViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+//        networkService.getPhotoId(idOwner: idOwner) { [weak self] photoId in
+//            self?.idPhoto = photoId
+//        }
+        networkService.getPhotoUser(idOwner: idOwner) { [weak self] photos in
+            self?.idPhotoOwner = photos[0].idPhoto
+        }
+        
+        Session.shared.ownerid = idOwner
+        Session.shared.photoid = idPhotoOwner
+
         view.addSubview(loadIndicatorView)
         
         loadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +78,9 @@ class FriendsFotoViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
         
-        //let fotoImage = friendFotoForImage
-        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
+//        let fotoImage = friendFotoForImage
+//        cell.imageFriendView.image = UIImage(named: friendFotoForImage)
+        cell.imageFriendView.kf.setImage(with: friendFotoForImage)
         
         return cell
     }
@@ -85,6 +97,13 @@ class FriendsFotoViewController: UICollectionViewController {
 //            cell.layer.transform = CATransform3DIdentity
 //            cell.alpha = 1.0
 //        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FotoAnimateSegue",
+            let amimateViewController = segue.destination as? AmimateViewController {
+            amimateViewController.idOwner = idOwner
+        }
     }
     
     // MARK: UICollectionViewDelegate
