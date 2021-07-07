@@ -40,7 +40,7 @@ class NetworkServiceBase {
 //            print(response)
 //            print(error)
             
-            print(json)
+            print(json!)
         }
         print("3")
         task.resume()
@@ -56,7 +56,7 @@ class NetworkServiceBase {
         
         AF.request("https://api.vk.com" + "/method/friends.get", method: .get, parameters: parameters)
             .responseJSON { response in
-            print(response.value)
+                print(response.value!)
         }
     }
     

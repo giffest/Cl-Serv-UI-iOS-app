@@ -7,30 +7,24 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FindGroupViewController: UITableViewController, UISearchBarDelegate {
     
     let networkService = NetworkService()
     public var groupsVK = "xcode"
 //    public var gpoupsVK = "MacOS"
-
-    var groups: [GroupModel] = [
-        GroupModel(idGroup: 5, nameGroup: "Зоопарк", imageGroup: "Зоопарк2"),
-        GroupModel(idGroup: 6, nameGroup: "Московский Зоопарк", imageGroup: "МосковскийЗоопарк2"),
-        GroupModel(idGroup: 7, nameGroup: "Берлин", imageGroup: "Берлин2"),
-        GroupModel(idGroup: 8, nameGroup: "Красная книга", imageGroup: "КраснаяКнига2"),
-        GroupModel(idGroup: 9, nameGroup: "Союзмультфильм", imageGroup: "Союзмульфильм2")
-    ]
-    
-    var itemsFiltered = [GroupModel]()
+    var groups = [Group]()
+    var itemsFiltered = [Group]()
     var searchAction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getSearchGroup(for: groupsVK)
-        
-    //    tableView.dataSource = self
+        networkService.getSearchGroup(for: groupsVK) { [weak self] groups in
+            self?.groups = groups
+            self?.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -50,14 +44,27 @@ class FindGroupViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseIndentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
-        
-        //cell.groupNameLabel.text = "Мадагаскар"
-        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+   
 //        let group = groups[indexPath.row]
-        cell.groupNameLabel.text = group.nameGroup
-        cell.groupImageView.image = UIImage(named: group.imageGroup)
+        let group = searchAction ? itemsFiltered[indexPath.row] : groups[indexPath.row]
+        cell.groupNameLabel.text = group.name
+        cell.groupImageView.kf.setImage(with: URL(string: group.avatarUrl))
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //aнимация
+//        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -100, 10, 0) // 1 вариант
+        let rotationTransform = CATransform3DMakeTranslation(-100, 10, 0) // 2 вариант
+//        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
+        cell.layer.transform = rotationTransform
+        cell.alpha = 0.5
+        
+        UIView.animate(withDuration: 0.5) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1.0
+        }
     }
 
     /*
@@ -106,19 +113,18 @@ class FindGroupViewController: UITableViewController, UISearchBarDelegate {
     */
     
     // MARK: SeachBar navigation
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        networkService.getSearchGroup(for: searchText) { [weak self] groups in
+            self?.itemsFiltered = groups
+            self?.tableView.reloadData()
+        }
         searchAction = searchText.count == 0 ? false : true
-        itemsFiltered = groups.filter { $0.nameGroup.lowercased().contains(searchText.lowercased())}
-        
-        self.tableView.reloadData()
     }
     
-// функция приводит к ошибке при наличии секции
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        searchAction = true
-//    }
+    // функция приводит к ошибке при наличии секции
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchAction = true
+    }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchAction = false
